@@ -4,7 +4,7 @@
 
 # Site
 title: Eve的博客
-subtitle: 好高兴认识你
+subtitle: 好好学习 好好吃饭
 description: 毕业于西北农林科技大学的软妹子
 keywords: "前端,js,jquery,程序猿,css"
 author: Shuping·Wei
@@ -17,6 +17,8 @@ url: http://yoursite.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
+
+avatar: /img/qingzi.jpg
 
 # Directory
 source_dir: source
