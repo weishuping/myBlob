@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-keywords:
-author: John Doe
+title: Eve的博客
+subtitle: 好高兴认识你
+description: 毕业于西北农林科技大学的软妹子
+keywords: "前端,js,jquery,程序猿,css"
+author: Shuping·Wei
 language:
 timezone:
 
@@ -79,3 +79,21 @@ theme: yilia
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true
