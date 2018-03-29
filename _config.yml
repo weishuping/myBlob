@@ -18,8 +18,6 @@ root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
-avatar: /img/qingzi.jpg
-
 # Directory
 source_dir: source
 public_dir: public
