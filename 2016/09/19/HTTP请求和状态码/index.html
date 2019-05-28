@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>HTTP请求和状态码 | xiaowei</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="HTTP 请求和状态码TCP/IP协议和输入URL之后浏览器做了什么问：输入URL之后浏览器做了什么？例如：在浏览器地址栏输入网址：www.baidu.com之后浏览器怎么把最终的页面呈现出来的呢？这个过程分为两个部分：网络通信和页面渲染。一、网络通信：在互联网内各个网络设备之间遵循TCP/IP协议。根据分层顺序与对方进行通信。分层从高到低分为：应用层、传输层、网络层、数据链路层、物理层。1、在浏">
+  <meta name="description" content="HTTP 请求和状态码TCP/IP协议和输入URL之后浏览器做了什么">
 <meta name="keywords" content="HTTP,状态码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTP请求和状态码">
 <meta property="og:url" content="http://yoursite.com/2016/09/19/HTTP请求和状态码/index.html">
 <meta property="og:site_name" content="xiaowei">
-<meta property="og:description" content="HTTP 请求和状态码TCP/IP协议和输入URL之后浏览器做了什么问：输入URL之后浏览器做了什么？例如：在浏览器地址栏输入网址：www.baidu.com之后浏览器怎么把最终的页面呈现出来的呢？这个过程分为两个部分：网络通信和页面渲染。一、网络通信：在互联网内各个网络设备之间遵循TCP/IP协议。根据分层顺序与对方进行通信。分层从高到低分为：应用层、传输层、网络层、数据链路层、物理层。1、在浏">
+<meta property="og:description" content="HTTP 请求和状态码TCP/IP协议和输入URL之后浏览器做了什么">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-24T11:24:29.906Z">
+<meta property="og:updated_time" content="2019-05-28T13:13:19.528Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP请求和状态码">
-<meta name="twitter:description" content="HTTP 请求和状态码TCP/IP协议和输入URL之后浏览器做了什么问：输入URL之后浏览器做了什么？例如：在浏览器地址栏输入网址：www.baidu.com之后浏览器怎么把最终的页面呈现出来的呢？这个过程分为两个部分：网络通信和页面渲染。一、网络通信：在互联网内各个网络设备之间遵循TCP/IP协议。根据分层顺序与对方进行通信。分层从高到低分为：应用层、传输层、网络层、数据链路层、物理层。1、在浏">
+<meta name="twitter:description" content="HTTP 请求和状态码TCP/IP协议和输入URL之后浏览器做了什么">
   
     <link rel="alternative" href="/atom.xml" title="xiaowei" type="application/atom+xml">
   
@@ -175,7 +175,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="HTTP-请求和状态码"><a href="#HTTP-请求和状态码" class="headerlink" title="HTTP 请求和状态码"></a>HTTP 请求和状态码</h3><h4 id="TCP-IP协议和输入URL之后浏览器做了什么"><a href="#TCP-IP协议和输入URL之后浏览器做了什么" class="headerlink" title="TCP/IP协议和输入URL之后浏览器做了什么"></a>TCP/IP协议和输入URL之后浏览器做了什么</h4><p>问：输入URL之后浏览器做了什么？<br>例如：在浏览器地址栏输入网址：<a href="http://www.baidu.com之后浏览器怎么把最终的页面呈现出来的呢？这个过程分为两个部分：网络通信和页面渲染。" target="_blank" rel="noopener">www.baidu.com之后浏览器怎么把最终的页面呈现出来的呢？这个过程分为两个部分：网络通信和页面渲染。</a><br>一、网络通信：在互联网内各个网络设备之间遵循TCP/IP协议。根据分层顺序与对方进行通信。分层从高到低分为：应用层、传输层、网络层、数据链路层、物理层。<br>1、在浏览器输入URL之后，http属于网络协议，<a href="http://www.baidu.com是网络地址，指出需要的资源在哪台计算机上。一般网络地址可以是域名或者IP地址，域名更好记。那么这个域名会被解析为IP地址。" target="_blank" rel="noopener">www.baidu.com是网络地址，指出需要的资源在哪台计算机上。一般网络地址可以是域名或者IP地址，域名更好记。那么这个域名会被解析为IP地址。</a><br>2、客户端会先检测本地是否有对应的IP地址，有的话就返回IP地址，没有的话就请求上级的DNS服务器，直到找到或者到根节点。<br>3、应用层客户端发送HTTP请求包括请求头和请求主体。请求头包含了请求方式、目标url、遵循的协议等。<br>4、传输层TCP传输报文。TCP协议为可靠传输提供字节流服务。为了方便传输，将数据分为以报文段为单位的数据包进行管理。<br>5、网络层IP协议查询MAC地址。IP协议的作用就是把TCP分割好的各种数据包传送给接收方，而要保证确实能传到接收方还需要接受对方的MAC地址。IP地址和MAC地址一一对应，一个网络设备的IP地址可以更换，但是MAC地址是固定不变的。ARP协议可以将IP地址解析为对应的MAC地址。当通信的双方不在同一局域网时，需要多次中转才能达到最终的目标。<br>6、数据到达数据链路层<br>在找到对方的MAC地址之后，就把数据发送到数据链路层，这时客户端发送请求的阶段结束。<br>7、服务器接受数据<br>接收端的服务器在链路层接收到数据包，再层层向上直到应用层。又要重新组合原来的HTTP 请求报文。<br>8、服务器响应请求<br>服务器收到客户端发送的HTTP请求后查找客户端请求的资源并返回响应报文，这其中包含一个很重要的信息–状态码。<br>9、服务器返回响应的文件<br>返回HTML文件后等待渲染。<br>二、页面渲染<br>现代浏览器渲染页面的过程： 解析HTML以构建DOM树-&gt; 构建渲染树-&gt;布局渲染树-&gt; 绘制渲染树</p>
+        <h3 id="HTTP-请求和状态码"><a href="#HTTP-请求和状态码" class="headerlink" title="HTTP 请求和状态码"></a>HTTP 请求和状态码</h3><h4 id="TCP-IP协议和输入URL之后浏览器做了什么"><a href="#TCP-IP协议和输入URL之后浏览器做了什么" class="headerlink" title="TCP/IP协议和输入URL之后浏览器做了什么"></a>TCP/IP协议和输入URL之后浏览器做了什么</h4> <a id="more"></a>
+<p>问：输入URL之后浏览器做了什么？<br>例如：在浏览器地址栏输入网址：<a href="http://www.baidu.com之后浏览器怎么把最终的页面呈现出来的呢？这个过程分为两个部分：网络通信和页面渲染。" target="_blank" rel="noopener">www.baidu.com之后浏览器怎么把最终的页面呈现出来的呢？这个过程分为两个部分：网络通信和页面渲染。</a><br>一、网络通信：在互联网内各个网络设备之间遵循TCP/IP协议。根据分层顺序与对方进行通信。分层从高到低分为：应用层、传输层、网络层、数据链路层、物理层。<br>1、在浏览器输入URL之后，http属于网络协议，<a href="http://www.baidu.com是网络地址，指出需要的资源在哪台计算机上。一般网络地址可以是域名或者IP地址，域名更好记。那么这个域名会被解析为IP地址。" target="_blank" rel="noopener">www.baidu.com是网络地址，指出需要的资源在哪台计算机上。一般网络地址可以是域名或者IP地址，域名更好记。那么这个域名会被解析为IP地址。</a><br>2、客户端会先检测本地是否有对应的IP地址，有的话就返回IP地址，没有的话就请求上级的DNS服务器，直到找到或者到根节点。<br>3、应用层客户端发送HTTP请求包括请求头和请求主体。请求头包含了请求方式、目标url、遵循的协议等。<br>4、传输层TCP传输报文。TCP协议为可靠传输提供字节流服务。为了方便传输，将数据分为以报文段为单位的数据包进行管理。<br>5、网络层IP协议查询MAC地址。IP协议的作用就是把TCP分割好的各种数据包传送给接收方，而要保证确实能传到接收方还需要接受对方的MAC地址。IP地址和MAC地址一一对应，一个网络设备的IP地址可以更换，但是MAC地址是固定不变的。ARP协议可以将IP地址解析为对应的MAC地址。当通信的双方不在同一局域网时，需要多次中转才能达到最终的目标。<br>6、数据到达数据链路层<br>在找到对方的MAC地址之后，就把数据发送到数据链路层，这时客户端发送请求的阶段结束。<br>7、服务器接受数据<br>接收端的服务器在链路层接收到数据包，再层层向上直到应用层。又要重新组合原来的HTTP 请求报文。<br>8、服务器响应请求<br>服务器收到客户端发送的HTTP请求后查找客户端请求的资源并返回响应报文，这其中包含一个很重要的信息–状态码。<br>9、服务器返回响应的文件<br>返回HTML文件后等待渲染。<br>二、页面渲染<br>现代浏览器渲染页面的过程： 解析HTML以构建DOM树-&gt; 构建渲染树-&gt;布局渲染树-&gt; 绘制渲染树</p>
 <h4 id="常见的HTTP状态码"><a href="#常见的HTTP状态码" class="headerlink" title="常见的HTTP状态码"></a>常见的HTTP状态码</h4><h5 id="1XX-临时响应"><a href="#1XX-临时响应" class="headerlink" title="1XX 临时响应"></a>1XX 临时响应</h5><p>临时响应并让请求者继续执行操作<br>100（继续）  请求者应当继续提出请求。服务器已经收到请求的第一部分，正在等待其余部分。<br>101（切换协议）请求者已要求服务器切换协议，服务器已确认并准备切换。</p>
 <h5 id="2XX-成功"><a href="#2XX-成功" class="headerlink" title="2XX 成功"></a>2XX 成功</h5><p>表示成功处理了请求的状态码<br>200（成功）服务器已成功处理了请求。<br>201（已创建）请求成功并且服务器创建了新的资源。<br>202（已接受）服务器已接受服务但尚未处理。<br>203（非授权信息）服务器已成功处理了请求，但是返回的信息可能来自于另一来源。<br>204（无内容）服务器处理了请求，但没有返回任何内容。<br>205（重置内容）服务器处理了请求，但没有返回任何内容，与204不同，此响应要求请求者重置文档试图（例如：清除表单内容已输入新内容）<br>206（部分内容）服务器成功处理了部分GET请求</p>
 <h5 id="3XX-重定向"><a href="#3XX-重定向" class="headerlink" title="3XX 重定向"></a>3XX 重定向</h5><p>300（多种选择） 针对请求，服务器可执行多种操作。链接列表。用户可以选择某链接到达目的地。最多允许五个地址。<br>301（永久移动）请求的网页已永久移动到新位置。<br>302（临时移动）服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来响应以后的请求。<em>此代码与响应 GET 和 HEAD 请求的 301 代码类似，会自动将请求者转到不同的位置，但您不应使用此代码来告诉 Googlebot 某个网页或网站已经移动，因为 Googlebot 会继续抓取原有位置并编制索引</em>。<br>303（查看其它位置）所请求的页面可在别的url下被找到。<br>304（未修改）自从上次请求后，请求的网页未修改过。原来缓冲的文档还可以继续使用，进而节省带宽和开销。<br>305（使用代理）请求者应使用代理<br>306     此代码被用于前一版本。目前已不再使用，但是代码依然被保留。<br>307 （临时重定向）被请求的页面已被移到新的url</p>
@@ -534,7 +535,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+              <a href="http://www.oyjie.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>欧阳</a>
             </li>
           
             <li class="search-li">
