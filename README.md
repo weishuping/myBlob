@@ -27,8 +27,16 @@ deploy:
 注意：可能第一次使用找不到git?需要安装hexo插件
 
 ``` npm install hexo -deployer-git --save```
+注意：直接部署 会把之前的代码冲掉。而且直接上传到github了，没关系，本地还有，使用-f再把本地的push上去。
+目前做法是：新建source分支，放开发源码。master放生成的博客。
+#### 日常修改
+在本地对博客进行修改（添加新博文、修改样式等等）后，通过下面的流程进行管理：
+依次执行git add .、git commit -m “…”、git push origin source
+然后才执行hexo generate -d发布网站到master分支上。
+虽然两个过程顺序调转一般不会有问题，不过逻辑上这样的顺序是绝对没问题的（例如突然死机要重装了，悲催….的情况，调转顺序就有问题了）
+
 
 配置菜单等
-在themes/landscape/_config.ymli
+在themes/yalia/_config.ymli
 
 
