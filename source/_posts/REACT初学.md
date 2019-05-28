@@ -4,6 +4,7 @@ date: 2018-04-04 10:40:42
 tags: [REACT]
 ---
 ### React 初学注意点
+ <!--more-->
 ##### state：
 赋值不是this.state.id = '123'，而是`this.setState({id: '123'})`
 因为API是：

@@ -7,6 +7,7 @@ description: 积极追求，拥抱变化
 ### Flex布局指北
  #### 基本概念
  Flex是Flexible Box的缩写，为弹性布局。
+ <!--more-->
  `
     .box {
         display: flex;

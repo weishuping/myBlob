@@ -4,6 +4,8 @@ date: 2017-03-21 10:38:06
 tags:
 ---
 #### node require ko 规范 等等
+ <!--more-->
+
 #####  node.js
 是一个基于Chrome V8引擎的JavaScript**运行环境**。Node.js使用了一个事件驱动、非阻塞式I/O的模型，使其轻量又高效。Node.js的包管理器npm，是全球最大的开源库生态系统。
 将JavaScript用于服务器端编程

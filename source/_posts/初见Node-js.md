@@ -6,6 +6,8 @@ tags: [Node, NPm]
 #### 2016-11-07  node
 
 node是一个基于事件驱动I/O服务器端javaScript环境基于Googlede V8引擎。
+ <!--more-->
+
 ##### 创建一个应用服务
 1、引入required模块
 
