@@ -39,4 +39,7 @@ deploy:
 配置菜单等
 在themes/yalia/_config.ymli
 
+配置CNAME，部署完之后，CNAME丢失
+
+
 
