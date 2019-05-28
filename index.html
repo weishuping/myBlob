@@ -43,11 +43,11 @@
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
-<div class="overlay" style="background: #4d4d4d"></div>
+<div class="overlay" style="background: rgb(255, 128, 150)"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1559036721276&amp;di=690ac2c4c54690507621384fa140717f&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.duoziwang.com%2F2016%2F09%2F02%2F18310554047.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Shuping·Wei</a></h1>
@@ -83,13 +83,11 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://weishuping.github.io" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="jianshu" target="_blank" href="https://www.jianshu.com/u/8df9381899a6" title="jianshu"><i class="icon-jianshu"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/yi-ren-ruo-shui-17/activities" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
 		</nav>
@@ -100,14 +98,14 @@
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
 <nav id="mobile-nav">
-  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+  	<div class="overlay js-overlay" style="background: rgb(255, 128, 150)"></div>
 	<div class="btnctn js-mobile-btnctn">
   		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
 	</div>
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1559036721276&amp;di=690ac2c4c54690507621384fa140717f&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.duoziwang.com%2F2016%2F09%2F02%2F18310554047.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Shuping·Wei</h1>
@@ -126,13 +124,11 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://weishuping.github.io" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="jianshu" target="_blank" href="https://www.jianshu.com/u/8df9381899a6" title="jianshu"><i class="icon-jianshu"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/yi-ren-ruo-shui-17/activities" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
 			</nav>
@@ -163,10 +159,33 @@
     <article id="post-flex-box" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/28/flex-box/">Flex</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/28/flex-box/" class="archive-article-date">
+  	<time datetime="2019-05-27T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-28</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Flex布局是什么"><a href="#Flex布局是什么" class="headerlink" title="Flex布局是什么"></a>Flex布局是什么</h3><p> Flex是Flexible Box的缩写，为弹性布局。<br> `<br>    .box {<br>        display: flex;<br>        display: -webkit-flex;<br>    }<br>    .box1 {<br>        display: inline-flex;<br>    }</p>
-<h2 id=""><a href="#" class="headerlink" title=" `"></a> `</h2>
+        <h3 id="Flex布局指北"><a href="#Flex布局指北" class="headerlink" title="Flex布局指北"></a>Flex布局指北</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p> Flex是Flexible Box的缩写，为弹性布局。<br> <code>.box {
+        display: flex;
+        display: -webkit-flex;
+    }
+    .box1 {
+        display: inline-flex;
+    }</code><br> 采用Flex布局的元素为Flex容器，默认有两个轴线：主轴（水平）、交叉轴（垂直）<br>Flex容器的所有子元素自动成为容器成员，称为Flex项目</p>
+<h5 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h5><p>1：flex-direction 排列方向<br><code>row row-reverse| column | column-reverse</code><br>2: flex-wrap 换行方式<br><code>no-wrap | wrap | wrap-reverse</code><br>3:flex-flow<br>是前两个属性的简写形式<br>4：justify-content 水平方向的对齐方式<br><code>flex-start | flex-end | center | space-between[两端对齐、项目之间的间隔相等] | space-around[每个项目两侧的间隔相等，项目之间的间隔比项目与边框的间隔大一倍]</code><br>5：align-items 垂直方向的对齐方式[一行多个项目]<br><code>flex-start | flex-end | center | baseline[第一行文字的基线] | strentch[如果项目为设置高度或auto,则占满整个高度]</code><br>6：align-content 多根轴线[交叉轴]的对齐方式<br><code>flex-start | flex-end | center | space-between | space-around | stretch</code></p>
+<h5 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h5><p>1：order 定义项目的排列顺序，数值越小，排列越靠前。默认0。<br>2：flex-grow 定义项目的放大比例。默认为0.<br>    <code>0表示如果有剩余空间，也不放大。如果所有项目flex_grow为1，则平分剩余空间。【2，1，1】前者占据空间比后面两个多一倍</code><br>3：flex-shrink 定义项目的缩小比例。默认为1.<br>    <code>1表示空间不足，项目则缩小。【0，1，1，1】空间不足时，前者不缩小</code><br>4：flex-basis属性<br>    <code>flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间。默认值为auto.[浏览器就是根据这个属性来计算是否有多余空间]。如果设置px,则占据固定空间</code><br>5：flex 是前三个属性的简写方式，默认值 0 1 auto<br>    <code>auto(1 1 auto) none(0 0 auto)</code><br>6：align-self 单个项目的对齐方式<br>    <code>auto | flex-start | flex-end | center | baseline | strentch</code></p>
+
       
 
       
@@ -174,6 +193,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">flex</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -934,7 +968,7 @@ p:first {
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/28/首语/">首语</a>
+      <a class="article-title" href="/2018/03/28/首语/">首语--</a>
     </h1>
   
 
@@ -1981,15 +2015,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">状态码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">REACT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2013,7 +2051,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">REACT</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
               </li>
             
             <div class="clearfix"></div>
@@ -2096,7 +2138,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">我是小魏&lt;br&gt;&lt;br&gt;很高兴认识你&lt;br&gt;谢谢大家</div>
   	  	
     	</section>
     
