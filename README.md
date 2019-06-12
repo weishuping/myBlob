@@ -39,8 +39,10 @@ deploy:
 配置菜单等
 在themes/yalia/_config.ymli
 
-配置CNAME，部署完之后，CNAME丢失。
-在source 下新建 weishuping.petterobam.cn
+问题1：配置CNAME，部署完之后，CNAME丢失。
+在source 下新建 weishupingmiss.club
+问题2：有了域名，绑定的时候，出现： 192.30.252.153
+因为在域名解析的时候，只解析到了 github耳机域名上，没配置另外两条A的记录。https://www.cnblogs.com/penglei-it/p/hexo_domain_name.html
 
 
 
