@@ -6,22 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Gulp | xiaowei</title>
+  <title>Tag: jest | xiaowei</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="gulp基于流的自动化构建工具">
-<meta name="keywords" content="Gulp">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Gulp">
-<meta property="og:url" content="http://yoursite.com/2018/04/12/Gulp/index.html">
+  <meta name="description" content="毕业于西北农林科技大学的软妹子">
+<meta name="keywords" content="前端,js,jquery,程序猿,css">
+<meta property="og:type" content="website">
+<meta property="og:title" content="xiaowei">
+<meta property="og:url" content="http://yoursite.com/tags/jest/index.html">
 <meta property="og:site_name" content="xiaowei">
-<meta property="og:description" content="gulp基于流的自动化构建工具">
+<meta property="og:description" content="毕业于西北农林科技大学的软妹子">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/04/12/Gulp/01.png">
-<meta property="og:updated_time" content="2019-05-28T12:10:44.791Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gulp">
-<meta name="twitter:description" content="gulp基于流的自动化构建工具">
-<meta name="twitter:image" content="http://yoursite.com/2018/04/12/Gulp/01.png">
+<meta name="twitter:title" content="xiaowei">
+<meta name="twitter:description" content="毕业于西北农林科技大学的软妹子">
   
     <link rel="alternative" href="/atom.xml" title="xiaowei" type="application/atom+xml">
   
@@ -157,236 +154,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Gulp" class="article article-type-post " itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Gulp
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/06/23/vue单元测试/" class="archive-article-date">
+  	<time datetime="2019-06-23T07:23:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-23</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/06/23/vue单元测试/">vue单元测试</a>
     </h1>
   
 
-        
-        <a href="/2018/04/12/Gulp/" class="archive-article-date">
-  	<time datetime="2018-04-12T12:23:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="gulp"><a href="#gulp" class="headerlink" title="gulp"></a>gulp</h5><p>基于流的自动化构建工具<br><a id="more"></a><br>1、gulp.src()<br>在Gulp中，使用的是Nodejs中的<code>stream</code>（流），首先获取到需要的stream，然后可以通过stream的<code>pipe()</code>方法把流导入到想要的地方。<code>gulp.src()</code>方法是用来获取流的，但是注意这个流里的内容不是原始的文件流，而是一个虚拟文件对象流（<code>Vinyl files</code>），这个虚拟文件对象中存储着原始文件的路径、文件名、内容等信息</p>
-<pre><code>gulp.src(globs[, options])
-</code></pre><p><strong>globs</strong>参数是文件匹配模式<br><strong>options</strong>为可选参数<br><img src="/2018/04/12/Gulp/01.png" alt="gulp"><br>可以使用数组来匹配多种模式，好处就是可以很方便的使用排除模式，在数组中的单个匹配模式前加上<code>！</code>既是排除模式，它会在匹配的结果中排除这个匹配。注意：不能在数组中的第一个元素中使用排除模式。<br><strong>2、gulp.dest()</strong><br>该方法是用来写文件的，其语法为：</p>
-<pre><code>gulp.dest(path,[, options])
-</code></pre><p>要想更透彻的理解：<br>src获取到要处理的文件流，然后把文件流通过pipe导入到gulp插件中，最后把gulp插件处理后得流再通过pipe导入到gulp.dest()中，gulp.dest()方法则把流中的内容写入到文件中。<br><strong>3、gulp.task()</strong><br>gulp.task方法用来定义任务，语法：</p>
-<pre><code>gulp.task(name[, deps], fn)
-</code></pre><p>  <strong>name</strong>是任务名<br>  <strong>deps</strong>是当前定义的任务需要依赖的其他任务，为一个数组。当前任务会在所有依赖的任务执行完毕后才开始执行。如果没有依赖就省略。<br>  <strong>fn</strong>为任务函数，把任务要执行的代码都写在里面，该参数也是可选的。<br>  但是如果某个任务所依赖的任务是异步的，注意gulp并不会等待那个所依赖的异步任务完成，而是会接着执行后续任务。</p>
-<pre><code>gulp.task(&apos;one&apos;,function(){
-  //one是一个异步执行的任务
-  setTimeout(function(){
-    console.log(&apos;one is done&apos;)
-  },5000);
-});
-
-//two任务虽然依赖于one任务,但并不会等到one任务中的异步操作完成后再执行
-gulp.task(&apos;two&apos;,[&apos;one&apos;],function(){
-  console.log(&apos;two is done&apos;);
-});
-</code></pre><p>  那如果想等待异步操作完再执行后续的任务呢？有三种方法可以实现：<br> 一：在异步操作完成后执行一个回调函数来通知gulp这个异步任务已经完成，这个回调函数就是任务函数的第一个参数。</p>
-<pre><code>gupl.task(&apos;one&apos;,function(cb) {
-    setTimeout(function() {
-    cb();//执行回调
-    }, 5000    
-    );
-})
-gulp.task(&apos;two&apos;,[&apos;one&apos;],function(){
-    console.log(&apos;two&apos;);
-})
-</code></pre><p>二： 定义任务时返回一个流对象。适用于任务就是操作gulp.src()获取到的流的情况。</p>
-<pre><code>gulp.task(&apos;one&apos;,function(cb) {
-    var stream = gulp.src(&apos;client/**/*.js&apos;)
-    .pipe(dosomething())
-    .pipe(gulp.dest(&apos;build&apos;));
-    return stream;
-})
-gulp.task(&apos;two&apos;,[&apos;one&apos;],function(){
-    console.log(&apos;two&apos;);
-})
-</code></pre><p>三：返回一个promise对象，如</p>
-<pre><code>var Q = require(&apos;q&apos;);//一个著名的异步处理的库
-gulp.task(
-    var deferred = Q.defer;
-    //做一些异步操作
-    setTimeOut(function() {
-        deferred.resolve();
-    }, 5000);
-    return deferred.promise;
-);
-gulp.task(&apos;two&apos;,[&apos;one&apos;], function() {
-    console.log(&apos;two is done&apos;);
-});
-</code></pre><p><strong>4、gulp.watch()</strong><br>用来监视文件的变化，当文件发生变化之后，我们可以利用它来执行相应的任务。</p>
-<pre><code>gulp.watch(glob[, opts], task)
-</code></pre><p> <strong>tasks</strong>为文件变化后要执行的任务，为一个数组<br> 还有一种用法：</p>
-<pre><code>gulp.watch(glob[, opts, cb])
-</code></pre><p><strong>cb</strong>参数为一个函数，每当监视的文件发生变化时，就会调用这个函数，并且会给它传入一个对象，该对象包含了文件变化的一些信息，<code>type</code>属性为变化的类型，可以是<code>added</code>,<code>changed</code>,<code>deleted</code>;<code>path</code>属性为发生变化的文件的路径。</p>
-<pre><code>gulp.watch(&apos;js/**/*.js&apos;, function(event){
-console.log(event.type); //变化类型 added为新增,deleted为删除，changed为改变 
-console.log(event.path); //变化的文件的路径
-});
-</code></pre><p><strong>4、一些常用的gulp插件</strong><br>4.1 自动加载插件 <code>gulp-load-plugins</code><br>4.2 重命名<code>gulp-rename</code><br>用来重命名文件流中的文件。<br>4.3 js文件压缩<code>gulp-uglify</code><br>用来压缩js文件，使用的是uglify引擎<br>4.4 css文件压缩<code>gulp-minify-css</code><br>4.5 html文件压缩<code>gulp-minify-html</code><br>4.6 js代码检查<code>gulp-jshint</code><br>4.7 文件合并<code>gulp-concat</code><br>用来把多个文件合并为一个文件，我们可以用它来合并js或css文件等，这就能减少页面的http请求数了。<br>4.8 less和sass的编译<code>gulp-less</code> <code>gulp-sass</code><br>4.9 图片压缩 <code>gulp-imagemin</code><br>来压缩 jpg png gif等图片<br>4.10 自动刷新 <code>gulp-livereload</code><br>当代码变化时，它可以帮我们自动刷新页面。</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Gulp</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">jest</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/12/Gulp/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/05/28/flex-box/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Flex
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/04/04/REACT初学/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">REACT初学</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -409,9 +230,9 @@ console.log(event.path); //变化的文件的路径
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
