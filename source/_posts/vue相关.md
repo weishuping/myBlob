@@ -11,11 +11,34 @@ vue会将.vue文件进行解析，分成template、styles、customBlocks四个�
 
 ---
 
+**AST**  抽象语法树
+将纯文本转AST：
+词法分析：读取代码，把它们按照预定的规则合并成一个个的标识tokens。同时移除空白符、注释等，最后整个代码分割进一个tokens列表。
+```
+const a = 5;
+// 转换成
+    [{value: 'const', type: 'keyword'}, {value: 'a', type: 'identifier'}, ...]
+```
+
+语法分析，也称解析器：
+```
+    // 语法分析后的树形形式
+    {
+    type: "VariableDeclarator", 
+    id: {
+        type: "Identifier",
+        name: "a"
+    },
+    ...
+    }
+```
+---
 **Vue template compiler** HTML解释器
+https://blog.csdn.net/u014787301/article/details/85842963#HTML_183
 
 vue template compiler包含三个处理步骤，按顺序排列如下：
 
-parser：模版解释器，功能为从HTML模版转换为AST
+parser：模版解释器，功能为从HTML模版转换为AST。parse拿到Html解释器暴露出的start end chars comment钩子，去处理各种语法的AST构造。
 optimizer：AST优化，处理静态不参与重复渲染的模版片段
 codegen：代码生成器。基于AST，生成js函数，延迟到运行时运行，生成纯HTML。
 
@@ -67,3 +90,80 @@ why isn't ```vue-complate-compiler``` a peerDependency?
 **vue-loader**
 
 webpack loader for vue.js components
+
+**rollup-plugin-vue**
+以单文件组件格式编写vue组件的插件
+over webpack?
+Rollup提供了诸如树的抖动之类的优化，使其成为构建公共库的理想选择。此插件还优先考虑最适合大多数vue插件和UI组件库的默认值。
+
+Vue2.0模板编译源码分析中得到的模板编译结果就是```render function```,它运行的结果就是VNode。VNode是真实DOM的一种抽象表达，用来映射到真实DMO的渲染。
+
+*在 Vue.js 中，Virtual DOM 是用 VNode 这么一个 Class 去描述，它是定义在 src/core/vdom/vnode.js*
+*Virtual Dom要经过VNode的create、diff、patch等过程。VNode的create是通过createElement方法创建的。*
+
+*Patch原理*：
+初始化时，通过render function生成VNode的同时进行Watcher的绑定。当数据发生变化的时候，调用_update_方法，生成一个新的VNode对象，然后调用_patch_方法，比较新生成的VNode和旧的VNode，最后将差异更新到真实的DOM树上。Patch所用的diff算法只会在同层级比较，不会跨级比较。
+
+
+*编译*
+compile 编译可以分成 parse、optimize 与 generate 三个阶段，最终需要得到 render function
+
+
+
+#### Vue beyond Vue-loader
+
+演讲完，看完之后，可以手写一个类似的。
+
+1.0. 2.0 模板作为字符串传入，编译template挂载到dom 字符串式的问题：纯粹的字符串，不好看，没有语法高亮。
+so，In-Dom Template：script标签，dom片段，传入id。语法高亮，直接注册到html页面上的。这个dom区块已经被浏览器解析为dom片段。
+我们调用省事一点，不需要重新解释一遍，至少我们不需要字符串匹配，p标签是什么的。而是直接拿到dom对象，处理表达式、directive等等所特有的模板功能。
+当然在vue.component字符串模板的时候，处理的时候，调用了html解释器，看起来少了一步，但优化不大，仍然在用浏览器原生。表达式的解析、执行仍然需要运行的时候及时正则匹配，解析每一个token。
+
+背后：这些模板变成render-function
+之前，先看一下，节点在内存怎么表示的。介绍树，在内存中被解析为根为div的树。vue不能直接使用，vue中还有其他东西要处理。
+
+最后在页面生成的是virtual dom，还需要那它patch，还需要给它绑定一些vue特有的东内容进去，因此生成virtual dom的时候需要提供生成元素的函数【createElement, ctext, cEmpty】。真正需要的是右边这个函数生成的virtual dom树。
+
+虽然用了三个函数，但是参数不一样，手写更方便，可以使用h函数，把html的第一个字母拿过来。h函数默认createElement，支持表达式，去除了空标签，写出来方便，运行时性能更优。
+
+左边这边写法：预编译，优化掉这一切，因为我们运行的时候已经知道一些标签是动态的，一些标签是静态的。所以直接运行那个对应深层次的函数，而省掉了很多条件判断。纯静态的话，会有一个static-Function ,在2.0里面，只有完全静态的子树才用。3.0里面会默认整棵树都是静态的，从中找出动态的部分抽取出来。所以看到编译完很多都是字符串拼接，只有其中部分是用来改dom的。
+
+angular vue 实现的patch算法不一样。模板看起来表达能力是一样的，在运行时做的很有限，他们非常依赖预编译。所以他们只能在编译时优化。
+但是vue在运行时已经有了一颗完整的dom树，我们知道了动态部分有一个树，最后生成patch是一样的，在编译的时候也可以抽出来写，但是有了运行时的对象，所以可以在运行时操作。  我们把编译做的很轻量，运行时只有1、2k的编译器。
+
+vue loader做了什么？
+因为要抛弃vue loader 所以我们要知道vue loader做了什么。
+vue loader与webpack对接，如果不用webpack,所以可以舍弃。
+
+自定义工具链：
+rollup适应于库，默认出来就是ES module。
+
+单文件组件， @vue/dev-server
+
+适合于原型开发
+
+
+自己动手，编译流程是自己写的，不想用webpack，想用parcel gridsome。
+parcel内部使用component-compiler-utils实现了内置的对vue文件的支持。
+gridsome是一个静态网站生成器，在.vue文件做了自定义工作。
+
+
+除了单文件组件，一个文件只能有一个组件，如果有多个组件。只需要纯逻辑，但还想用vue组件。
+JSX 手动拼装VNode。vue的特殊处理用了vue/babel-preset-jsx。
+冒号用法是JSX标准用法的。这是对主流jsx的扩展。
+https://github.com/sodatea/jsx
+其他语法：
+标准js用法：Template Strings
+vue-html库，改写render函数传的参数。在运行的时候，拿到跟render函数一样的能力，拿到VNode。
+
+
+语法之外，类型安全。
+vue一直在努力支持，vue2 用了大量 decorator，所以标准变化对这个有影响。
+
+// todo  TS
+
+https://www.jianshu.com/p/466510d84e36
+
+https://jingsam.github.io/2016/10/23/standalone-vs-runtime-only-build-in-vuejs2.html
+
+

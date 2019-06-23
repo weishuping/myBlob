@@ -45,4 +45,8 @@ deploy:
 因为在域名解析的时候，只解析到了 github耳机域名上，没配置另外两条A的记录。https://www.cnblogs.com/penglei-it/p/hexo_domain_name.html
 
 
+#### 插入图片
+npm install hexo-asset-image –-save
+xxxx.md中想引入图片时，先把图片复制到xxxx这个文件夹中
+
 
