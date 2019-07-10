@@ -33,12 +33,12 @@ const a = 5;
     }
 ```
 ---
-**Vue template compiler** HTML解释器
+**Vue template compiler** 
 https://blog.csdn.net/u014787301/article/details/85842963#HTML_183
 
 vue template compiler包含三个处理步骤，按顺序排列如下：
 
-parser：模版解释器，功能为从HTML模版转换为AST。parse拿到Html解释器暴露出的start end chars comment钩子，去处理各种语法的AST构造。
+parser：模版解释器，功能为从HTML模版转换为AST。parse拿到Html解释器暴露出的start、 end、 chars、 comment钩子，去处理各种语法的AST构造。
 optimizer：AST优化，处理静态不参与重复渲染的模版片段
 codegen：代码生成器。基于AST，生成js函数，延迟到运行时运行，生成纯HTML。
 
@@ -68,6 +68,14 @@ codegen：代码生成器。基于AST，生成js函数，延迟到运行时运�
 ---
 
 **vue-template-compiler**
+
+vue template compiler包含三个处理步骤，按顺序排列如下：
+
+parser：模版解释器，功能为从HTML模版转换为AST。parse拿到Html解释器暴露出的start end chars comment钩子，去处理各种语法的AST构造。
+optimizer：AST优化，处理静态不参与重复渲染的模版片段
+codegen：代码生成器。基于AST，生成js函数，延迟到运行时运行，生成纯HTML。
+
+
 template compiler for Vue 2.0
 This package can be used to pre-compile Vue 2.0 templates into render functions to avoid runtime-compilation overhead and CSP restrictions.In most cases you should be using it with ```vue-loader```,you will only need it separately if you are writing build tools with very specific needs.[只有在编写具有非常具体需求的构建工具时，才需要单独使用它。]
 
