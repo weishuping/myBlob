@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>flex | xiaowei</title>
+  <title>数据过多表格加载优化和滚动优化 | xiaowei</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。分析：由于页面加载需要创建dom，并且需要绑定事件，在400条数据的时候页面卡死。优化1：未点击之前，所有的均为span。当click的时候，才创建真正的输入元素。问题：页面元素仍然有很多，需要懒加载。优化2：优先加载大于1屏的数据，比如25条。itemHeig">
+  <meta name="description" content="问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。">
 <meta name="keywords" content="表格数据加载优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="flex">
+<meta property="og:title" content="数据过多表格加载优化和滚动优化">
 <meta property="og:url" content="http://yoursite.com/2019/10/23/表格优化/index.html">
 <meta property="og:site_name" content="xiaowei">
-<meta property="og:description" content="问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。分析：由于页面加载需要创建dom，并且需要绑定事件，在400条数据的时候页面卡死。优化1：未点击之前，所有的均为span。当click的时候，才创建真正的输入元素。问题：页面元素仍然有很多，需要懒加载。优化2：优先加载大于1屏的数据，比如25条。itemHeig">
+<meta property="og:description" content="问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-23T09:31:45.827Z">
+<meta property="og:updated_time" content="2019-10-23T11:18:39.545Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="flex">
-<meta name="twitter:description" content="问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。分析：由于页面加载需要创建dom，并且需要绑定事件，在400条数据的时候页面卡死。优化1：未点击之前，所有的均为span。当click的时候，才创建真正的输入元素。问题：页面元素仍然有很多，需要懒加载。优化2：优先加载大于1屏的数据，比如25条。itemHeig">
+<meta name="twitter:title" content="数据过多表格加载优化和滚动优化">
+<meta name="twitter:description" content="问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。">
   
     <link rel="alternative" href="/atom.xml" title="xiaowei" type="application/atom+xml">
   
@@ -162,7 +162,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      flex
+      数据过多表格加载优化和滚动优化
     </h1>
   
 
@@ -175,7 +175,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>问题：<br>页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。<br>分析：由于页面加载需要创建dom，并且需要绑定事件，在400条数据的时候页面卡死。<br>优化1：<br>未点击之前，所有的均为span。当click的时候，才创建真正的输入元素。<br>问题：<br>页面元素仍然有很多，需要懒加载。<br>优化2：<br>优先加载大于1屏的数据，比如25条。<br>itemHeight: 每行高度<br>screenNumber: 一屏多少条数据<br>totalLength: 总数据长度<br>currentLength: 当前加载数据的长度<br>当前可视范围内的第一行数据序号 = scrollTop / itemHeight<br>优化点：控制滚动的频率。当前可视区域第一行数 + 整屏个数 = end; 页面已加载currentLength - end &lt; 5条，开始重新加载。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">return function ()&#123;</span><br><span class="line">            let top = event.target.scrollTop;</span><br><span class="line">            let start = Math.floor(top / 40) ;</span><br><span class="line">            let currentLength = that.planData.length;// 可视区域数据</span><br><span class="line">            let totalLength = that.budgetData.length;// 原始数据</span><br><span class="line">            // 控制滚动的频率。当前可视区域第一行数 + 整屏个数 = end; 页面已加载currentLength - end &lt; 5条。开始重新加载。</span><br><span class="line">            let end = start + that.stepItemPage;</span><br><span class="line">            if (end &lt; totalLength &amp;&amp; currentLength - end &lt; 5) &#123;</span><br><span class="line">            // 如果滑动不足，加载两屏数据出来。</span><br><span class="line">                let crashRows = Math.ceil(that.stepItemPage * 2);</span><br><span class="line">                console.log(&apos;down&apos;, start, start + crashRows, totalLength, top, that.scrollTop);</span><br><span class="line">                let nextData = [];</span><br><span class="line">                // 增加上面高度 才有scroll</span><br><span class="line">                for (let index = 0; index &lt; start; index++) &#123;</span><br><span class="line">                    nextData.push(&#123;order: index, hasTd: true&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">                nextData = nextData.concat(that.budgetData.slice(start, start + crashRows));</span><br><span class="line">                that.planData = nextData;</span><br><span class="line">                that.scrollTop = top;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure></p>
+        <p>问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。<br><a id="more"></a><br>分析：由于页面加载需要创建dom，并且需要绑定事件，在400条数据的时候页面卡死。<br>优化1：未点击之前，所有的均为span。当click的时候，才创建真正的输入元素。条件为当前行当前key。<br>问题：页面元素仍然有很多，需要懒加载。<br>优化2：优先加载大于1屏的数据，比如25条。<br>itemHeight: 每行高度<br>screenNumber: 一屏多少条数据<br>totalLength: 总数据长度<br>currentLength: 当前加载数据的长度<br>当前可视范围内的第一行数据序号 = scrollTop / itemHeight<br>优化点：控制滚动的频率。当前可视区域第一行数 + 整屏个数 = end; 页面已加载currentLength - end &lt; 5条，开始重新加载。<br>优化3：使用节流，控制触发频率。<br>/<em> 核心代码如下 </em>/<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">return function ()&#123;</span><br><span class="line">            let top = event.target.scrollTop;</span><br><span class="line">            let start = Math.floor(top / 40) ;</span><br><span class="line">            let currentLength = that.planData.length;// 可视区域数据</span><br><span class="line">            let totalLength = that.budgetData.length;// 原始数据</span><br><span class="line">            // 控制滚动的频率。当前可视区域第一行数 + 整屏个数 = end; 页面已加载currentLength - end &lt; 5条。开始重新加载。</span><br><span class="line">            let end = start + that.stepItemPage;</span><br><span class="line">            if (end &lt; totalLength &amp;&amp; currentLength - end &lt; 5) &#123;</span><br><span class="line">            // 如果滑动不足，加载两屏数据出来。</span><br><span class="line">                let crashRows = Math.ceil(that.stepItemPage * 2);</span><br><span class="line">                console.log(&apos;down&apos;, start, start + crashRows, totalLength, top, that.scrollTop);</span><br><span class="line">                let nextData = [];</span><br><span class="line">                // 增加上面高度 才有scroll</span><br><span class="line">                for (let index = 0; index &lt; start; index++) &#123;</span><br><span class="line">                    nextData.push(&#123;order: index, hasTd: true&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">                nextData = nextData.concat(that.budgetData.slice(start, start + crashRows));</span><br><span class="line">                that.planData = nextData;</span><br><span class="line">                that.scrollTop = top;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure></p>
 
       
 
