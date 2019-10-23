@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/3 | xiaowei</title>
+  <title>flex | xiaowei</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="毕业于西北农林科技大学的软妹子">
-<meta name="keywords" content="前端,js,jquery,程序猿,css">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xiaowei">
-<meta property="og:url" content="http://yoursite.com/archives/2017/03/index.html">
+  <meta name="description" content="问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。分析：由于页面加载需要创建dom，并且需要绑定事件，在400条数据的时候页面卡死。优化1：未点击之前，所有的均为span。当click的时候，才创建真正的输入元素。问题：页面元素仍然有很多，需要懒加载。优化2：优先加载大于1屏的数据，比如25条。itemHeig">
+<meta name="keywords" content="表格数据加载优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flex">
+<meta property="og:url" content="http://yoursite.com/2019/10/23/表格优化/index.html">
 <meta property="og:site_name" content="xiaowei">
-<meta property="og:description" content="毕业于西北农林科技大学的软妹子">
+<meta property="og:description" content="问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。分析：由于页面加载需要创建dom，并且需要绑定事件，在400条数据的时候页面卡死。优化1：未点击之前，所有的均为span。当click的时候，才创建真正的输入元素。问题：页面元素仍然有很多，需要懒加载。优化2：优先加载大于1屏的数据，比如25条。itemHeig">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-10-23T09:31:45.827Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xiaowei">
-<meta name="twitter:description" content="毕业于西北农林科技大学的软妹子">
+<meta name="twitter:title" content="flex">
+<meta name="twitter:description" content="问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。分析：由于页面加载需要创建dom，并且需要绑定事件，在400条数据的时候页面卡死。优化1：未点击之前，所有的均为span。当click的时候，才创建真正的输入元素。问题：页面元素仍然有很多，需要懒加载。优化2：优先加载大于1屏的数据，比如25条。itemHeig">
   
     <link rel="alternative" href="/atom.xml" title="xiaowei" type="application/atom+xml">
   
@@ -154,49 +155,167 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-表格优化" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/21/node-require-ko-规范-等等/" class="archive-article-date">
-  	<time datetime="2017-03-21T02:38:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/21/node-require-ko-规范-等等/">node require ko 规范 等等</a>
+    <h1 class="article-title" itemprop="name">
+      flex
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2019/10/23/表格优化/" class="archive-article-date">
+  	<time datetime="2019-10-23T07:01:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>问题：<br>页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。<br>分析：由于页面加载需要创建dom，并且需要绑定事件，在400条数据的时候页面卡死。<br>优化1：<br>未点击之前，所有的均为span。当click的时候，才创建真正的输入元素。<br>问题：<br>页面元素仍然有很多，需要懒加载。<br>优化2：<br>优先加载大于1屏的数据，比如25条。<br>itemHeight: 每行高度<br>screenNumber: 一屏多少条数据<br>totalLength: 总数据长度<br>currentLength: 当前加载数据的长度<br>当前可视范围内的第一行数据序号 = scrollTop / itemHeight<br>优化点：控制滚动的频率。当前可视区域第一行数 + 整屏个数 = end; 页面已加载currentLength - end &lt; 5条，开始重新加载。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">return function ()&#123;</span><br><span class="line">            let top = event.target.scrollTop;</span><br><span class="line">            let start = Math.floor(top / 40) ;</span><br><span class="line">            let currentLength = that.planData.length;// 可视区域数据</span><br><span class="line">            let totalLength = that.budgetData.length;// 原始数据</span><br><span class="line">            // 控制滚动的频率。当前可视区域第一行数 + 整屏个数 = end; 页面已加载currentLength - end &lt; 5条。开始重新加载。</span><br><span class="line">            let end = start + that.stepItemPage;</span><br><span class="line">            if (end &lt; totalLength &amp;&amp; currentLength - end &lt; 5) &#123;</span><br><span class="line">            // 如果滑动不足，加载两屏数据出来。</span><br><span class="line">                let crashRows = Math.ceil(that.stepItemPage * 2);</span><br><span class="line">                console.log(&apos;down&apos;, start, start + crashRows, totalLength, top, that.scrollTop);</span><br><span class="line">                let nextData = [];</span><br><span class="line">                // 增加上面高度 才有scroll</span><br><span class="line">                for (let index = 0; index &lt; start; index++) &#123;</span><br><span class="line">                    nextData.push(&#123;order: index, hasTd: true&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">                nextData = nextData.concat(that.budgetData.slice(start, start + crashRows));</span><br><span class="line">                that.planData = nextData;</span><br><span class="line">                that.scrollTop = top;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure></p>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">表格数据加载优化</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/23/表格优化/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/07/20/promise/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">promise执行问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -219,8 +338,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

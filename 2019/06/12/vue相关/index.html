@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="xiaowei">
 <meta property="og:description" content="vue学习中的概念SFC single file components vue会将.vue文件进行解析，分成template、styles、customBlocks四个部分，称为 descriptor。  AST  抽象语法树将纯文本转AST：词法分析：读取代码，把它们按照预定的规则合并成一个个的标识tokens。同时移除空白符、注释等，最后整个代码分割进一个tokens列表。123const a">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-22T14:11:21.765Z">
+<meta property="og:updated_time" content="2019-06-28T06:19:10.376Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue相关">
 <meta name="twitter:description" content="vue学习中的概念SFC single file components vue会将.vue文件进行解析，分成template、styles、customBlocks四个部分，称为 descriptor。  AST  抽象语法树将纯文本转AST：词法分析：读取代码，把它们按照预定的规则合并成一个个的标识tokens。同时移除空白符、注释等，最后整个代码分割进一个tokens列表。123const a">
@@ -181,9 +181,9 @@
 <p><strong>AST</strong>  抽象语法树<br>将纯文本转AST：<br>词法分析：读取代码，把它们按照预定的规则合并成一个个的标识tokens。同时移除空白符、注释等，最后整个代码分割进一个tokens列表。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a = 5;</span><br><span class="line">// 转换成</span><br><span class="line">    [&#123;value: &apos;const&apos;, type: &apos;keyword&apos;&#125;, &#123;value: &apos;a&apos;, type: &apos;identifier&apos;&#125;, ...]</span><br></pre></td></tr></table></figure></p>
 <p>语法分析，也称解析器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 语法分析后的树形形式</span><br><span class="line">&#123;</span><br><span class="line">type: &quot;VariableDeclarator&quot;, </span><br><span class="line">id: &#123;</span><br><span class="line">    type: &quot;Identifier&quot;,</span><br><span class="line">    name: &quot;a&quot;</span><br><span class="line">&#125;,</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
-<p><strong>Vue template compiler</strong> HTML解释器<br><a href="https://blog.csdn.net/u014787301/article/details/85842963#HTML_183" target="_blank" rel="noopener">https://blog.csdn.net/u014787301/article/details/85842963#HTML_183</a></p>
+<p><strong>Vue template compiler</strong><br><a href="https://blog.csdn.net/u014787301/article/details/85842963#HTML_183" target="_blank" rel="noopener">https://blog.csdn.net/u014787301/article/details/85842963#HTML_183</a></p>
 <p>vue template compiler包含三个处理步骤，按顺序排列如下：</p>
-<p>parser：模版解释器，功能为从HTML模版转换为AST。parse拿到Html解释器暴露出的start end chars comment钩子，去处理各种语法的AST构造。<br>optimizer：AST优化，处理静态不参与重复渲染的模版片段<br>codegen：代码生成器。基于AST，生成js函数，延迟到运行时运行，生成纯HTML。</p>
+<p>parser：模版解释器，功能为从HTML模版转换为AST。parse拿到Html解释器暴露出的start、 end、 chars、 comment钩子，去处理各种语法的AST构造。<br>optimizer：AST优化，处理静态不参与重复渲染的模版片段<br>codegen：代码生成器。基于AST，生成js函数，延迟到运行时运行，生成纯HTML。</p>
 <hr>
 <p><strong>vueify</strong>  Browserify transform for Vue.js components, with scoped CSS and component hot-reloading. </p>
 <hr>
@@ -191,7 +191,10 @@
 <hr>
 <p><strong>browserify</strong>  模块打包工具之一（另外一个是webpack）<br>    &gt;基于流式（stream）思想设计<br>    &gt;可以通过command line，也可以通过API来使用<br>    &gt;仅处理js<br>    &gt;模块化的逆过程<br>    &gt;内置一些 node core module<br>    &gt;node模块可以在浏览器端使用，是同构应用的有力武器<br>输入：files; transform function<br>处理：b.pipeline是browser里面的核心对象。<br>模块依赖的解析：从入口文件找依赖以及依赖的依赖；考虑对源代码的转换（输出到source字段）。<br>模块的打包：利用browser-pack将上述json打包合并为一个文件。</p>
 <hr>
-<p><strong>vue-template-compiler</strong><br>template compiler for Vue 2.0<br>This package can be used to pre-compile Vue 2.0 templates into render functions to avoid runtime-compilation overhead and CSP restrictions.In most cases you should be using it with <code>vue-loader</code>,you will only need it separately if you are writing build tools with very specific needs.[只有在编写具有非常具体需求的构建工具时，才需要单独使用它。]</p>
+<p><strong>vue-template-compiler</strong></p>
+<p>vue template compiler包含三个处理步骤，按顺序排列如下：</p>
+<p>parser：模版解释器，功能为从HTML模版转换为AST。parse拿到Html解释器暴露出的start end chars comment钩子，去处理各种语法的AST构造。<br>optimizer：AST优化，处理静态不参与重复渲染的模版片段<br>codegen：代码生成器。基于AST，生成js函数，延迟到运行时运行，生成纯HTML。</p>
+<p>template compiler for Vue 2.0<br>This package can be used to pre-compile Vue 2.0 templates into render functions to avoid runtime-compilation overhead and CSP restrictions.In most cases you should be using it with <code>vue-loader</code>,you will only need it separately if you are writing build tools with very specific needs.[只有在编写具有非常具体需求的构建工具时，才需要单独使用它。]</p>
 <hr>
 <p><strong>vue-template-es2015-compiler</strong><br>Post compiler for Vue template render functuons to support ES2105+ feartures</p>
 <p>This is an internal package used by <code>vue-loader</code> and <code>vueify</code>.It processes the raw render functions generated by <code>vue-template-compiler</code> to:<br>…</p>
@@ -336,8 +339,8 @@
     </a>
   
   
-    <a href="/2019/05/29/webpack日积月累/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">webpack日积月累</div>
+    <a href="/2019/05/28/flex-box/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Flex</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -463,6 +466,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">CSS3</a>
               </li>
              
@@ -476,10 +483,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">页面中的层叠关系</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,10 +502,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">前端开发规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
@@ -511,11 +510,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">前端开发规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jest</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">表格数据加载优化</a>
               </li>
              
               <li class="article-tag-list-item">

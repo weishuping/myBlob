@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/3 | xiaowei</title>
+  <title>promise执行问题 | xiaowei</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="毕业于西北农林科技大学的软妹子">
-<meta name="keywords" content="前端,js,jquery,程序猿,css">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xiaowei">
-<meta property="og:url" content="http://yoursite.com/archives/2017/03/index.html">
+  <meta name="description" content="问题：给data中的变量rowList赋值filters一次，但是watch rowList的时候，发现走了rowList.length; 因为filter在三个顺序发生的promise内部中又调用了new promise.但是内部的promise是异步的 而且更改了指向同一个引用的这个变量，rowList变化了多少次，watch走几次。 测试：12345678910111213141516171">
+<meta name="keywords" content="promise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="promise执行问题">
+<meta property="og:url" content="http://yoursite.com/2019/07/20/promise/index.html">
 <meta property="og:site_name" content="xiaowei">
-<meta property="og:description" content="毕业于西北农林科技大学的软妹子">
+<meta property="og:description" content="问题：给data中的变量rowList赋值filters一次，但是watch rowList的时候，发现走了rowList.length; 因为filter在三个顺序发生的promise内部中又调用了new promise.但是内部的promise是异步的 而且更改了指向同一个引用的这个变量，rowList变化了多少次，watch走几次。 测试：12345678910111213141516171">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-20T03:34:11.419Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xiaowei">
-<meta name="twitter:description" content="毕业于西北农林科技大学的软妹子">
+<meta name="twitter:title" content="promise执行问题">
+<meta name="twitter:description" content="问题：给data中的变量rowList赋值filters一次，但是watch rowList的时候，发现走了rowList.length; 因为filter在三个顺序发生的promise内部中又调用了new promise.但是内部的promise是异步的 而且更改了指向同一个引用的这个变量，rowList变化了多少次，watch走几次。 测试：12345678910111213141516171">
   
     <link rel="alternative" href="/atom.xml" title="xiaowei" type="application/atom+xml">
   
@@ -154,49 +155,183 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-promise" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/21/node-require-ko-规范-等等/" class="archive-article-date">
-  	<time datetime="2017-03-21T02:38:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/21/node-require-ko-规范-等等/">node require ko 规范 等等</a>
+    <h1 class="article-title" itemprop="name">
+      promise执行问题
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2019/07/20/promise/" class="archive-article-date">
+  	<time datetime="2019-07-20T02:37:13.981Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h4><p>给data中的变量rowList赋值filters一次，但是watch rowList的时候，发现走了rowList.length;</p>
+<p>因为filter在三个顺序发生的promise内部中又调用了new promise.但是内部的promise是异步的 而且更改了指向同一个引用的这个变量，rowList变化了多少次，watch走几次。</p>
+<p>测试：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">    async function fun() &#123;</span><br><span class="line">             child1();</span><br><span class="line">             child2();</span><br><span class="line">            console.log(&apos;3&apos;)</span><br><span class="line">        &#125;</span><br><span class="line">        function child1() &#123;</span><br><span class="line">            // console.log(&apos;1&apos;)</span><br><span class="line">            new Promise(function(resolve) &#123;</span><br><span class="line">                resolve(&apos;1111&apos;)</span><br><span class="line">            &#125;).then(function(res)&#123;</span><br><span class="line">                console.log(res)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        function child2() &#123;</span><br><span class="line">            // console.log(&apos;2&apos;)</span><br><span class="line">new Promise(function(resolve) &#123;</span><br><span class="line">                resolve(&apos;2222&apos;)</span><br><span class="line">            &#125;).then(function(res)&#123;</span><br><span class="line">                console.log(res)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">1111</span><br><span class="line">2222</span><br></pre></td></tr></table></figure>
+<p>使用await, 顺序发生<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">async function fun() &#123;</span><br><span class="line">            await child1();</span><br><span class="line">            await child2();</span><br><span class="line">            console.log(&apos;3&apos;)</span><br><span class="line">        &#125;</span><br><span class="line">        function child1() &#123;</span><br><span class="line">            // console.log(&apos;1&apos;)</span><br><span class="line">            new Promise(function(resolve) &#123;</span><br><span class="line">                resolve(&apos;1111&apos;)</span><br><span class="line">            &#125;).then(function(res)&#123;</span><br><span class="line">                console.log(res)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        function child2() &#123;</span><br><span class="line">            // console.log(&apos;2&apos;)</span><br><span class="line">new Promise(function(resolve) &#123;</span><br><span class="line">                resolve(&apos;2222&apos;)</span><br><span class="line">            &#125;).then(function(res)&#123;</span><br><span class="line">                console.log(res)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<p>复杂一点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"> function allFun() &#123;</span><br><span class="line">    let result = Promise.all([fun1(), fun2()]);</span><br><span class="line">    result.then(function(data) &#123;</span><br><span class="line">        console.log(&apos;all&apos;, data)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">function fun1() &#123;</span><br><span class="line">    return new Promise( (resolve, reject) =&gt; &#123;</span><br><span class="line">        // this.getOlapRowList();</span><br><span class="line">        this.inner1();</span><br><span class="line">        console.log(&apos;fun1&apos;);</span><br><span class="line">        resolve(1);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">function fun2() &#123;</span><br><span class="line">    return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">        // this.getOlapColumnList();</span><br><span class="line">        this.inner2();</span><br><span class="line">        console.log(&apos;fun2&apos;);</span><br><span class="line">        resolve(2);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">var arr= [&apos;a&apos;, &apos;b&apos;]</span><br><span class="line">function testPromise() &#123;</span><br><span class="line">    return new Promise(function(resolve, reject) &#123;</span><br><span class="line">        resolve()</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;</span><br><span class="line">function inner1() &#123;</span><br><span class="line">    arr.forEach((element, index) =&gt; &#123;</span><br><span class="line">        //</span><br><span class="line">        testPromise().then(function(res)&#123;</span><br><span class="line">            if(index ===0) &#123;</span><br><span class="line">                element = &apos;000&apos;</span><br><span class="line">            console.log(&apos;1 change&apos;+element)</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;);</span><br><span class="line">    console.log(&apos;111&apos;, arr[0])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function inner2() &#123;</span><br><span class="line">    arr.forEach(element =&gt; &#123;</span><br><span class="line">        //</span><br><span class="line">        testPromise().then(function(res)&#123;</span><br><span class="line">            console.log(&apos;2&apos;+element)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;);</span><br><span class="line">    console.log(&apos;222&apos;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    allFun()</span><br><span class="line">VM231002:41 111 a</span><br><span class="line">VM231002:12 fun1</span><br><span class="line">VM231002:51 222</span><br><span class="line">VM231002:20 fun2</span><br><span class="line">VM231002:36 1 change000 // 后改了arr的值</span><br><span class="line">VM231002:48 2a</span><br><span class="line">VM231002:48 2b</span><br><span class="line">VM231002:4 all (2) [1, 2]</span><br></pre></td></tr></table></figure>
+<p>// forEach之后才输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">function allFun() &#123;</span><br><span class="line">            let result = Promise.all([fun1(), fun2()]);</span><br><span class="line">            result.then(function(data) &#123;</span><br><span class="line">                console.log(&apos;all&apos;, data)</span><br><span class="line">            &#125;)</span><br><span class="line">    </span><br><span class="line">        &#125;</span><br><span class="line">        function fun1() &#123;</span><br><span class="line">            return new Promise( (resolve, reject) =&gt; &#123;</span><br><span class="line">                // this.getOlapRowList();</span><br><span class="line">                this.inner1();</span><br><span class="line">                console.log(&apos;fun1&apos;);</span><br><span class="line">                resolve(1);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        function fun2() &#123;</span><br><span class="line">            return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">                // this.getOlapColumnList();</span><br><span class="line">                this.inner2();</span><br><span class="line">                console.log(&apos;fun2&apos;);</span><br><span class="line">                resolve(2);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        var arr= [&#123;a:1&#125;, &#123;a:2&#125;]</span><br><span class="line">        function testPromise() &#123;</span><br><span class="line">            return new Promise(function(resolve, reject) &#123;</span><br><span class="line">                resolve()</span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        function inner1() &#123;</span><br><span class="line">            new Promise(function(r)&#123;</span><br><span class="line">                 arr.forEach( async (element, index) =&gt; &#123;</span><br><span class="line">                    //</span><br><span class="line">                     await testPromise().then(function(res)&#123;</span><br><span class="line">                        if(index ===0) &#123;</span><br><span class="line">                            element.a = &apos;000&apos;</span><br><span class="line">                            console.log(&apos;1 change&apos;,arr)</span><br><span class="line">                        &#125;</span><br><span class="line">                        if(index ===1 ) &#123;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;);</span><br><span class="line">r(arr)</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">            &#125;).then(function(res)&#123;</span><br><span class="line">                console.log(&apos;111&apos;, arr[0])</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">            // arr.forEach((element, index) =&gt; &#123;</span><br><span class="line">            //     //</span><br><span class="line">            //     testPromise().then(function(res)&#123;</span><br><span class="line">            //         if(index ===0) &#123;</span><br><span class="line">            //             element = &apos;000&apos;</span><br><span class="line">            //             console.log(&apos;1 change&apos;+element)</span><br><span class="line"></span><br><span class="line">            //         &#125;</span><br><span class="line">            //     &#125;)</span><br><span class="line">            // &#125;);</span><br><span class="line">            // console.log(&apos;111&apos;, arr[0])</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        function inner2() &#123;</span><br><span class="line">            arr.forEach(element =&gt; &#123;</span><br><span class="line">                //</span><br><span class="line">                testPromise().then(function(res)&#123;</span><br><span class="line">                    console.log(&apos;2&apos;,element)</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;);</span><br><span class="line">            console.log(&apos;222&apos;)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fun1</span><br><span class="line">VM232493:70 222</span><br><span class="line">VM232493:20 fun2</span><br><span class="line">VM232493:37 1 change (2) [&#123;…&#125;, &#123;…&#125;]0: &#123;a: &quot;000&quot;&#125;1: &#123;a: 2&#125;length: 2__proto__: Array(0)</span><br><span class="line">VM232493:47 111 &#123;a: &quot;000&quot;&#125;</span><br><span class="line">VM232493:67 2 &#123;a: &quot;000&quot;&#125;</span><br><span class="line">VM232493:67 2 &#123;a: 2&#125;</span><br><span class="line">VM232493:4 all (2) [1, 2]</span><br></pre></td></tr></table></figure>
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">promise</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/20/promise/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/10/23/表格优化/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          flex
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2019/07/09/vue基础知识巩固/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vue基础知识巩固、CSRF漏洞</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -219,8 +354,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
