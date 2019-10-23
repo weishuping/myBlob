@@ -53,3 +53,8 @@ provide方法，返回一个对象。inject是一个对象，使用的时候inje
 （2）：2.6提供API：Vue.observable
 
 ##### 六：$parent/$children 访问父/子实例. ref指向DOM元素和组件实例。
+
+
+##### 页面回流
+当页面尺寸、布局、隐藏等改变而需要重新构建。
+当元素的外观，称为重绘
