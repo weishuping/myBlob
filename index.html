@@ -156,6 +156,163 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-vue-cli笔记" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/20/vue-cli笔记/">vue-cli笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/20/vue-cli笔记/" class="archive-article-date">
+  	<time datetime="2019-12-20T07:21:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Vue-Cli介绍"><a href="#Vue-Cli介绍" class="headerlink" title="Vue Cli介绍"></a>Vue Cli介绍</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>基于Vue.js进行快速开发的完整体系，基于webpack构建，并带有合理的默认配置，可通过项目内的配置文件配置，也可以通过插件进行扩展。<a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue" target="_blank" rel="noopener">源代码</a></p>
+<h4 id="该系统组件"><a href="#该系统组件" class="headerlink" title="该系统组件"></a>该系统组件</h4><p>CLI是一个全局安装的npm包;<br>CLI服务是一个开发环境依赖，是一个npm包。包含加载其他CLI插件的核心服务，提供<code>vue-cli-service</code>找那个的serve build inspect命令; CLI插件。</p>
+<h4 id="HTML和静态资源"><a href="#HTML和静态资源" class="headerlink" title="HTML和静态资源"></a>HTML和静态资源</h4><ol>
+<li>index.html放到了public/index.html，会被html-webpack-plugin处理。</li>
+<li>使用<code>&lt;%= Value %&gt;</code>用来做不转义插值，<code>&lt;%- Value %&gt;</code>用来做HTML转义插值</li>
+<li>也可以不生成index</li>
+<li>多页应用</li>
+<li>处理静态资源，放置在<code>public</code>目录下或通过绝对路径被引用，这类资源直接会被拷贝，不会经过webpack的处理。</li>
+<li>public文件夹<h4 id="CSS相关"><a href="#CSS相关" class="headerlink" title="CSS相关"></a>CSS相关</h4>引用静态资源，所有编译后的css都会通过css-loader来解析其中的url引用，并将这些引用作为模块请求来处理。<br>在vue.config.js中配置css对象</li>
+</ol>
+<h4 id="Webpack相关"><a href="#Webpack相关" class="headerlink" title="Webpack相关"></a>Webpack相关</h4><ol>
+<li>简单的配置 configureWebpack</li>
+<li>链式操作 chainWebpack: config =&gt; {}</li>
+</ol>
+<h4 id="环境变量与模式"><a href="#环境变量与模式" class="headerlink" title="环境变量与模式"></a>环境变量与模式</h4><p><a href="https://cli.vuejs.org/zh/guide/build-targets.html#%E6%B3%A8%E5%86%8C%E5%A4%9A%E4%B8%AA-web-components-%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8C%85" target="_blank" rel="noopener">参考</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">vue-cli4.x</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/20/vue-cli笔记/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="Structuring Frontend Code-Code" class="article article-type-Structuring Frontend Code  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/31/Code/">Code</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/31/Code/" class="archive-article-date">
+  	<time datetime="2019-10-31T05:22:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>逻辑-函数一一对应（使用人脑拆分）<br>    函数大小受到限制<br>    分支条件使用函数，而不是一堆 且 或<br>    抽离的函数不依赖作用域<br>    代码逻辑符合自上而下的树状结构</p>
+<p>编码是从自然逻辑到程序逻辑，非复杂度改善的性能并没有那么重要</p>
+<h4 id="简单"><a href="#简单" class="headerlink" title="简单"></a>简单</h4><p>1：工厂函数</p>
+<p>2：优先使用组合: 函数组合提供更小的复用粒度和更灵活的按需调整</p>
+<h4 id="从编程到编制"><a href="#从编程到编制" class="headerlink" title="从编程到编制"></a>从编程到编制</h4><p>尽可能使用npm包有的<br>import leftPad from ‘left-pad’;<br>import {subDays} from ‘date-fns’;</p>
+<p>明确标记副作用<br>比如for 里面修改了什么东西</p>
+<p>函数变工厂，工厂传纯的</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/31/Code/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-apple" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -176,9 +333,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一年的栽培与等待只为将红苹果送到您的手中~<br>我的家乡——千阳县三合村是苹果优生区，因地区光照充足昼夜温差大，生长的苹果色泽光亮，食用脆甜可口。并荣获国际乐川苹果节金项奖、荣登陕西省优质水果金榜、曾两次连续获得农博会“后稷金像奖”，被国家农业部认定为“一村一品”示范村。<br><!-- <img src="apple/s1.jpeg" width = "48%" height = "48%" />
-<img src="apple/s2.jpeg" width = "48%" height = "48%" /> --><br><img src="/2019/10/23/apple/s1.jpeg" alt="gulp"><br><img src="/2019/10/23/apple/s2.jpeg" alt="gulp"><br>我家的苹果都是父母精心种植，在成长过程中使用专用纸袋保护，不沾一滴农药，不打蜡，纯天然自然上色。多吃苹果美容养颜、降低胆固醇和血压，对身体大有益处。<br><img src="/2019/10/23/apple/o1.jpeg" alt="gulp"><br>最后，感谢您的信任。如您有反馈的问题或下单订购，请扫下面二维码<br><img src="/2019/10/23/apple/w.png" alt="gulp"></p>
-
+        <p>一年的栽培与等待只为将红苹果送到您的手中~<br></p>
+        
+          <a class="article-more-a" href="/2019/10/23/apple/#more">more >></a>
+        
       
 
       
@@ -776,153 +934,9 @@
 
 
   
-    <article id="post-webpack日积月累" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/29/webpack日积月累/">webpack日积月累</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/29/webpack日积月累/" class="archive-article-date">
-  	<time datetime="2019-05-29T11:33:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="process-env-NODE-ENV"><a href="#process-env-NODE-ENV" class="headerlink" title="process.env.NODE_ENV"></a>process.env.NODE_ENV</h4><p>在node中，全局变量process表示当前node进程。process.env包含着关于系统环境的信息。但是process.env中并不存在NODE_ENV这个东西。NODE_ENV是用户一个自定义的变量，在webpack中是用于判断生产环境或者开发环境依据的。</p>
-<h4 id="chunkFilename"><a href="#chunkFilename" class="headerlink" title="chunkFilename"></a>chunkFilename</h4><p>非入口文件的命名规则<br>未列在entry中，却又需要被打包出来的文件命名配置。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/29/webpack日积月累/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-flex-box" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/28/flex-box/">Flex</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/28/flex-box/" class="archive-article-date">
-  	<time datetime="2019-05-27T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Flex布局指北"><a href="#Flex布局指北" class="headerlink" title="Flex布局指北"></a>Flex布局指北</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p> Flex是Flexible Box的缩写，为弹性布局。<br></p>
-        
-          <a class="article-more-a" href="/2019/05/28/flex-box/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">flex</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/28/flex-box/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1065,6 +1079,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">vue-cli4.x</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
@@ -1077,15 +1095,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">表格数据加载优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Node</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NPm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">表格数据加载优化</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="xiaowei">
 <meta property="og:description" content="process.env.NODE_ENV在node中，全局变量process表示当前node进程。process.env包含着关于系统环境的信息。但是process.env中并不存在NODE_ENV这个东西。NODE_ENV是用户一个自定义的变量，在webpack中是用于判断生产环境或者开发环境依据的。 chunkFilename非入口文件的命名规则未列在entry中，却又需要被打包出来的文件命名">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-23T11:12:13.531Z">
+<meta property="og:updated_time" content="2019-11-26T03:52:09.893Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack日积月累">
 <meta name="twitter:description" content="process.env.NODE_ENV在node中，全局变量process表示当前node进程。process.env包含着关于系统环境的信息。但是process.env中并不存在NODE_ENV这个东西。NODE_ENV是用户一个自定义的变量，在webpack中是用于判断生产环境或者开发环境依据的。 chunkFilename非入口文件的命名规则未列在entry中，却又需要被打包出来的文件命名">
@@ -177,6 +177,8 @@
       
         <h4 id="process-env-NODE-ENV"><a href="#process-env-NODE-ENV" class="headerlink" title="process.env.NODE_ENV"></a>process.env.NODE_ENV</h4><p>在node中，全局变量process表示当前node进程。process.env包含着关于系统环境的信息。但是process.env中并不存在NODE_ENV这个东西。NODE_ENV是用户一个自定义的变量，在webpack中是用于判断生产环境或者开发环境依据的。</p>
 <h4 id="chunkFilename"><a href="#chunkFilename" class="headerlink" title="chunkFilename"></a>chunkFilename</h4><p>非入口文件的命名规则<br>未列在entry中，却又需要被打包出来的文件命名配置。</p>
+<h4 id="关于打包时资源路径的配置"><a href="#关于打包时资源路径的配置" class="headerlink" title="关于打包时资源路径的配置"></a>关于打包时资源路径的配置</h4><p>assetsSubDiretory：资源子目录，指的是js css img存放的目录，它的路径是相对于index.html。通常配置的是static，所以打包文件是 static index.html这种。</p>
+<p>assetsPublicPath：资源目录，默认’/‘。指的是js css img等资源相对于服务器host地址，也就是绝对地址。通常我们访问的地址是<a href="http://ip:prot/projectName/index.html，一般不会是http://ip:prot/index.html。所以我们需要改为&#39;/projectName&#39;" target="_blank" rel="noopener">http://ip:prot/projectName/index.html，一般不会是http://ip:prot/index.html。所以我们需要改为&#39;/projectName&#39;</a></p>
 
       
 
@@ -455,6 +457,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">vue-cli4.x</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
@@ -467,15 +473,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">表格数据加载优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Node</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NPm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">表格数据加载优化</a>
               </li>
              
               <li class="article-tag-list-item">
