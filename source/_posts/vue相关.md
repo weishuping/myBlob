@@ -8,6 +8,7 @@ tags: vue
 **SFC** single file components
 
 vue会将.vue文件进行解析，分成template、styles、customBlocks四个部分，称为 descriptor。
+<!--more-->
 
 ---
 

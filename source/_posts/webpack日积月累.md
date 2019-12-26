@@ -1,10 +1,4 @@
-<!--
- * @Description: In User Settings Edit
- * @Author: your name
- * @Date: 2019-05-29 19:33:28
- * @LastEditTime: 2019-08-12 20:34:11
- * @LastEditors: Please set LastEditors
- -->
+
 ---
 title: webpack日积月累
 date: 2019-05-29 19:33:28
@@ -18,3 +12,9 @@ tags:
 #### chunkFilename
 非入口文件的命名规则
 未列在entry中，却又需要被打包出来的文件命名配置。
+
+#### 关于打包时资源路径的配置
+
+assetsSubDiretory：资源子目录，指的是js css img存放的目录，它的路径是相对于index.html。通常配置的是static，所以打包文件是 static index.html这种。
+
+assetsPublicPath：资源目录，默认'/'。指的是js css img等资源相对于服务器host地址，也就是绝对地址。通常我们访问的地址是http://ip:prot/projectName/index.html，一般不会是http://ip:prot/index.html。所以我们需要改为'/projectName'

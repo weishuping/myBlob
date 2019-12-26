@@ -7,7 +7,7 @@ tags: promise
 #### 问题：
 
 给data中的变量rowList赋值filters一次，但是watch rowList的时候，发现走了rowList.length;
-
+<!--more-->
 因为filter在三个顺序发生的promise内部中又调用了new promise.但是内部的promise是异步的 而且更改了指向同一个引用的这个变量，rowList变化了多少次，watch走几次。
 
 测试：

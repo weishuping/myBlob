@@ -4,7 +4,8 @@ date: 2019-06-23 15:23:30
 tags: jest
 ---
 
-## Vue.js 单元测试之旅-
+## Vue.js 单元测试之旅
+<!--more-->
 #### 卢俊杰 - 汇丰科技中国 环球银行及资本市场部 技术顾问
 #### 演讲PPT与视屏 【https://www.yuque.com/vueconf/2019/ulg27a】
 #### 代码地址： https://github.com/jaylu/vueconf2019-unit-test
