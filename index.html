@@ -156,6 +156,91 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-vue3.0尝鲜" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/26/vue3.0尝鲜/">vue3.0尝鲜</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/26/vue3.0尝鲜/" class="archive-article-date">
+  	<time datetime="2019-12-26T06:08:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="源码熟悉"><a href="#源码熟悉" class="headerlink" title="源码熟悉"></a>源码熟悉</h4><p>下载<a href="https://github.com/vuejs/vue-next/" target="_blank" rel="noopener">vue-next</a>仓库地址<br><img src="/2019/12/26/vue3.0尝鲜/dir.png" alt="gulp"></p>
+<blockquote>
+<p>vue Vue项目的主入口模块<br>reactivity 实现vue3.0的数据响应式功能的核心，发现是computed相关的数据处理很多<br>compiler-core 模板核心语法编译器，对标签、属性、指令（如v-if、v-for、v-bind、v-model、v-on、v-once等）的语法编译<br>compiler-dom vue模板编译器，编译模板中其他功能性指令（如v-html、v-text等），依赖于compiler-core<br>runtime-core 实现虚拟dom、组件定义、生命周日、指令定义、依赖注入、渲染等功能的核心模块<br>runtime-dom vue在浏览器dom环境运行时，负责实现与浏览器环境运行所需的相关特性</p>
+</blockquote>
+<h4 id="编译-得到vue3-0的运行环境"><a href="#编译-得到vue3-0的运行环境" class="headerlink" title="编译-得到vue3.0的运行环境"></a>编译-得到vue3.0的运行环境</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+<p>在vue目录下会生成一个dist文件夹<br><img src="/2019/12/26/vue3.0尝鲜/dir2.png" alt="gulp"><br>我们会用到的是dist目录下的vue.global.prod.js这个文件，这个是打包后得到的最完整的框架代码，可以使用script标签直接饮用。</p>
+<h4 id="上手写demo"><a href="#上手写demo" class="headerlink" title="上手写demo"></a>上手写demo</h4><p>建一个文件夹，下面的文件结构如下图所示，有css和js目录，分别存放示例代码要用到的样式、vue的js库文件、以及我们编写的示例js代码文件；而 index.html 则就是这个程序的主入口了。<br><img src="/2019/12/26/vue3.0尝鲜/dir4.png" alt="gulp"></p>
+<h4 id="使用COmposition-API"><a href="#使用COmposition-API" class="headerlink" title="使用COmposition API"></a>使用COmposition API</h4><p>为了向下兼容，对vue2.x的写法几乎都支持，这种写法被称为Options API(可选项式Api),就是说在创建组件的时候，其实都是在拼装一个可选项集合，比如我们传入data\computed\methods等。<br>这种方式虽然清晰，但是这个写法在逻辑复用上并不友好，在js里，最简洁最清晰的写法是封装为一个个单纯的函数，然后函数与函数之间的调用。所以之前的写法在复用性和优雅度上不大好，对比函数组成的模块，使用时通过具名方式导入，则在使用tree-shaking的是时候支持的更好，有更好的效果。以下是一个具名方式导入的例子，要养成好习惯<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123;myFUn1&#125; from &apos;my-module;&apos;</span><br></pre></td></tr></table></figure></p>
+<p>vue3.0支持TS,TS一个很重要的特性就是类型推导，而函数对类型推导也不友好。</p>
+<p>因此，像Composition这种函数的编程风格，成为了新框架的亮点。<br><code>setup</code>方法，它是Vue3.0中新增的组件入口，专为使用Composition API而设计，调用时机是在组件生命周期的 beforeCreate 和 created 之间（所以在 setup 里面是访问不了你所期望的 this 对象的，即它里面的this并不是指向当前组件，这点需要注意也尽量避免使用）</p>
+<p>data里面的响应式对象属性是使用<code>ref</code>函数创建的响应式常量。</p>
+<p>将一个x值操作的逻辑部分抽离到函数，然后进一步把这些独立逻辑函数移入到模块文件中。</p>
+<h5 id="ref-reactive-render-props-生命周期-加油"><a href="#ref-reactive-render-props-生命周期-加油" class="headerlink" title="ref reactive render props 生命周期 加油"></a>ref reactive render props 生命周期 加油</h5>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">vue3.0</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/26/vue3.0尝鲜/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-vue-cli笔记" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -555,6 +640,7 @@
 <h4 id="CSRF漏洞"><a href="#CSRF漏洞" class="headerlink" title="CSRF漏洞"></a>CSRF漏洞</h4><h4 id="Vue父组件通过props向子组件传递方法"><a href="#Vue父组件通过props向子组件传递方法" class="headerlink" title="Vue父组件通过props向子组件传递方法"></a>Vue父组件通过props向子组件传递方法</h4><h4 id="组件继承与扩展"><a href="#组件继承与扩展" class="headerlink" title="组件继承与扩展"></a>组件继承与扩展</h4><h5 id="slot"><a href="#slot" class="headerlink" title="slot"></a>slot</h5><h5 id="Mixins"><a href="#Mixins" class="headerlink" title="Mixins"></a>Mixins</h5><h5 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h5><p>接受的参数是简单的选项对象或构造函数，所以extends只能单次扩展一个组件。</p>
 <p>相对于Mixins，extends触发的优先级更高。</p>
 <h5 id="extend"><a href="#extend" class="headerlink" title="extend"></a>extend</h5><p>创建一个构造器，为了创建可复用的组件。主要是服务于Vue.component</p>
+<p>#### </p>
 <h4 id="vue组件间通信的六种方式"><a href="#vue组件间通信的六种方式" class="headerlink" title="vue组件间通信的六种方式"></a>vue组件间通信的六种方式</h4><h5 id="一：-props-emit"><a href="#一：-props-emit" class="headerlink" title="一： props/$emit"></a>一： props/$emit</h5><h5 id="二：-emit-on"><a href="#二：-emit-on" class="headerlink" title="二： $emit/$on"></a>二： $emit/$on</h5><p>通过空的vue实例作为事件中心，用它来触发事件和监听事件，巧妙而轻量的实现了任何组件之间的通信，包括父子、兄弟、跨级。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var Event=new Vue();</span><br><span class="line">Event.$emit(事件名,数据);</span><br><span class="line">Event.$on(事件名,data =&gt; &#123;&#125;);</span><br></pre></td></tr></table></figure></p>
 <h5 id="三：vuex"><a href="#三：vuex" class="headerlink" title="三：vuex"></a>三：vuex</h5><h5 id="四：-attrs-listeners"><a href="#四：-attrs-listeners" class="headerlink" title="四：$attrs/$listeners"></a>四：$attrs/$listeners</h5><p>多及组件嵌套需要传递数据的时候，而不做中间处理。Vue2.4提供了这个方法。</p>
 <p>$attrs包含了父级作用域中不被props所识别所获取的特性绑定；<br>$listeners包含了父作用域中不含.native修饰器的v-on事件监听器。</p>
@@ -857,83 +943,6 @@
 
 
   
-    <article id="post-vue相关" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/12/vue相关/">vue相关</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/12/vue相关/" class="archive-article-date">
-  	<time datetime="2019-06-12T06:02:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="vue学习中的概念"><a href="#vue学习中的概念" class="headerlink" title="vue学习中的概念"></a>vue学习中的概念</h3><p><strong>SFC</strong> single file components</p>
-<p>vue会将.vue文件进行解析，分成template、styles、customBlocks四个部分，称为 descriptor。<br></p>
-        
-          <a class="article-more-a" href="/2019/06/12/vue相关/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/12/vue相关/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -948,7 +957,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Shuping·Wei
+    		&copy; 2020 Shuping·Wei
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1047,10 +1056,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
@@ -1059,11 +1064,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">REACT</a>
+                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">REACT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1083,19 +1092,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jest</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">promise</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">表格数据加载优化</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">vue3.0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">jest</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1104,6 +1113,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NPm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">表格数据加载优化</a>
               </li>
              
               <li class="article-tag-list-item">

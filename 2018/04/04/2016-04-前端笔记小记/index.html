@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/04/04/2016-04-前端笔记小记/1472693479747.png">
 <meta property="og:image" content="http://yoursite.com/2018/04/04/2016-04-前端笔记小记/1472693719096.png">
-<meta property="og:updated_time" content="2019-05-28T13:12:40.994Z">
+<meta property="og:updated_time" content="2020-01-06T11:34:46.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2016-04 前端笔记小记">
 <meta name="twitter:description" content="1 CSS3属性1.box-sizing IE  Opera以及Chrome支持box-sizing属性。FF支持-moz-box-sizng属性。该属性允许以特定的方式定义匹配某个区域的特定元素。分为三个值：content-box 是默认值，由CSS2.1规定的宽度高度行为，宽和高应用到元素的内容框，在宽和高之外设置边距和边框； border-box为元素指定的任何内边距和边框都包含在已设定的宽">
@@ -235,6 +235,10 @@ p:first {
 }
 </code></pre><p>区别; 伪元素的效果是通过添加一个元素来实现的；； 伪类是直接在元素上添加类实现的效果</p>
 <h3 id="6页面中的层叠关系-7阶层叠水平"><a href="#6页面中的层叠关系-7阶层叠水平" class="headerlink" title="6页面中的层叠关系-7阶层叠水平"></a>6页面中的层叠关系-7阶层叠水平</h3><p>1.border、background<br>2.负的z-index<br>3.block块状水平盒子<br>4.float浮动盒子<br>5.inline 、inline-block盒子<br>6.z-index: auto 或者z-index:0 不依赖z-index的层叠上下文<br>7.z-index</p>
+<h3 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h3><p>获取上个月第一天</p>
+<p>var firstdate = new Date(new Date().getFullYear(), new Date().getMonth()-1, 1);</p>
+<p>获取上个月最后一天</p>
+<p>var date = new Date();<br>var day = new Date(date.getFullYear(), date.getMonth(), 0).getDate();<br>var enddate = new Date(new Date().getFullYear(), new Date().getMonth()-1, day);</p>
 
       
 
@@ -405,7 +409,7 @@ p:first {
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Shuping·Wei
+    		&copy; 2020 Shuping·Wei
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -504,10 +508,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
@@ -516,11 +516,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">REACT</a>
+                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">REACT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,19 +544,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jest</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">promise</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">表格数据加载优化</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">vue3.0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">jest</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,6 +565,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NPm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">表格数据加载优化</a>
               </li>
              
               <li class="article-tag-list-item">

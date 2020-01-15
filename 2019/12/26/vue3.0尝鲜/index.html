@@ -6,20 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>数据过多表格加载优化和滚动优化 | xiaowei</title>
+  <title>vue3.0尝鲜 | xiaowei</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。">
-<meta name="keywords" content="表格数据加载优化">
+  <meta name="description" content="源码熟悉下载vue-next仓库地址  vue Vue项目的主入口模块reactivity 实现vue3.0的数据响应式功能的核心，发现是computed相关的数据处理很多compiler-core 模板核心语法编译器，对标签、属性、指令（如v-if、v-for、v-bind、v-model、v-on、v-once等）的语法编译compiler-dom vue模板编译器，编译模板中其他功能性指令（">
+<meta name="keywords" content="vue3.0">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据过多表格加载优化和滚动优化">
-<meta property="og:url" content="http://yoursite.com/2019/10/23/表格优化/index.html">
+<meta property="og:title" content="vue3.0尝鲜">
+<meta property="og:url" content="http://yoursite.com/2019/12/26/vue3.0尝鲜/index.html">
 <meta property="og:site_name" content="xiaowei">
-<meta property="og:description" content="问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。">
+<meta property="og:description" content="源码熟悉下载vue-next仓库地址  vue Vue项目的主入口模块reactivity 实现vue3.0的数据响应式功能的核心，发现是computed相关的数据处理很多compiler-core 模板核心语法编译器，对标签、属性、指令（如v-if、v-for、v-bind、v-model、v-on、v-once等）的语法编译compiler-dom vue模板编译器，编译模板中其他功能性指令（">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-31T06:41:59.171Z">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/vue3.0尝鲜/dir.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/vue3.0尝鲜/dir2.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/vue3.0尝鲜/dir4.png">
+<meta property="og:updated_time" content="2019-12-26T12:48:59.768Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据过多表格加载优化和滚动优化">
-<meta name="twitter:description" content="问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。">
+<meta name="twitter:title" content="vue3.0尝鲜">
+<meta name="twitter:description" content="源码熟悉下载vue-next仓库地址  vue Vue项目的主入口模块reactivity 实现vue3.0的数据响应式功能的核心，发现是computed相关的数据处理很多compiler-core 模板核心语法编译器，对标签、属性、指令（如v-if、v-for、v-bind、v-model、v-on、v-once等）的语法编译compiler-dom vue模板编译器，编译模板中其他功能性指令（">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/26/vue3.0尝鲜/dir.png">
   
     <link rel="alternative" href="/atom.xml" title="xiaowei" type="application/atom+xml">
   
@@ -155,69 +159,39 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-表格优化" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-vue3.0尝鲜" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      数据过多表格加载优化和滚动优化
+      vue3.0尝鲜
     </h1>
   
 
         
-        <a href="/2019/10/23/表格优化/" class="archive-article-date">
-  	<time datetime="2019-10-23T07:01:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
+        <a href="/2019/12/26/vue3.0尝鲜/" class="archive-article-date">
+  	<time datetime="2019-12-26T06:08:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。<br><a id="more"></a><br>分析：由于页面加载需要创建dom，并且需要绑定事件，在400条数据的时候页面卡死。<br>优化1：未点击之前，所有的均为span。当click的时候，才创建真正的输入元素。条件为当前行当前key。<br>问题：页面元素仍然有很多，需要懒加载。<br>优化2：优先加载大于1屏的数据，比如25条。<br>itemHeight: 每行高度<br>screenNumber: 一屏多少条数据<br>totalLength: 总数据长度<br>currentLength: 当前加载数据的长度<br>当前可视范围内的第一行数据序号 = scrollTop / itemHeight<br>优化点：控制滚动的频率。当前可视区域第一行数 + 整屏个数 = end; 页面已加载currentLength - end &lt; 5条，开始重新加载。<br>优化3：使用节流，控制触发频率。<br>/<em> 核心代码如下 </em>/<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">return function ()&#123;</span><br><span class="line">            let top = event.target.scrollTop;</span><br><span class="line">            let start = Math.floor(top / 40) ;</span><br><span class="line">            let currentLength = that.planData.length;// 可视区域数据</span><br><span class="line">            let totalLength = that.budgetData.length;// 原始数据</span><br><span class="line">            // 控制滚动的频率。当前可视区域第一行数 + 整屏个数 = end; 页面已加载currentLength - end &lt; 5条。开始重新加载。</span><br><span class="line">            let end = start + that.stepItemPage;</span><br><span class="line">            if (end &lt; totalLength &amp;&amp; currentLength - end &lt; 5) &#123;</span><br><span class="line">            // 如果滑动不足，加载两屏数据出来。</span><br><span class="line">                let crashRows = Math.ceil(that.stepItemPage * 2);</span><br><span class="line">                console.log(&apos;down&apos;, start, start + crashRows, totalLength, top, that.scrollTop);</span><br><span class="line">                let nextData = [];</span><br><span class="line">                // 增加上面高度 才有scroll</span><br><span class="line">                for (let index = 0; index &lt; start; index++) &#123;</span><br><span class="line">                    nextData.push(&#123;order: index, hasTd: true&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">                nextData = nextData.concat(that.budgetData.slice(start, start + crashRows));</span><br><span class="line">                that.planData = nextData;</span><br><span class="line">                that.scrollTop = top;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure></p>
-<p>但是仍然存在问题：向上滑动有空白情况。</p>
-<p>版本二：</p>
-<pre><code>let el = document.querySelector(&apos;.body-wrapper&apos;);
-// if (el &amp;&amp; el.offsetHeight) {
-//     this.stepItemPage = Math.ceil(el.offsetHeight / ITEM_HEIGHT);// 每屏幕行数
-// }
-let top = event.target.scrollTop;
-if (this.top === top) {
-    return false;
-}
-this.top = top;
-let wrapperHeight = el.clientHeight;
-let height = top - wrapperHeight;
-let start = Math.floor(height / ITEM_HEIGHT) ;
-start = start &gt;= 0 ? start : 0;
-if (this.start === start) {
-    return false;
-}
-// this.$emit(&apos;update:pageLoading&apos;, true);
-let offset = Math.abs(start - this.start);// 差值
-let screenOffset = wrapperHeight / ITEM_HEIGHT;// 当前屏幕个数
-let crashRows = Math.ceil(this.stepItemPage * 3);// 如果滑动不足，加载3屏数据出来。
-let totalLength = this.budgetData.length;// 原始数据
-let end = start + crashRows;
-end = end &gt;= totalLength? totalLength -1 : end;
-console.log(this.start, &quot;start&quot;, start, &quot;old start&quot;, this.start, &apos;起始差值&apos;, screenOffset, &quot;结束&quot;,end);
-if ((offset - screenOffset &gt; -3 || start === 0 || end === totalLength -1)) {
-    let nextData = [];
-    // 撑开上面高度，实际数为空 才有scroll
-    for (let index = 0; index &lt; start; index++) {
-        nextData.push({order: index, hasTd: true});
-    }
-    // 加载大约3屏数据量
-    nextData = nextData.concat(this.budgetData.slice(start, end + 1));
-    this.planData = nextData;
-    this.start = start;
-}
-</code></pre><p>版本三</p>
-<p>给table加translate(0, start * 行高),也就是说看到的滚动条上方均是盒子撑开的高度</p>
-<p> dealScrollEvent(event) {<br>            let el = document.querySelector(‘.body-wrapper’);<br>            let top = event.target.scrollTop;<br>            if (this.top === top) {<br>                return false;<br>            }<br>            // 向上滑动必须加loading<br>            if (top &lt; this.top) {<br>                this.$emit(‘update:pageLoading’, true);<br>            }<br>            let wrapperHeight = el.clientHeight <em> 1.2; // 相当于在外层包裹一层<br>            let height = top - wrapperHeight;<br>            let start = Math.floor(height / ITEM_HEIGHT) ;<br>            start = start &gt;= 0 ? start : 0;<br>            if (this.start === start) {<br>                this.top = top;<br>                this.$emit(‘update:pageLoading’, false);<br>                return false;<br>            } else {<br>                this.top = top;<br>            }<br>            let offset = Math.abs(start - this.start);// 差值<br>            let screenOffset = wrapperHeight / ITEM_HEIGHT;// 包裹层当前屏幕个数<br>            let crashRows = Math.floor((1 + (2 </em> 1)) <em> screenOffset);// 如果滑动不足，上下1.2屏数据出来。<br>            let totalLength = this.budgetData.length;// 原始数据<br>            let end = start + crashRows;<br>            end = end &gt;= totalLength? totalLength -1 : end;<br>            console.log(this.start, “start”, start, “old start”, this.start, ‘起始差值’, screenOffset, “结束”,end);<br>            if ((offset &gt; screenOffset  || start === 0 || end === totalLength -1)) {<br>                if (!this.pageLoading) {<br>                    this.$emit(‘update:pageLoading’, true);<br>                }<br>                let nextData = [];<br>                // 撑开上面高度，实际数为空 才有scroll<br>                // for (let index = 0; index &lt; start; index++) {<br>                //     nextData.push({order: index, hasTd: true});<br>                // }<br>                // 优化3：上述有副作用，渲染无用的dom 导致页面卡顿<br>                document.querySelector(‘.body-wrapper’).querySelector(‘table’).style.transform = `translate(0, ${(start </em> ITEM_HEIGHT)}px)<code>;
-                document.querySelector(&#39;.body-fixed-wrapper&#39;).querySelector(&#39;table&#39;).style.transform =</code>translate(0, ${(start * ITEM_HEIGHT)}px)`;<br>                this.planData = nextData.concat(this.budgetData.slice(start, end));<br>                this.start = start;<br>            }<br>            setTimeout(() =&gt; {<br>                this.$emit(‘update:pageLoading’, false);<br>            }, 1000);<br>        }</p>
-
+        <h4 id="源码熟悉"><a href="#源码熟悉" class="headerlink" title="源码熟悉"></a>源码熟悉</h4><p>下载<a href="https://github.com/vuejs/vue-next/" target="_blank" rel="noopener">vue-next</a>仓库地址<br><img src="/2019/12/26/vue3.0尝鲜/dir.png" alt="gulp"></p>
+<blockquote>
+<p>vue Vue项目的主入口模块<br>reactivity 实现vue3.0的数据响应式功能的核心，发现是computed相关的数据处理很多<br>compiler-core 模板核心语法编译器，对标签、属性、指令（如v-if、v-for、v-bind、v-model、v-on、v-once等）的语法编译<br>compiler-dom vue模板编译器，编译模板中其他功能性指令（如v-html、v-text等），依赖于compiler-core<br>runtime-core 实现虚拟dom、组件定义、生命周日、指令定义、依赖注入、渲染等功能的核心模块<br>runtime-dom vue在浏览器dom环境运行时，负责实现与浏览器环境运行所需的相关特性</p>
+</blockquote>
+<h4 id="编译-得到vue3-0的运行环境"><a href="#编译-得到vue3-0的运行环境" class="headerlink" title="编译-得到vue3.0的运行环境"></a>编译-得到vue3.0的运行环境</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+<p>在vue目录下会生成一个dist文件夹<br><img src="/2019/12/26/vue3.0尝鲜/dir2.png" alt="gulp"><br>我们会用到的是dist目录下的vue.global.prod.js这个文件，这个是打包后得到的最完整的框架代码，可以使用script标签直接饮用。</p>
+<h4 id="上手写demo"><a href="#上手写demo" class="headerlink" title="上手写demo"></a>上手写demo</h4><p>建一个文件夹，下面的文件结构如下图所示，有css和js目录，分别存放示例代码要用到的样式、vue的js库文件、以及我们编写的示例js代码文件；而 index.html 则就是这个程序的主入口了。<br><img src="/2019/12/26/vue3.0尝鲜/dir4.png" alt="gulp"></p>
+<h4 id="使用COmposition-API"><a href="#使用COmposition-API" class="headerlink" title="使用COmposition API"></a>使用COmposition API</h4><p>为了向下兼容，对vue2.x的写法几乎都支持，这种写法被称为Options API(可选项式Api),就是说在创建组件的时候，其实都是在拼装一个可选项集合，比如我们传入data\computed\methods等。<br>这种方式虽然清晰，但是这个写法在逻辑复用上并不友好，在js里，最简洁最清晰的写法是封装为一个个单纯的函数，然后函数与函数之间的调用。所以之前的写法在复用性和优雅度上不大好，对比函数组成的模块，使用时通过具名方式导入，则在使用tree-shaking的是时候支持的更好，有更好的效果。以下是一个具名方式导入的例子，要养成好习惯<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123;myFUn1&#125; from &apos;my-module;&apos;</span><br></pre></td></tr></table></figure></p>
+<p>vue3.0支持TS,TS一个很重要的特性就是类型推导，而函数对类型推导也不友好。</p>
+<p>因此，像Composition这种函数的编程风格，成为了新框架的亮点。<br><code>setup</code>方法，它是Vue3.0中新增的组件入口，专为使用Composition API而设计，调用时机是在组件生命周期的 beforeCreate 和 created 之间（所以在 setup 里面是访问不了你所期望的 this 对象的，即它里面的this并不是指向当前组件，这点需要注意也尽量避免使用）</p>
+<p>data里面的响应式对象属性是使用<code>ref</code>函数创建的响应式常量。</p>
+<p>将一个x值操作的逻辑部分抽离到函数，然后进一步把这些独立逻辑函数移入到模块文件中。</p>
+<h5 id="ref-reactive-render-props-生命周期-加油"><a href="#ref-reactive-render-props-生命周期-加油" class="headerlink" title="ref reactive render props 生命周期 加油"></a>ref reactive render props 生命周期 加油</h5>
       
 
       
@@ -251,7 +225,7 @@ if ((offset - screenOffset &gt; -3 || start === 0 || end === totalLength -1)) {
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">表格数据加载优化</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">vue3.0</a>
         		</li>
       		
 		</ul>
@@ -307,7 +281,7 @@ if ((offset - screenOffset &gt; -3 || start === 0 || end === totalLength -1)) {
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/23/表格优化/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/26/vue3.0尝鲜/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -321,18 +295,9 @@ if ((offset - screenOffset &gt; -3 || start === 0 || end === totalLength -1)) {
   
 <nav id="article-nav">
   
-    <a href="/2019/10/23/apple/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          致：🍎🍎🍎最可爱的亲❤️
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/20/promise/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">promise执行问题</div>
+    <a href="/2019/12/20/vue-cli笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vue-cli笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   

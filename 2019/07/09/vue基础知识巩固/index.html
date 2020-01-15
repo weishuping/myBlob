@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="xiaowei">
 <meta property="og:description" content="Vue.nextTick()的作用在下次DOM更新循环结束之后 执行 延迟回调。在修改完数据之后调用获取更新后的DOM。 使用Vue.nextTick()的情况：1：在Vue生命周期的created钩子函数进行的DOM操作一定要放到Vue.nextTick()的回调中。相对应的在mounted中执行任何DOM操作都不会有问题。2：在数据变化后等待Vue完成更新DOM，可以在数据变化之后立即调用。3">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-31T09:14:42.180Z">
+<meta property="og:updated_time" content="2019-12-27T03:35:42.571Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue基础知识巩固、CSRF漏洞">
 <meta name="twitter:description" content="Vue.nextTick()的作用在下次DOM更新循环结束之后 执行 延迟回调。在修改完数据之后调用获取更新后的DOM。 使用Vue.nextTick()的情况：1：在Vue生命周期的created钩子函数进行的DOM操作一定要放到Vue.nextTick()的回调中。相对应的在mounted中执行任何DOM操作都不会有问题。2：在数据变化后等待Vue完成更新DOM，可以在数据变化之后立即调用。3">
@@ -180,6 +180,7 @@
 <h4 id="CSRF漏洞"><a href="#CSRF漏洞" class="headerlink" title="CSRF漏洞"></a>CSRF漏洞</h4><h4 id="Vue父组件通过props向子组件传递方法"><a href="#Vue父组件通过props向子组件传递方法" class="headerlink" title="Vue父组件通过props向子组件传递方法"></a>Vue父组件通过props向子组件传递方法</h4><h4 id="组件继承与扩展"><a href="#组件继承与扩展" class="headerlink" title="组件继承与扩展"></a>组件继承与扩展</h4><h5 id="slot"><a href="#slot" class="headerlink" title="slot"></a>slot</h5><h5 id="Mixins"><a href="#Mixins" class="headerlink" title="Mixins"></a>Mixins</h5><h5 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h5><p>接受的参数是简单的选项对象或构造函数，所以extends只能单次扩展一个组件。</p>
 <p>相对于Mixins，extends触发的优先级更高。</p>
 <h5 id="extend"><a href="#extend" class="headerlink" title="extend"></a>extend</h5><p>创建一个构造器，为了创建可复用的组件。主要是服务于Vue.component</p>
+<p>#### </p>
 <h4 id="vue组件间通信的六种方式"><a href="#vue组件间通信的六种方式" class="headerlink" title="vue组件间通信的六种方式"></a>vue组件间通信的六种方式</h4><h5 id="一：-props-emit"><a href="#一：-props-emit" class="headerlink" title="一： props/$emit"></a>一： props/$emit</h5><h5 id="二：-emit-on"><a href="#二：-emit-on" class="headerlink" title="二： $emit/$on"></a>二： $emit/$on</h5><p>通过空的vue实例作为事件中心，用它来触发事件和监听事件，巧妙而轻量的实现了任何组件之间的通信，包括父子、兄弟、跨级。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var Event=new Vue();</span><br><span class="line">Event.$emit(事件名,数据);</span><br><span class="line">Event.$on(事件名,data =&gt; &#123;&#125;);</span><br></pre></td></tr></table></figure></p>
 <h5 id="三：vuex"><a href="#三：vuex" class="headerlink" title="三：vuex"></a>三：vuex</h5><h5 id="四：-attrs-listeners"><a href="#四：-attrs-listeners" class="headerlink" title="四：$attrs/$listeners"></a>四：$attrs/$listeners</h5><p>多及组件嵌套需要传递数据的时候，而不做中间处理。Vue2.4提供了这个方法。</p>
 <p>$attrs包含了父级作用域中不被props所识别所获取的特性绑定；<br>$listeners包含了父作用域中不含.native修饰器的v-on事件监听器。</p>
@@ -344,7 +345,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Shuping·Wei
+    		&copy; 2020 Shuping·Wei
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -443,10 +444,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
@@ -455,11 +452,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">REACT</a>
+                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">REACT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -479,19 +480,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jest</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">promise</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">表格数据加载优化</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">vue3.0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">jest</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -500,6 +501,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NPm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">表格数据加载优化</a>
               </li>
              
               <li class="article-tag-list-item">
