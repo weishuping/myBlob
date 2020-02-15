@@ -25,6 +25,7 @@ tags: vue
 ##### extend
 创建一个构造器，为了创建可复用的组件。主要是服务于Vue.component
 
+#### 
 #### vue组件间通信的六种方式
 
 ##### 一： props/$emit
@@ -58,3 +59,9 @@ provide方法，返回一个对象。inject是一个对象，使用的时候inje
 ##### 页面回流
 当页面尺寸、布局、隐藏等改变而需要重新构建。
 当元素的外观，称为重绘
+
+#### Vuex 的 dispath 和 commit
+
+> 1：dispath对应action，处理异步请求
+> 2：commit对应mutation，所有的修改都需要通过mutation
+> 3:那什么时候知道action执行完毕呢？
