@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="xiaowei">
 <meta property="og:description" content="Vue.nextTick()的作用在下次DOM更新循环结束之后 执行 延迟回调。在修改完数据之后调用获取更新后的DOM。 使用Vue.nextTick()的情况：1：在Vue生命周期的created钩子函数进行的DOM操作一定要放到Vue.nextTick()的回调中。相对应的在mounted中执行任何DOM操作都不会有问题。2：在数据变化后等待Vue完成更新DOM，可以在数据变化之后立即调用。3">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-27T03:35:42.571Z">
+<meta property="og:updated_time" content="2020-02-06T02:34:15.963Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue基础知识巩固、CSRF漏洞">
 <meta name="twitter:description" content="Vue.nextTick()的作用在下次DOM更新循环结束之后 执行 延迟回调。在修改完数据之后调用获取更新后的DOM。 使用Vue.nextTick()的情况：1：在Vue生命周期的created钩子函数进行的DOM操作一定要放到Vue.nextTick()的回调中。相对应的在mounted中执行任何DOM操作都不会有问题。2：在数据变化后等待Vue完成更新DOM，可以在数据变化之后立即调用。3">
@@ -187,6 +187,9 @@
 <h5 id="五：provide-inject"><a href="#五：provide-inject" class="headerlink" title="五：provide/inject"></a>五：provide/inject</h5><p>允许一个祖先组件向其所有子孙后代注入一个依赖：祖先通过provider提供变量，子孙组件通过inject注入变量。主要解决了跨级组件间的通信问题。<br>provide方法，返回一个对象。inject是一个对象，使用的时候injections.theme.color<br><em>需要注意的是：绑定并不是响应的。</em></p>
 <h6 id="实现数据响应"><a href="#实现数据响应" class="headerlink" title="实现数据响应"></a>实现数据响应</h6><p>（1）：祖先组件的实例在子孙组件中注入依赖。<br>（2）：2.6提供API：Vue.observable</p>
 <h5 id="六：-parent-children-访问父-子实例-ref指向DOM元素和组件实例。"><a href="#六：-parent-children-访问父-子实例-ref指向DOM元素和组件实例。" class="headerlink" title="六：$parent/$children 访问父/子实例. ref指向DOM元素和组件实例。"></a>六：$parent/$children 访问父/子实例. ref指向DOM元素和组件实例。</h5><h5 id="页面回流"><a href="#页面回流" class="headerlink" title="页面回流"></a>页面回流</h5><p>当页面尺寸、布局、隐藏等改变而需要重新构建。<br>当元素的外观，称为重绘</p>
+<h4 id="Vuex-的-dispath-和-commit"><a href="#Vuex-的-dispath-和-commit" class="headerlink" title="Vuex 的 dispath 和 commit"></a>Vuex 的 dispath 和 commit</h4><blockquote>
+<p>1：dispath对应action，处理异步请求<br>2：commit对应mutation，所有的修改都需要通过mutation<br>3:那什么时候知道action执行完毕呢？</p>
+</blockquote>
 
       
 
@@ -444,6 +447,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
@@ -452,7 +459,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
+                <a href="javascript:void(0)" class="js-tag color1">REACT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -460,11 +467,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">REACT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">前端开发规范</a>
+                <a href="javascript:void(0)" class="js-tag color1">vue-cli4.x</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -473,10 +476,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">vue-cli4.x</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,6 +503,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端性能</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">表格数据加载优化</a>
               </li>
              
@@ -513,6 +516,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">心情</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">前端开发规范</a>
               </li>
             
             <div class="clearfix"></div>
