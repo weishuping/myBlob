@@ -180,16 +180,10 @@
 <h4 id="前端性能测试目的"><a href="#前端性能测试目的" class="headerlink" title="前端性能测试目的"></a>前端性能测试目的</h4><p>计算出包含页面渲染、网络传输以及服务器解析等元素在内的加载时间指标，对该页面性能进行评估分析。做出一定优化和解决方案，从而提升用户体验。</p>
 <h4 id="前端性能测试对象"><a href="#前端性能测试对象" class="headerlink" title="前端性能测试对象"></a>前端性能测试对象</h4><p>HTML、CSS、JS、AJAX等Web页面，服务器数据返回、网络传输、页面渲染。</p>
 <h4 id="前端性能检测指标"><a href="#前端性能检测指标" class="headerlink" title="前端性能检测指标"></a>前端性能检测指标</h4><p>白屏时间、首屏时间、用户可交互时间、总下载时间、DNS解析时间、TCP连接时间、HTTP请求时间、HTTP响应时间</p>
-<h4 id="性能检测工具"><a href="#性能检测工具" class="headerlink" title="性能检测工具"></a>性能检测工具</h4><p>1、 YSlow<br>Yslow(why slow)是雅虎基于网站优化规则推出的工具，可以帮助分析并优化网站性能。（减少http请求数、GZip压缩、样式放在上面、js放底部、减少DND查询等）<br>2、PageSpeed<br>PageSpeed是由Google内部来改进网页设计的工具，它整合在Firefox的Firebug插件中。<br>3、Chrome DevTools - Performance</p>
-<h4 id="pageSpeed分析基于一个分为5类的最佳实践列表"><a href="#pageSpeed分析基于一个分为5类的最佳实践列表" class="headerlink" title="pageSpeed分析基于一个分为5类的最佳实践列表"></a>pageSpeed分析基于一个分为5类的最佳实践列表</h4><ul>
-<li>优化缓存-让应用的数据和逻辑完全避免使用网络</li>
-<li>减少回应时间-减少一连串的请求-响应周期的数量</li>
-<li>减少请求大小-减少上传大小</li>
-<li>减少有效负荷大小-减少响应、下载和缓存页面的大小</li>
-<li>优化浏览器渲染-改善浏览器的页面布局<h4 id="最佳做法"><a href="#最佳做法" class="headerlink" title="最佳做法"></a>最佳做法</h4>一：排定资源优先级<br>二：尽可能减少浏览器重排<br>重排是用于重新计算文档中各元素的位置和几何形状，以便重新呈现该文档的部分内部和全部内容。由于重排<strong>会组织用户</strong>在浏览器中执行操作，因此需要优化。<br>引发重排的操作：浏览器窗口的变化、使用设计计算出的样式的js方法、在dom中添加或者移除元素、更改某个元素的类等等。<br>简单的准则：<br>1、减少不必要的dom深度。<br>2、尽可能减少css规则的数量，并移除未使用的css规则。<br>3、如果进行复杂的渲染更改，在流程外执行。可使用position-absolute或者fixed来做。<br>4、避免使用不必要且复杂的css选择器（尤其是后代选择器），因为此类需消耗更多的CPU处理能力。</li>
-</ul>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a href="https://developers.google.cn/speed/docs/insights/browser-reflow?hl=zh_cn" target="_blank" rel="noopener">PageSpeed Tools</a><br><a href="https://developers.google.cn/web/fundamentals/performance/resource-prioritization?hl=zh_cn" target="_blank" rel="noopener">资源优先级</a></p>
-
+<h4 id="性能检测工具"><a href="#性能检测工具" class="headerlink" title="性能检测工具"></a>性能检测工具</h4>
+        
+          <a class="article-more-a" href="/2020/02/15/前端性能测试/#more">more >></a>
+        
       
 
       
@@ -213,94 +207,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/02/15/前端性能测试/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2016-04-前端笔记小记" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/15/2016-04-前端笔记小记/">前端笔记小记</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/15/2016-04-前端笔记小记/" class="archive-article-date">
-  	<time datetime="2020-02-15T08:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-CSS3属性"><a href="#1-CSS3属性" class="headerlink" title="1 CSS3属性"></a>1 CSS3属性</h3><p>1.box-sizing<br> IE  Opera以及Chrome支持box-sizing属性。FF支持-moz-box-sizng属性。<br>该属性允许以特定的方式定义匹配某个区域的特定元素。<br>分为三个值：content-box 是默认值，由CSS2.1规定的宽度高度行为，宽和高应用到元素的内容框，在宽和高之外设置边距和边框； border-box为元素指定的任何内边距和边框都包含在已设定的宽度和高度，也就是说，内容的宽和高是从已设定的中减去内边距和边框得到；inherit 规定从父元素继承该属性。<br></p>
-        
-          <a class="article-more-a" href="/2020/02/15/2016-04-前端笔记小记/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CSS3</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">jQuery键盘事件</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CSS伪类和伪元素</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">页面中的层叠关系</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/15/2016-04-前端笔记小记/">展开全文 >></a>
         </p>
       
 
@@ -450,7 +356,7 @@
 <li>链式操作 chainWebpack: config =&gt; {}</li>
 </ol>
 <h4 id="环境变量与模式"><a href="#环境变量与模式" class="headerlink" title="环境变量与模式"></a>环境变量与模式</h4><p><a href="https://cli.vuejs.org/zh/guide/build-targets.html#%E6%B3%A8%E5%86%8C%E5%A4%9A%E4%B8%AA-web-components-%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8C%85" target="_blank" rel="noopener">参考</a></p>
-<h4 id="css-js打包"><a href="#css-js打包" class="headerlink" title="css js打包"></a>css js打包</h4><p>去掉console.log<br>vue-cli3 打包文件名称设置： <a href="https://www.jianshu.com/p/2f286a8e4cf5" target="_blank" rel="noopener">https://www.jianshu.com/p/2f286a8e4cf5</a><br>不使用inject，因为inject: true，这样使用了template模板文件后会追加打包js到新生成的html中<br>禁用了html-webpack-plugin的自动注入:</p>
+<h4 id="css-js打包"><a href="#css-js打包" class="headerlink" title="css js打包"></a>css js打包</h4><p>vue-cli3 打包文件名称设置： <a href="https://www.jianshu.com/p/2f286a8e4cf5" target="_blank" rel="noopener">https://www.jianshu.com/p/2f286a8e4cf5</a><br>不使用inject，因为inject: true，这样使用了template模板文件后会追加打包js到新生成的html中<br>禁用了html-webpack-plugin的自动注入:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">chainWebpack: config =&gt; &#123;</span><br><span class="line">        config</span><br><span class="line">            .plugin(&apos;html&apos;)</span><br><span class="line">            .tap(args =&gt; &#123;</span><br><span class="line">                args[0].inject = false</span><br><span class="line">                return args</span><br><span class="line">            &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h4 id="配置公共打包路径：webpack-public-path动态配置路径"><a href="#配置公共打包路径：webpack-public-path动态配置路径" class="headerlink" title="配置公共打包路径：webpack_public_path动态配置路径"></a>配置公共打包路径：<strong>webpack_public_path</strong>动态配置路径</h4><p><strong>webpack_public_path</strong>决定了output.publicPath的值，用于来指定应用程序中所有的资源的基本路径<br>1：新建文件，比如config/config.js<br>通过判断，设置生产环境下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__webpack_public_path__ = window.APPROVAL_PROXY_URL + 后端的域名和代理</span><br></pre></td></tr></table></figure></p>
 <p>2：在main.js引入上述js，务必在其他静态资源之前引入<br>3：vue.config.js中设置publicpath: ‘’</p>
@@ -928,6 +834,80 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/06/23/vue单元测试/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-TypeScript" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/18/TypeScript/">TypeScript</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/18/TypeScript/" class="archive-article-date">
+  	<time datetime="2019-06-18T02:45:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>TypeScript是JavaScript类型的超集，可以编译成纯JavaScrpit。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/18/TypeScript/">展开全文 >></a>
         </p>
       
 
