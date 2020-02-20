@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="xiaowei">
 <meta property="og:description" content="问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-31T06:41:59.171Z">
+<meta property="og:updated_time" content="2020-02-20T09:18:55.711Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据过多表格加载优化和滚动优化">
 <meta name="twitter:description" content="问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。">
@@ -175,48 +175,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。<br><a id="more"></a><br>分析：由于页面加载需要创建dom，并且需要绑定事件，在400条数据的时候页面卡死。<br>优化1：未点击之前，所有的均为span。当click的时候，才创建真正的输入元素。条件为当前行当前key。<br>问题：页面元素仍然有很多，需要懒加载。<br>优化2：优先加载大于1屏的数据，比如25条。<br>itemHeight: 每行高度<br>screenNumber: 一屏多少条数据<br>totalLength: 总数据长度<br>currentLength: 当前加载数据的长度<br>当前可视范围内的第一行数据序号 = scrollTop / itemHeight<br>优化点：控制滚动的频率。当前可视区域第一行数 + 整屏个数 = end; 页面已加载currentLength - end &lt; 5条，开始重新加载。<br>优化3：使用节流，控制触发频率。<br>/<em> 核心代码如下 </em>/<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">return function ()&#123;</span><br><span class="line">            let top = event.target.scrollTop;</span><br><span class="line">            let start = Math.floor(top / 40) ;</span><br><span class="line">            let currentLength = that.planData.length;// 可视区域数据</span><br><span class="line">            let totalLength = that.budgetData.length;// 原始数据</span><br><span class="line">            // 控制滚动的频率。当前可视区域第一行数 + 整屏个数 = end; 页面已加载currentLength - end &lt; 5条。开始重新加载。</span><br><span class="line">            let end = start + that.stepItemPage;</span><br><span class="line">            if (end &lt; totalLength &amp;&amp; currentLength - end &lt; 5) &#123;</span><br><span class="line">            // 如果滑动不足，加载两屏数据出来。</span><br><span class="line">                let crashRows = Math.ceil(that.stepItemPage * 2);</span><br><span class="line">                console.log(&apos;down&apos;, start, start + crashRows, totalLength, top, that.scrollTop);</span><br><span class="line">                let nextData = [];</span><br><span class="line">                // 增加上面高度 才有scroll</span><br><span class="line">                for (let index = 0; index &lt; start; index++) &#123;</span><br><span class="line">                    nextData.push(&#123;order: index, hasTd: true&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">                nextData = nextData.concat(that.budgetData.slice(start, start + crashRows));</span><br><span class="line">                that.planData = nextData;</span><br><span class="line">                that.scrollTop = top;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure></p>
-<p>但是仍然存在问题：向上滑动有空白情况。</p>
-<p>版本二：</p>
-<pre><code>let el = document.querySelector(&apos;.body-wrapper&apos;);
-// if (el &amp;&amp; el.offsetHeight) {
-//     this.stepItemPage = Math.ceil(el.offsetHeight / ITEM_HEIGHT);// 每屏幕行数
-// }
-let top = event.target.scrollTop;
-if (this.top === top) {
-    return false;
-}
-this.top = top;
-let wrapperHeight = el.clientHeight;
-let height = top - wrapperHeight;
-let start = Math.floor(height / ITEM_HEIGHT) ;
-start = start &gt;= 0 ? start : 0;
-if (this.start === start) {
-    return false;
-}
-// this.$emit(&apos;update:pageLoading&apos;, true);
-let offset = Math.abs(start - this.start);// 差值
-let screenOffset = wrapperHeight / ITEM_HEIGHT;// 当前屏幕个数
-let crashRows = Math.ceil(this.stepItemPage * 3);// 如果滑动不足，加载3屏数据出来。
-let totalLength = this.budgetData.length;// 原始数据
-let end = start + crashRows;
-end = end &gt;= totalLength? totalLength -1 : end;
-console.log(this.start, &quot;start&quot;, start, &quot;old start&quot;, this.start, &apos;起始差值&apos;, screenOffset, &quot;结束&quot;,end);
-if ((offset - screenOffset &gt; -3 || start === 0 || end === totalLength -1)) {
-    let nextData = [];
-    // 撑开上面高度，实际数为空 才有scroll
-    for (let index = 0; index &lt; start; index++) {
-        nextData.push({order: index, hasTd: true});
-    }
-    // 加载大约3屏数据量
-    nextData = nextData.concat(this.budgetData.slice(start, end + 1));
-    this.planData = nextData;
-    this.start = start;
-}
-</code></pre><p>版本三</p>
-<p>给table加translate(0, start * 行高),也就是说看到的滚动条上方均是盒子撑开的高度</p>
-<p> dealScrollEvent(event) {<br>            let el = document.querySelector(‘.body-wrapper’);<br>            let top = event.target.scrollTop;<br>            if (this.top === top) {<br>                return false;<br>            }<br>            // 向上滑动必须加loading<br>            if (top &lt; this.top) {<br>                this.$emit(‘update:pageLoading’, true);<br>            }<br>            let wrapperHeight = el.clientHeight <em> 1.2; // 相当于在外层包裹一层<br>            let height = top - wrapperHeight;<br>            let start = Math.floor(height / ITEM_HEIGHT) ;<br>            start = start &gt;= 0 ? start : 0;<br>            if (this.start === start) {<br>                this.top = top;<br>                this.$emit(‘update:pageLoading’, false);<br>                return false;<br>            } else {<br>                this.top = top;<br>            }<br>            let offset = Math.abs(start - this.start);// 差值<br>            let screenOffset = wrapperHeight / ITEM_HEIGHT;// 包裹层当前屏幕个数<br>            let crashRows = Math.floor((1 + (2 </em> 1)) <em> screenOffset);// 如果滑动不足，上下1.2屏数据出来。<br>            let totalLength = this.budgetData.length;// 原始数据<br>            let end = start + crashRows;<br>            end = end &gt;= totalLength? totalLength -1 : end;<br>            console.log(this.start, “start”, start, “old start”, this.start, ‘起始差值’, screenOffset, “结束”,end);<br>            if ((offset &gt; screenOffset  || start === 0 || end === totalLength -1)) {<br>                if (!this.pageLoading) {<br>                    this.$emit(‘update:pageLoading’, true);<br>                }<br>                let nextData = [];<br>                // 撑开上面高度，实际数为空 才有scroll<br>                // for (let index = 0; index &lt; start; index++) {<br>                //     nextData.push({order: index, hasTd: true});<br>                // }<br>                // 优化3：上述有副作用，渲染无用的dom 导致页面卡顿<br>                document.querySelector(‘.body-wrapper’).querySelector(‘table’).style.transform = `translate(0, ${(start </em> ITEM_HEIGHT)}px)<code>;
-                document.querySelector(&#39;.body-fixed-wrapper&#39;).querySelector(&#39;table&#39;).style.transform =</code>translate(0, ${(start * ITEM_HEIGHT)}px)`;<br>                this.planData = nextData.concat(this.budgetData.slice(start, end));<br>                this.start = start;<br>            }<br>            setTimeout(() =&gt; {<br>                this.$emit(‘update:pageLoading’, false);<br>            }, 1000);<br>        }</p>
+        <p>问题：页面有400+条数据，且表格每行有约10个searchbox,每个searchbox有几百条下拉数据；若干input；若干span。<br><a id="more"></a><br>分析：由于页面加载需要创建dom，并且需要绑定事件，在400条数据的时候页面卡死。<br>优化1：未点击之前，所有的均为span。当click的时候，才创建真正的输入元素。条件为当前行当前key。<br>问题：页面元素仍然有很多，需要懒加载。<br>优化2：优先加载大于1屏的数据，比如25条。<br>itemHeight: 每行高度<br>screenNumber: 一屏多少条数据<br>totalLength: 总数据长度<br>currentLength: 当前加载数据的长度<br>当前可视范围内的第一行数据序号 = scrollTop / itemHeight<br>优化点：控制滚动的频率。当前可视区域第一行数 + 整屏个数 = end; 页面已加载currentLength - end &lt; 5条，开始重新加载。<br>优化3：使用节流，控制触发频率。<br>核心代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">return function ()&#123;</span><br><span class="line">        let top = event.target.scrollTop;</span><br><span class="line">        let start = Math.floor(top / 40) ;</span><br><span class="line">        let currentLength = that.planData.length;// 可视区域数据</span><br><span class="line">        let totalLength = that.budgetData.length;// 原始数据</span><br><span class="line">        // 控制滚动的频率。当前可视区域第一行数 + 整屏个数 = end; 页面已加载currentLength - end &lt; 5条。开始重新加载。</span><br><span class="line">        let end = start + that.stepItemPage;</span><br><span class="line">        if (end &lt; totalLength &amp;&amp; currentLength - end &lt; 5) &#123;</span><br><span class="line">        // 如果滑动不足，加载两屏数据出来。</span><br><span class="line">            let crashRows = Math.ceil(that.stepItemPage * 2);</span><br><span class="line">            console.log(&apos;down&apos;, start, start + crashRows, totalLength, top, that.scrollTop);</span><br><span class="line">            let nextData = [];</span><br><span class="line">            // 增加上面高度 才有scroll</span><br><span class="line">            for (let index = 0; index &lt; start; index++) &#123;</span><br><span class="line">                nextData.push(&#123;order: index, hasTd: true&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            nextData = nextData.concat(that.budgetData.slice(start, start + crashRows));</span><br><span class="line">            that.planData = nextData;</span><br><span class="line">            that.scrollTop = top;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></p>
+<p>但是仍然存在问题：向上滑动有空白情况。需要考虑多种情况和临界值<br>版本二：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">let el = document.querySelector(&apos;.body-wrapper&apos;);</span><br><span class="line">// if (el &amp;&amp; el.offsetHeight) &#123;</span><br><span class="line">//     this.stepItemPage = Math.ceil(el.offsetHeight / ITEM_HEIGHT);// 每屏幕行数</span><br><span class="line">// &#125;</span><br><span class="line">let top = event.target.scrollTop;</span><br><span class="line">if (this.top === top) &#123;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line">this.top = top;</span><br><span class="line">let wrapperHeight = el.clientHeight;</span><br><span class="line">let height = top - wrapperHeight;</span><br><span class="line">let start = Math.floor(height / ITEM_HEIGHT) ;</span><br><span class="line">start = start &gt;= 0 ? start : 0;</span><br><span class="line">if (this.start === start) &#123;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line">// this.$emit(&apos;update:pageLoading&apos;, true);</span><br><span class="line">let offset = Math.abs(start - this.start);// 差值</span><br><span class="line">let screenOffset = wrapperHeight / ITEM_HEIGHT;// 当前屏幕个数</span><br><span class="line">let crashRows = Math.ceil(this.stepItemPage * 3);// 如果滑动不足，加载3屏数据出来。</span><br><span class="line">let totalLength = this.budgetData.length;// 原始数据</span><br><span class="line">let end = start + crashRows;</span><br><span class="line">end = end &gt;= totalLength? totalLength -1 : end;</span><br><span class="line">console.log(this.start, &quot;start&quot;, start, &quot;old start&quot;, this.start, &apos;起始差值&apos;, screenOffset, &quot;结束&quot;,end);</span><br><span class="line">if ((offset - screenOffset &gt; -3 || start === 0 || end === totalLength -1)) &#123;</span><br><span class="line">    let nextData = [];</span><br><span class="line">    // 撑开上面高度，实际数为空 才有scroll</span><br><span class="line">    for (let index = 0; index &lt; start; index++) &#123;</span><br><span class="line">        nextData.push(&#123;order: index, hasTd: true&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    // 加载大约3屏数据量</span><br><span class="line">    nextData = nextData.concat(this.budgetData.slice(start, end + 1));</span><br><span class="line">    this.planData = nextData;</span><br><span class="line">    this.start = start;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>版本三</p>
+<p>给table加translate(0, start * 行高),也就是说看到的滚动条上方均是盒子撑开的高度，而不是去真正的渲染dom和样式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"> dealScrollEvent(event) &#123;</span><br><span class="line">    let el = document.querySelector(&apos;.body-wrapper&apos;);</span><br><span class="line">    let top = event.target.scrollTop;</span><br><span class="line">    if (this.top === top) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    // 向上滑动必须加loading</span><br><span class="line">    if (top &lt; this.top) &#123;</span><br><span class="line">        this.$emit(&apos;update:pageLoading&apos;, true);</span><br><span class="line">    &#125;</span><br><span class="line">    let wrapperHeight = el.clientHeight * 1.2; // 相当于在外层包裹一层</span><br><span class="line">    let height = top - wrapperHeight;</span><br><span class="line">    let start = Math.floor(height / ITEM_HEIGHT) ;</span><br><span class="line">    start = start &gt;= 0 ? start : 0;</span><br><span class="line">    if (this.start === start) &#123;</span><br><span class="line">        this.top = top;</span><br><span class="line">        this.$emit(&apos;update:pageLoading&apos;, false);</span><br><span class="line">        return false;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        this.top = top;</span><br><span class="line">    &#125;</span><br><span class="line">    let offset = Math.abs(start - this.start);// 差值</span><br><span class="line">    let screenOffset = wrapperHeight / ITEM_HEIGHT;// 包裹层当前屏幕个数</span><br><span class="line">    let crashRows = Math.floor((1 + (2 * 1)) * screenOffset);// 如果滑动不足，上下1.2屏数据出来。</span><br><span class="line">    let totalLength = this.budgetData.length;// 原始数据</span><br><span class="line">    let end = start + crashRows;</span><br><span class="line">    end = end &gt;= totalLength? totalLength -1 : end;</span><br><span class="line">    console.log(this.start, &quot;start&quot;, start, &quot;old start&quot;, this.start, &apos;起始差值&apos;, screenOffset, &quot;结束&quot;,end);</span><br><span class="line">    if ((offset &gt; screenOffset  || start === 0 || end === totalLength -1)) &#123;</span><br><span class="line">        if (!this.pageLoading) &#123;</span><br><span class="line">            this.$emit(&apos;update:pageLoading&apos;, true);</span><br><span class="line">        &#125;</span><br><span class="line">        let nextData = [];</span><br><span class="line">        // 撑开上面高度，实际数为空 才有scroll</span><br><span class="line">        // for (let index = 0; index &lt; start; index++) &#123;</span><br><span class="line">        //     nextData.push(&#123;order: index, hasTd: true&#125;);</span><br><span class="line">        // &#125;</span><br><span class="line">        // 优化3：上述有副作用，渲染无用的dom 导致页面卡顿</span><br><span class="line">        document.querySelector(&apos;.body-wrapper&apos;).querySelector(&apos;table&apos;).style.transform = `translate(0, $&#123;(start * ITEM_HEIGHT)&#125;px)`;</span><br><span class="line">        document.querySelector(&apos;.body-fixed-wrapper&apos;).querySelector(&apos;table&apos;).style.transform = `translate(0, $&#123;(start * ITEM_HEIGHT)&#125;px)`;</span><br><span class="line">        this.planData = nextData.concat(this.budgetData.slice(start, end));</span><br><span class="line">        this.start = start;</span><br><span class="line">    &#125;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">        this.$emit(&apos;update:pageLoading&apos;, false);</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -486,15 +448,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">REACT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">vue-cli4.x</a>
+                <a href="javascript:void(0)" class="js-tag color1">REACT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">前端开发规范</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -514,11 +476,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">vue3.0</a>
+                <a href="javascript:void(0)" class="js-tag color1">vue-cli4.x</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jest</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">vue3.0</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,10 +509,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">心情</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">前端开发规范</a>
               </li>
             
             <div class="clearfix"></div>
