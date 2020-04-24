@@ -156,321 +156,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-业务中金额处理" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/14/业务中金额处理/">业务中金额处理</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/14/业务中金额处理/" class="archive-article-date">
-  	<time datetime="2020-03-14T07:11:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>常常在业务中会出现，输入金额的处理。一般情况为<br>后端返回空，前端默认展示为0.00。当focus的时候，变为空；当有值的时候，可以直接输入。</p>
-<p>过滤器处理，接受两个参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 金额过滤器type为false的时候进行千分位处理并且保留两位小数</span><br><span class="line">// type为true的时候，直接返回</span><br><span class="line">Vue.filter(&apos;commafy&apos;, (val, type) =&gt; &#123;</span><br><span class="line">    if (type) &#123;</span><br><span class="line">        return val;</span><br><span class="line">    &#125; else if (Number(val) === 0 || isNaN(Number(val))) &#123;</span><br><span class="line">        val = &apos;0.00&apos;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // 保留两位并且加上千分符</span><br><span class="line">        val = format.commafy(utils.numToFixed(val));</span><br><span class="line">    &#125;</span><br><span class="line">    return val;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>后端返回数值，需要做千分位处理。传入false。值为空focus的时候，传入true</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/14/业务中金额处理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-工作汇报" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/20/工作汇报/">工作汇报</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/20/工作汇报/" class="archive-article-date">
-  	<time datetime="2020-02-20T09:11:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="团队贡献"><a href="#团队贡献" class="headerlink" title="团队贡献"></a>团队贡献</h2><blockquote>
-<ul>
-<li><a href="http://bife-doc.dev.weiyun.baidu.com:8446/%E6%8A%80%E6%9C%AF%E8%AE%B0%E5%BD%95/%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E7%8B%AC%E7%AB%8B%E9%83%A8%E7%BD%B2/" target="_blank" rel="noopener">前端微云独立部署</a> [很好，各种情况方案已经落地]</li>
-<li>升级完善vue-cli3.x脚手架 [新项目全部落地]</li>
-<li>接入Hi移动审批的方案和种子工程落地 [给自己点赞]</li>
-<li>SDK方案讨论与支持 [贡献力量]</li>
-<li>DLS项目参与 [没进展]</li>
-<li>外出学习vue-conf3.0大会 [学习新知识]</li>
-<li>CR可以给出自己的见解[贡献力量]</li>
-</ul>
-</blockquote>
-<h2 id="开发流程与规范"><a href="#开发流程与规范" class="headerlink" title="开发流程与规范"></a>开发流程与规范</h2><blockquote>
-<ul>
-<li><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=501070694" target="_blank" rel="noopener">前后端项目联调方案</a></li>
-<li><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=756230719" target="_blank" rel="noopener">前端开发命名规范</a></li>
-<li><a href="http://icode.baidu.com/repos/baidu/bpit-bi-fin/ifs-pmp-fe/tree/develop" target="_blank" rel="noopener">pmp项目开发规范</a></li>
-<li><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=703449850" target="_blank" rel="noopener">提交表单规则</a></li>
-</ul>
-</blockquote>
-<h2 id="分享与文档沉淀"><a href="#分享与文档沉淀" class="headerlink" title="分享与文档沉淀"></a>分享与文档沉淀</h2><blockquote>
-<ul>
-<li><a href="http://bife-doc.dev.weiyun.baidu.com:8446/%E6%8A%80%E6%9C%AF%E8%AE%B0%E5%BD%95/2019%E7%AC%AC%E4%B8%89%E5%B1%8AVueConf%E5%A4%A7%E4%BC%9A/" target="_blank" rel="noopener">VUE3.0技术组内分享和度学堂分享</a></li>
-<li><a href="http://bife-doc.dev.weiyun.baidu.com:8446/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E7%99%BE%E6%B1%87/#%E5%A4%8D%E6%9D%82%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D" target="_blank" rel="noopener">多框架融合与菜单权限配置方案</a> </li>
-<li>SLG业务分享</li>
-<li>Vue-cli3.x脚手架的配置<br>各个项目文档沉淀、跟进事宜</li>
-</ul>
-</blockquote>
-<h2 id="业务项目"><a href="#业务项目" class="headerlink" title="业务项目"></a>业务项目</h2><h3 id="百汇项目【负责人-研发】"><a href="#百汇项目【负责人-研发】" class="headerlink" title="百汇项目【负责人+研发】"></a>百汇项目【负责人+研发】</h3><ol>
-<li>整个项目的技术选型、需求讨论和指导外部同学</li>
-<li>开发多框架公共模块，维护老项目</li>
-<li>沉淀公共组件12个，包含可配置表单和表格组件，为重构老页面提供了技术支持</li>
-<li>项目申请方案设计，将之前17种表单精简为4种</li>
-<li>梳理业务，重构老旧页面【angular页面：32个-&gt;4个；jsp页面：11个-&gt;2个】</li>
-<li>重构过程中以前端为主导，推进后端接口调整、QA测试、与PM沟通上线点</li>
-<li>权限配置方案，对无权限的进行拦截和跳转</li>
-</ol>
-<blockquote>
-<ul>
-<li><a href="http://bife-doc.dev.weiyun.baidu.com:8446/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E7%99%BE%E6%B1%87/#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D" target="_blank" rel="noopener">项目文档</a></li>
-<li><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=728796472" target="_blank" rel="noopener">组件沉淀文档记录</a></li>
-<li><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=728808898" target="_blank" rel="noopener">浏览器兼容问题记录</a></li>
-<li><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=710764062" target="_blank" rel="noopener">项目申请业务梳理</a></li>
-<li><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=866521715" target="_blank" rel="noopener">项目品专排斥业务逻辑梳理</a></li>
-<li><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=773431657" target="_blank" rel="noopener">重构项目排期与上线记录</a></li>
-</ul>
-</blockquote>
-<h3 id="百汇移动端项目【负责人-研发】"><a href="#百汇移动端项目【负责人-研发】" class="headerlink" title="百汇移动端项目【负责人+研发】"></a>百汇移动端项目【负责人+研发】</h3><ol>
-<li>从0-1建立移动端审批</li>
-<li>接入hi审批方案可行性调研并实施</li>
-<li>项目打包配置</li>
-<li>页面适配调整</li>
-<li>梳理移动端业务，给出技术方案 <blockquote>
-<ul>
-<li><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=1043961658" target="_blank" rel="noopener">接入hi移动端审批脚手架搭建流程</a></li>
-<li><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=1032260435" target="_blank" rel="noopener">移动端重构方案与排期</a></li>
-</ul>
-</blockquote>
-</li>
-</ol>
-<h3 id="数据仓库-SLG项目【负责人-研发】"><a href="#数据仓库-SLG项目【负责人-研发】" class="headerlink" title="数据仓库-SLG项目【负责人+研发】"></a>数据仓库-SLG项目【负责人+研发】</h3><ol>
-<li>整个项目的技术选型、需求沟通、外部依赖配置等</li>
-<li>接入hulk-SDK调试</li>
-<li>配置MDM基础数据和接口设计</li>
-<li>封装组件、落地开发最佳demo，节省开发效率50%</li>
-<li>实现复杂数据的报表展示</li>
-<li>封装实现固定表头和左侧数据、自定义单元格内容的表格组件</li>
-<li>主动优化SLG首页渲染慢的问题</li>
-<li>包含小度产品业务健康度、收入分析、软件/硬件等开发</li>
-</ol>
-<blockquote>
-<ul>
-<li><a href="http://bife-doc.dev.weiyun.baidu.com:8446/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/#slg%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83" target="_blank" rel="noopener">项目文档</a></li>
-<li><a href="http://bife-doc.dev.weiyun.baidu.com:8446/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/#%E5%A4%8D%E6%9D%82%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D" target="_blank" rel="noopener">沉淀SDK组件使用手册</a></li>
-</ul>
-</blockquote>
-<h3 id="收入分析项目【负责人-研发】"><a href="#收入分析项目【负责人-研发】" class="headerlink" title="收入分析项目【负责人+研发】"></a>收入分析项目【负责人+研发】</h3><ol>
-<li>整体项目的进度把控、技术支持和需求梳理</li>
-<li>配置MDM基础数据和接口设计</li>
-<li>反哺hulk-sdk平台，提供出建设性意见</li>
-<li>集团、IDG、AICITY等报表和仪表盘开发</li>
-</ol>
-<blockquote>
-<ul>
-<li><a href="http://bife-doc.dev.weiyun.baidu.com:8446/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/#%E6%94%B6%E5%85%A5%E5%88%86%E6%9E%90%E4%BD%93%E7%B3%BB" target="_blank" rel="noopener">项目文档</a></li>
-<li><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=866523248" target="_blank" rel="noopener">业务需求分析与开发设计</a></li>
-<li><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=883711089" target="_blank" rel="noopener">问题记录</a></li>
-</ul>
-</blockquote>
-<h3 id="Marketing项目【研发】"><a href="#Marketing项目【研发】" class="headerlink" title="Marketing项目【研发】"></a>Marketing项目【研发】</h3><ol>
-<li>参与项目需求分析与设计</li>
-<li>负责预算模块，包含预算编制、预算调整等</li>
-<li>主动优化大数据量下可编辑表格页面加载卡顿问题</li>
-</ol>
-<blockquote>
-<ul>
-<li><a href="http://bife-doc.dev.weiyun.baidu.com:8446/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/Marketing%E5%B9%B3%E5%8F%B0/#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D" target="_blank" rel="noopener">项目文档</a></li>
-<li><a href="http://weishupingmiss.club/2019/10/23/%E8%A1%A8%E6%A0%BC%E4%BC%98%E5%8C%96/#more" target="_blank" rel="noopener">问题记录以及解决方式</a></li>
-</ul>
-</blockquote>
-<h3 id="项目财务平台【负责人-研发】"><a href="#项目财务平台【负责人-研发】" class="headerlink" title="项目财务平台【负责人+研发】"></a>项目财务平台【负责人+研发】</h3><ol>
-<li>整体项目的进度把控、技术支持和需求梳理</li>
-<li>开发项目财务模块、预算、成本模块</li>
-<li>配置打包命令和模式</li>
-<li>落地微云部署等</li>
-<li>指导外包同学</li>
-</ol>
-<blockquote>
-<ul>
-<li><a href="http://bife-doc.dev.weiyun.baidu.com:8446/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D" target="_blank" rel="noopener">项目文档</a></li>
-<li><a href="http://icode.baidu.com/repos/baidu/bpit-bi-fin/ifs-pmp-fe/tree/develop" target="_blank" rel="noopener">项目开发规范与排期【见readme】</a></li>
-</ul>
-</blockquote>
-<h2 id="代码能力的具体代码片段"><a href="#代码能力的具体代码片段" class="headerlink" title="代码能力的具体代码片段"></a>代码能力的具体代码片段</h2><p><a href="http://icode.baidu.com/repos/baidu/bpit-bi-fin/baihui-fe/blob/master:src/views/project/internalPromotion/index.vue" target="_blank" rel="noopener">百汇-业务结构分层，页面统一入口</a><br><a href="http://icode.baidu.com/repos/baidu/bpit-bi-fin/baihui-fe/blob/master:src/components/TemplateForm.vue" target="_blank" rel="noopener">百汇-可配置表单</a></p>
-<p><a href="http://icode.baidu.com/repos/baidu/bpit-bi-fin/ifs-dw-slg-fe/blob/master:src/utils/dateGenerator.js" target="_blank" rel="noopener">SLG-生成各类日期格式和区间</a></p>
-<p><a href="http://icode.baidu.com/repos/baidu/bpit-bi-fin/ifs-dw-slg-fe/commits/c1109ac1b0a5ad8ad769ba60be3f5ac8bbd4ed2e/src/views/sales/SalesAnalysis.vue" target="_blank" rel="noopener">SLG-代码优化</a></p>
-<p><a href="http://icode.baidu.com/repos/baidu/bpit-bi-fin/ifs-pmp-fe/blob/develop:src/views/finance/BudgetCost.vue" target="_blank" rel="noopener">pmp-结构清晰&amp;开发模板</a></p>
-<h2 id="异步加载数据searchbox组件：可模糊查询走接口，含结果分页。"><a href="#异步加载数据searchbox组件：可模糊查询走接口，含结果分页。" class="headerlink" title="异步加载数据searchbox组件：可模糊查询走接口，含结果分页。"></a>异步加载数据searchbox组件：可模糊查询走接口，含结果分页。</h2><p>难点：<br>1：输入时的请求频率控制<br>2：需要给下拉结果值添加分页<br>3：如果删除了部分值，鼠标移开，是全部删除还是保留上次结果<br>4：数据该如何存储，数据交互怎么做，将什么样的结果返回给使用者<br>5：组件内部是否需要与API交互<br>思路：<br>1：使用节流函数控制<br>2：传入标识，需要分页or不需要分页；增加事件<br>3：这个看系统需求，跟pm确认是，鼠标移除保留上次结果<br>4：数据以对象格式存储,需要在组件内部拷贝一份数据。所需要的字段值通过props传递。内部更新数据，返回aysncWord<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">aysncWord: &#123;</span><br><span class="line">    id: &apos;xx&apos;,</span><br><span class="line">    label: &apos;xx&apos;,</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">suggestions: [],</span><br><span class="line">isMore: true</span><br></pre></td></tr></table></figure></p>
-<p>5： 数据与展示分开，组件只接受数据、处理数据并返回。<br>核心代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> // 监听输入框值的改变</span><br><span class="line"> searchValue(val) &#123;</span><br><span class="line">   if (val &amp;&amp; val.trim()) &#123;</span><br><span class="line">       this.debouncedGetRes();// 触发查询接口</span><br><span class="line">       this.hasValue = true;</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">       this.hasValue = false;</span><br><span class="line">       this.localValue = &#123;&#125;;</span><br><span class="line">       this.localSuggestions = [];</span><br><span class="line">       this.$emit(&apos;update:aysncWord&apos;, &#123;&#125;);</span><br><span class="line">       this.$emit(&apos;updateValue&apos;, &#123;label: &apos;&apos;&#125;, this.key, this.field);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> // 当鼠标点击外面,如果刚才有值 重新赋值，如果没有值，则更新空值</span><br><span class="line"> handleOutside(e) &#123;</span><br><span class="line">      if (e.target.classList.value === &apos;addMore&apos;) &#123;</span><br><span class="line">          return false;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">          if (!this.localValue.label) &#123;</span><br><span class="line">              this.searchValue = &apos;请输入&apos;;</span><br><span class="line">              this.searchValue = &apos;&apos;;</span><br><span class="line">          &#125; else if (this.localValue.label === this.aysncWord.label &amp;&amp; this.localValue.label !== this.searchValue) &#123;</span><br><span class="line">              this.stopChangeFlag = true;</span><br><span class="line">              this.searchValue = this.localValue.label;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="学习笔记"><a href="#学习笔记" class="headerlink" title="学习笔记"></a>学习笔记</h2><p><a href="http://weishupingmiss.club/2020/02/15/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" target="_blank" rel="noopener">前端性能优化</a></p>
-<p><a href="http://weishupingmiss.club/2019/12/26/vue3.0%E5%B0%9D%E9%B2%9C/" target="_blank" rel="noopener">vue3.0源码学习并实践</a></p>
-<p><a href="http://weishupingmiss.club/2019/12/20/vue-cli%E7%AC%94%E8%AE%B0/" target="_blank" rel="noopener">学习vue-cli3.x笔记并记录配置</a></p>
-<p><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=764243136" target="_blank" rel="noopener">css复习知识点</a></p>
-<p><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=743847892" target="_blank" rel="noopener">事件循环与回调队列</a></p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><blockquote>
-<ul>
-<li>定期组内code review</li>
-<li>协助其他同学完成项目搭建微云部署<br><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=909023268" target="_blank" rel="noopener">工作流程整理</a></li>
-<li>其他技术点汇总说明</li>
-</ul>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>技术点</th>
-<th>问题场景</th>
-<th>解决方案  </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>配置json生成报表</td>
-<td>百汇中需同步其他平台数据，需要传参并调用接口</td>
-<td>定义json格式生成页面，操作触发请求</td>
-<td></td>
-</tr>
-<tr>
-<td>封装Form和table</td>
-<td>大量表单表格样式统一，数据不同</td>
-<td>定义合适的数据结构，纯数据驱动</td>
-<td></td>
-</tr>
-<tr>
-<td>API管理优化</td>
-<td>接口数量多，模块不分明，命名容易冲突</td>
-<td>模块化管理；以命名空间形式调用</td>
-<td></td>
-</tr>
-<tr>
-<td>前端管理用户权限</td>
-<td>多角色权限不一样</td>
-<td>路由守卫中验证身份；加入权限路由；对无权限的进行拦截和跳转</td>
-<td></td>
-</tr>
-<tr>
-<td>SLG白屏优化</td>
-<td>加载大量数据</td>
-<td>优化请求和处理数据；加载之后页面缓存</td>
-<td></td>
-</tr>
-<tr>
-<td>多页面共享数据</td>
-<td>页面之间传参</td>
-<td>前端缓存sessionStorage</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/20/工作汇报/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-前端性能测试" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -495,10 +180,16 @@
 <h4 id="前端性能测试目的"><a href="#前端性能测试目的" class="headerlink" title="前端性能测试目的"></a>前端性能测试目的</h4><p>计算出包含页面渲染、网络传输以及服务器解析等元素在内的加载时间指标，对该页面性能进行评估分析。做出一定优化和解决方案，从而提升用户体验。</p>
 <h4 id="前端性能测试对象"><a href="#前端性能测试对象" class="headerlink" title="前端性能测试对象"></a>前端性能测试对象</h4><p>HTML、CSS、JS、AJAX等Web页面，服务器数据返回、网络传输、页面渲染。</p>
 <h4 id="前端性能检测指标"><a href="#前端性能检测指标" class="headerlink" title="前端性能检测指标"></a>前端性能检测指标</h4><p>白屏时间、首屏时间、用户可交互时间、总下载时间、DNS解析时间、TCP连接时间、HTTP请求时间、HTTP响应时间</p>
-<h4 id="性能检测工具"><a href="#性能检测工具" class="headerlink" title="性能检测工具"></a>性能检测工具</h4>
-        
-          <a class="article-more-a" href="/2020/02/15/前端性能测试/#more">more >></a>
-        
+<h4 id="性能检测工具"><a href="#性能检测工具" class="headerlink" title="性能检测工具"></a>性能检测工具</h4><p>1、 YSlow<br>Yslow(why slow)是雅虎基于网站优化规则推出的工具，可以帮助分析并优化网站性能。（减少http请求数、GZip压缩、样式放在上面、js放底部、减少DND查询等）<br>2、PageSpeed<br>PageSpeed是由Google内部来改进网页设计的工具，它整合在Firefox的Firebug插件中。<br>3、Chrome DevTools - Performance</p>
+<h4 id="pageSpeed分析基于一个分为5类的最佳实践列表"><a href="#pageSpeed分析基于一个分为5类的最佳实践列表" class="headerlink" title="pageSpeed分析基于一个分为5类的最佳实践列表"></a>pageSpeed分析基于一个分为5类的最佳实践列表</h4><ul>
+<li>优化缓存-让应用的数据和逻辑完全避免使用网络</li>
+<li>减少回应时间-减少一连串的请求-响应周期的数量</li>
+<li>减少请求大小-减少上传大小</li>
+<li>减少有效负荷大小-减少响应、下载和缓存页面的大小</li>
+<li>优化浏览器渲染-改善浏览器的页面布局<h4 id="最佳做法"><a href="#最佳做法" class="headerlink" title="最佳做法"></a>最佳做法</h4>一：排定资源优先级<br>二：尽可能减少浏览器重排<br>重排是用于重新计算文档中各元素的位置和几何形状，以便重新呈现该文档的部分内部和全部内容。由于重排<strong>会组织用户</strong>在浏览器中执行操作，因此需要优化。<br>引发重排的操作：浏览器窗口的变化、使用设计计算出的样式的js方法、在dom中添加或者移除元素、更改某个元素的类等等。<br>简单的准则：<br>1、减少不必要的dom深度。<br>2、尽可能减少css规则的数量，并移除未使用的css规则。<br>3、如果进行复杂的渲染更改，在流程外执行。可使用position-absolute或者fixed来做。<br>4、避免使用不必要且复杂的css选择器（尤其是后代选择器），因为此类需消耗更多的CPU处理能力。</li>
+</ul>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a href="https://developers.google.cn/speed/docs/insights/browser-reflow?hl=zh_cn" target="_blank" rel="noopener">PageSpeed Tools</a><br><a href="https://developers.google.cn/web/fundamentals/performance/resource-prioritization?hl=zh_cn" target="_blank" rel="noopener">资源优先级</a></p>
+
       
 
       
@@ -522,6 +213,94 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/02/15/前端性能测试/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2016-04-前端笔记小记" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/15/2016-04-前端笔记小记/">前端笔记小记</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/15/2016-04-前端笔记小记/" class="archive-article-date">
+  	<time datetime="2020-02-15T08:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-CSS3属性"><a href="#1-CSS3属性" class="headerlink" title="1 CSS3属性"></a>1 CSS3属性</h3><p>1.box-sizing<br> IE  Opera以及Chrome支持box-sizing属性。FF支持-moz-box-sizng属性。<br>该属性允许以特定的方式定义匹配某个区域的特定元素。<br>分为三个值：content-box 是默认值，由CSS2.1规定的宽度高度行为，宽和高应用到元素的内容框，在宽和高之外设置边距和边框； border-box为元素指定的任何内边距和边框都包含在已设定的宽度和高度，也就是说，内容的宽和高是从已设定的中减去内边距和边框得到；inherit 规定从父元素继承该属性。<br></p>
+        
+          <a class="article-more-a" href="/2020/02/15/2016-04-前端笔记小记/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CSS3</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">jQuery键盘事件</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CSS伪类和伪元素</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">页面中的层叠关系</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/15/2016-04-前端笔记小记/">展开全文 >></a>
         </p>
       
 
@@ -671,7 +450,7 @@
 <li>链式操作 chainWebpack: config =&gt; {}</li>
 </ol>
 <h4 id="环境变量与模式"><a href="#环境变量与模式" class="headerlink" title="环境变量与模式"></a>环境变量与模式</h4><p><a href="https://cli.vuejs.org/zh/guide/build-targets.html#%E6%B3%A8%E5%86%8C%E5%A4%9A%E4%B8%AA-web-components-%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8C%85" target="_blank" rel="noopener">参考</a></p>
-<h4 id="css-js打包"><a href="#css-js打包" class="headerlink" title="css js打包"></a>css js打包</h4><p>vue-cli3 打包文件名称设置： <a href="https://www.jianshu.com/p/2f286a8e4cf5" target="_blank" rel="noopener">https://www.jianshu.com/p/2f286a8e4cf5</a><br>不使用inject，因为inject: true，这样使用了template模板文件后会追加打包js到新生成的html中<br>禁用了html-webpack-plugin的自动注入:</p>
+<h4 id="css-js打包"><a href="#css-js打包" class="headerlink" title="css js打包"></a>css js打包</h4><p>去掉console.log<br>vue-cli3 打包文件名称设置： <a href="https://www.jianshu.com/p/2f286a8e4cf5" target="_blank" rel="noopener">https://www.jianshu.com/p/2f286a8e4cf5</a><br>不使用inject，因为inject: true，这样使用了template模板文件后会追加打包js到新生成的html中<br>禁用了html-webpack-plugin的自动注入:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">chainWebpack: config =&gt; &#123;</span><br><span class="line">        config</span><br><span class="line">            .plugin(&apos;html&apos;)</span><br><span class="line">            .tap(args =&gt; &#123;</span><br><span class="line">                args[0].inject = false</span><br><span class="line">                return args</span><br><span class="line">            &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h4 id="配置公共打包路径：webpack-public-path动态配置路径"><a href="#配置公共打包路径：webpack-public-path动态配置路径" class="headerlink" title="配置公共打包路径：webpack_public_path动态配置路径"></a>配置公共打包路径：<strong>webpack_public_path</strong>动态配置路径</h4><p><strong>webpack_public_path</strong>决定了output.publicPath的值，用于来指定应用程序中所有的资源的基本路径<br>1：新建文件，比如config/config.js<br>通过判断，设置生产环境下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__webpack_public_path__ = window.APPROVAL_PROXY_URL + 后端的域名和代理</span><br></pre></td></tr></table></figure></p>
 <p>2：在main.js引入上述js，务必在其他静态资源之前引入<br>3：vue.config.js中设置publicpath: ‘’</p>
@@ -1049,26 +828,6 @@
 <h4 id="Vuex-的-dispath-和-commit"><a href="#Vuex-的-dispath-和-commit" class="headerlink" title="Vuex 的 dispath 和 commit"></a>Vuex 的 dispath 和 commit</h4><blockquote>
 <p>1：dispath对应action，处理异步请求<br>2：commit对应mutation，所有的修改都需要通过mutation<br>3:那什么时候知道action执行完毕呢？</p>
 </blockquote>
-<h4 id="JSON-parse-JSON-stringify-obj-的缺点"><a href="#JSON-parse-JSON-stringify-obj-的缺点" class="headerlink" title="JSON.parse(JSON.stringify(obj))的缺点"></a>JSON.parse(JSON.stringify(obj))的缺点</h4><ol>
-<li>如果是时间对象，拷贝完之后变为字符串形式</li>
-<li>如果有RegExp、Error对象，则序列化的结果是空对象 {}</li>
-<li>如果有函数、undefined，则序列化的结果会把它们丢失</li>
-<li>如果有NaN、Inifinity、-Inifinity，则序列化的结果会变成null</li>
-<li>只能序列化对象的可枚举的自有属性，拷贝之后会丢失对象的constructor，变为Object</li>
-<li>循环引用下也不能正常拷贝</li>
-</ol>
-<h4 id="Content-Type"><a href="#Content-Type" class="headerlink" title="Content-Type"></a>Content-Type</h4><p>表示请求和响应中的媒体类型信息。用来告诉服务器如果处理请求的数据，和搞死客户端如何解析响应的数据。<br>比如text/html、text/gif等等。以下几种比较特殊，需谨记在心</p>
-<ol>
-<li>application/x-www-form-urlencoded<br> http会将参数使用key1=val1&amp;key2=val2进行组装，特殊字符会转码。不支持文件。</li>
-<li>multipart/form-data<br> 多部分多媒体类型。多个参数就有多个boundary块。支持文件上传。</li>
-<li>apllication/json<br>轻量级数据格式，以”键值”对组装数据。</li>
-</ol>
-<h4 id="动态组件"><a href="#动态组件" class="headerlink" title="动态组件"></a>动态组件</h4><p><img src="/2019/07/09/vue基础知识巩固/dongtaizujian.png" alt="用法"><br>初始化只挂载了组件A，每次切换都会重新触发组件的生命周期，切换时并没有保留之前的状态（组件A的选中），但是在在某些情况下，我们更希望那些标签的组件实例能够被在它们第一次被创建的时候缓存下来。<br>所以可以使用<figure class="highlight plain"><figcaption><span>```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> ##### vue 动态组件传参</span><br><span class="line"> 可以通过prop做，动态判断</span><br><span class="line"></span><br><span class="line"> ##### 记一次vuex的mapGetters无效原因</span><br><span class="line"> mapstate  获取时，在浏览器中显示error during evaluation</span><br><span class="line"></span><br><span class="line">解决：因为在new Vue的时候，没有将store注入进来，导致vuex里的代码this.$store获取不到。</span><br><span class="line">结论：就是如果用到这些辅助函数，一定要保证new Vue的时候注入store。</span><br><span class="line"></span><br><span class="line">我的解决方式是加上模块名【大写】</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### vue-router 冒号 问号</span><br><span class="line">Modified Parameters</span><br><span class="line">Optional</span><br><span class="line">Parameters can be suffixed with a question mark (?) to make the parameter optional. This will also make the prefix optional.</span><br></pre></td></tr></table></figure></p>
-<p>var re = pathToRegexp(‘/:foo/:bar?’, keys)<br>// keys = [{ name: ‘foo’, … }, { name: ‘bar’, delimiter: ‘/‘, optional: true, repeat: false }]</p>
-<p>re.exec(‘/test’)<br>//=&gt; [‘/test’, ‘test’, undefined]</p>
-<p>re.exec(‘/test/route’)<br>//=&gt; [‘/test’, ‘test’, ‘route’]</p>
-<p><code>`</code></p>
-<h4 id="keep-alive使用注意事项"><a href="#keep-alive使用注意事项" class="headerlink" title="keep-alive使用注意事项"></a>keep-alive使用注意事项</h4><p><code>&lt;keep-alive&gt;</code> 是用在其一个直属的子组件被开关的情形，即要求同时只有一个子元素被渲染</p>
 
       
 
@@ -1093,6 +852,82 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/07/09/vue基础知识巩固/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue单元测试" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/23/vue单元测试/">vue单元测试</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/23/vue单元测试/" class="archive-article-date">
+  	<time datetime="2019-06-23T07:23:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Vue-js-单元测试之旅"><a href="#Vue-js-单元测试之旅" class="headerlink" title="Vue.js 单元测试之旅"></a>Vue.js 单元测试之旅</h2>
+        
+          <a class="article-more-a" href="/2019/06/23/vue单元测试/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">jest</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/23/vue单元测试/">展开全文 >></a>
         </p>
       
 

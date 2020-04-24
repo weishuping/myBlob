@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="xiaowei">
 <meta property="og:description" content="Vue Cli介绍介绍基于Vue.js进行快速开发的完整体系，基于webpack构建，并带有合理的默认配置，可通过项目内的配置文件配置，也可以通过插件进行扩展。源代码 该系统组件CLI是一个全局安装的npm包;CLI服务是一个开发环境依赖，是一个npm包。包含加载其他CLI插件的核心服务。 HTML和静态资源 index.html放到了public/index.html，会被html-webpac">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-02-20T09:05:26.300Z">
+<meta property="og:updated_time" content="2020-04-24T03:27:10.384Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue-cli笔记">
 <meta name="twitter:description" content="Vue Cli介绍介绍基于Vue.js进行快速开发的完整体系，基于webpack构建，并带有合理的默认配置，可通过项目内的配置文件配置，也可以通过插件进行扩展。源代码 该系统组件CLI是一个全局安装的npm包;CLI服务是一个开发环境依赖，是一个npm包。包含加载其他CLI插件的核心服务。 HTML和静态资源 index.html放到了public/index.html，会被html-webpac">
@@ -190,7 +190,7 @@
 <li>链式操作 chainWebpack: config =&gt; {}</li>
 </ol>
 <h4 id="环境变量与模式"><a href="#环境变量与模式" class="headerlink" title="环境变量与模式"></a>环境变量与模式</h4><p><a href="https://cli.vuejs.org/zh/guide/build-targets.html#%E6%B3%A8%E5%86%8C%E5%A4%9A%E4%B8%AA-web-components-%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8C%85" target="_blank" rel="noopener">参考</a></p>
-<h4 id="css-js打包"><a href="#css-js打包" class="headerlink" title="css js打包"></a>css js打包</h4><p>vue-cli3 打包文件名称设置： <a href="https://www.jianshu.com/p/2f286a8e4cf5" target="_blank" rel="noopener">https://www.jianshu.com/p/2f286a8e4cf5</a><br>不使用inject，因为inject: true，这样使用了template模板文件后会追加打包js到新生成的html中<br>禁用了html-webpack-plugin的自动注入:</p>
+<h4 id="css-js打包"><a href="#css-js打包" class="headerlink" title="css js打包"></a>css js打包</h4><p>去掉console.log<br>vue-cli3 打包文件名称设置： <a href="https://www.jianshu.com/p/2f286a8e4cf5" target="_blank" rel="noopener">https://www.jianshu.com/p/2f286a8e4cf5</a><br>不使用inject，因为inject: true，这样使用了template模板文件后会追加打包js到新生成的html中<br>禁用了html-webpack-plugin的自动注入:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">chainWebpack: config =&gt; &#123;</span><br><span class="line">        config</span><br><span class="line">            .plugin(&apos;html&apos;)</span><br><span class="line">            .tap(args =&gt; &#123;</span><br><span class="line">                args[0].inject = false</span><br><span class="line">                return args</span><br><span class="line">            &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h4 id="配置公共打包路径：webpack-public-path动态配置路径"><a href="#配置公共打包路径：webpack-public-path动态配置路径" class="headerlink" title="配置公共打包路径：webpack_public_path动态配置路径"></a>配置公共打包路径：<strong>webpack_public_path</strong>动态配置路径</h4><p><strong>webpack_public_path</strong>决定了output.publicPath的值，用于来指定应用程序中所有的资源的基本路径<br>1：新建文件，比如config/config.js<br>通过判断，设置生产环境下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__webpack_public_path__ = window.APPROVAL_PROXY_URL + 后端的域名和代理</span><br></pre></td></tr></table></figure></p>
 <p>2：在main.js引入上述js，务必在其他静态资源之前引入<br>3：vue.config.js中设置publicpath: ‘’</p>
