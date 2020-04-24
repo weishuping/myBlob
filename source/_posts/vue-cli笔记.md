@@ -31,7 +31,7 @@ CLI服务是一个开发环境依赖，是一个npm包。包含加载其他CLI�
 [参考](https://cli.vuejs.org/zh/guide/build-targets.html#%E6%B3%A8%E5%86%8C%E5%A4%9A%E4%B8%AA-web-components-%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8C%85)
 
 #### css js打包
-去掉console.log
+
 vue-cli3 打包文件名称设置： https://www.jianshu.com/p/2f286a8e4cf5
 不使用inject，因为inject: true，这样使用了template模板文件后会追加打包js到新生成的html中
 禁用了html-webpack-plugin的自动注入:
