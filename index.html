@@ -180,7 +180,7 @@
 <h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>观察dom结构发现，vue在dom结构和css样式上加上字符<code>data-v-xx</code>标识来保证唯一，达到样式私有化。<br>如以下实例，父与两个孩子均加了scoped作用域。则每个div绑定了唯一的标示。</p>
 <p><img src="/2020/04/28/vue中scoped的原理与慎用原因/scoped.png"></p>
 <p><img src="/2020/04/28/vue中scoped的原理与慎用原因/scoped-css.png"></p>
-<p>发现应用的是父组件的标示，没有作用到想要的dom节点上。<br><img src="/2020/04/28/vue中scoped的原理与慎用原因/scoped-p.png"><br>这样的话，如果在<code>.report-list</code>内部定义<code>.son</code>下的<code>.show</code>，是不起作用的。<br><img src="/2020/04/28/vue中scoped的原理与慎用原因/code.png"><br><img src="/2020/04/28/vue中scoped的原理与慎用原因/code-show.png"><br>解决方式：<br>添加全局衡阳市。或者再写一个不带<code>scoped</code>的<code>style</code>标签。<br><img src="/2020/04/28/vue中scoped的原理与慎用原因/quanzhong.png"></p>
+<p>发现应用的是父组件的标示，没有作用到想要的dom节点上。<br><img src="/2020/04/28/vue中scoped的原理与慎用原因/scoped-p.png"><br>这样的话，如果在<code>.report-list</code>内部定义<code>.son</code>下的<code>.show</code>，是不起作用的。<br><img src="/2020/04/28/vue中scoped的原理与慎用原因/code.png"><br><img src="/2020/04/28/vue中scoped的原理与慎用原因/code-show.png"><br>解决方式：<br>添加全局样式。或者再写一个不带<code>scoped</code>的<code>style</code>标签。<br><img src="/2020/04/28/vue中scoped的原理与慎用原因/quanzhong.png"></p>
 <p>但是这种情况下，如果在父组件中定义了子组件，子组件内部不会被添加父组件的标示，只添加子组件本身的标示。</p>
 <h3 id="尤大大的官方解释"><a href="#尤大大的官方解释" class="headerlink" title="尤大大的官方解释"></a>尤大大的官方解释</h3><p>scoped设计的初衷就是不能让当前组件的样式修改其他任何地方的样式。<br><img src="/2020/04/28/vue中scoped的原理与慎用原因/explain.png"></p>
 
