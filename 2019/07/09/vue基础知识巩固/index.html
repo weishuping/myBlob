@@ -16,10 +16,12 @@
 <meta property="og:site_name" content="xiaowei">
 <meta property="og:description" content="Vue.nextTick()的作用在下次DOM更新循环结束之后 执行 延迟回调。在修改完数据之后调用获取更新后的DOM。 使用Vue.nextTick()的情况：1：在Vue生命周期的created钩子函数进行的DOM操作一定要放到Vue.nextTick()的回调中。相对应的在mounted中执行任何DOM操作都不会有问题。2：在数据变化后等待Vue完成更新DOM，可以在数据变化之后立即调用。3">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-04-24T03:27:10.385Z">
+<meta property="og:image" content="http://yoursite.com/2019/07/09/vue基础知识巩固/dongtaizujian.png">
+<meta property="og:updated_time" content="2020-04-24T03:36:13.761Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue基础知识巩固、CSRF漏洞">
 <meta name="twitter:description" content="Vue.nextTick()的作用在下次DOM更新循环结束之后 执行 延迟回调。在修改完数据之后调用获取更新后的DOM。 使用Vue.nextTick()的情况：1：在Vue生命周期的created钩子函数进行的DOM操作一定要放到Vue.nextTick()的回调中。相对应的在mounted中执行任何DOM操作都不会有问题。2：在数据变化后等待Vue完成更新DOM，可以在数据变化之后立即调用。3">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/09/vue基础知识巩固/dongtaizujian.png">
   
     <link rel="alternative" href="/atom.xml" title="xiaowei" type="application/atom+xml">
   
@@ -190,6 +192,26 @@
 <h4 id="Vuex-的-dispath-和-commit"><a href="#Vuex-的-dispath-和-commit" class="headerlink" title="Vuex 的 dispath 和 commit"></a>Vuex 的 dispath 和 commit</h4><blockquote>
 <p>1：dispath对应action，处理异步请求<br>2：commit对应mutation，所有的修改都需要通过mutation<br>3:那什么时候知道action执行完毕呢？</p>
 </blockquote>
+<h4 id="JSON-parse-JSON-stringify-obj-的缺点"><a href="#JSON-parse-JSON-stringify-obj-的缺点" class="headerlink" title="JSON.parse(JSON.stringify(obj))的缺点"></a>JSON.parse(JSON.stringify(obj))的缺点</h4><ol>
+<li>如果是时间对象，拷贝完之后变为字符串形式</li>
+<li>如果有RegExp、Error对象，则序列化的结果是空对象 {}</li>
+<li>如果有函数、undefined，则序列化的结果会把它们丢失</li>
+<li>如果有NaN、Inifinity、-Inifinity，则序列化的结果会变成null</li>
+<li>只能序列化对象的可枚举的自有属性，拷贝之后会丢失对象的constructor，变为Object</li>
+<li>循环引用下也不能正常拷贝</li>
+</ol>
+<h4 id="Content-Type"><a href="#Content-Type" class="headerlink" title="Content-Type"></a>Content-Type</h4><p>表示请求和响应中的媒体类型信息。用来告诉服务器如果处理请求的数据，和搞死客户端如何解析响应的数据。<br>比如text/html、text/gif等等。以下几种比较特殊，需谨记在心</p>
+<ol>
+<li>application/x-www-form-urlencoded<br> http会将参数使用key1=val1&amp;key2=val2进行组装，特殊字符会转码。不支持文件。</li>
+<li>multipart/form-data<br> 多部分多媒体类型。多个参数就有多个boundary块。支持文件上传。</li>
+<li>apllication/json<br>轻量级数据格式，以”键值”对组装数据。</li>
+</ol>
+<h4 id="动态组件"><a href="#动态组件" class="headerlink" title="动态组件"></a>动态组件</h4><p><img src="/2019/07/09/vue基础知识巩固/dongtaizujian.png" alt="用法"><br>初始化只挂载了组件A，每次切换都会重新触发组件的生命周期，切换时并没有保留之前的状态（组件A的选中），但是在在某些情况下，我们更希望那些标签的组件实例能够被在它们第一次被创建的时候缓存下来。<br>所以可以使用<figure class="highlight plain"><figcaption><span>```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> ##### vue 动态组件传参</span><br><span class="line"> 可以通过prop做，动态判断</span><br><span class="line"></span><br><span class="line"> ##### 记一次vuex的mapGetters无效原因</span><br><span class="line"> mapstate  获取时，在浏览器中显示error during evaluation</span><br><span class="line"></span><br><span class="line">解决：因为在new Vue的时候，没有将store注入进来，导致vuex里的代码this.$store获取不到。</span><br><span class="line">结论：就是如果用到这些辅助函数，一定要保证new Vue的时候注入store。</span><br><span class="line"></span><br><span class="line">我的解决方式是加上模块名【大写】</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### vue-router 冒号 问号</span><br><span class="line">Modified Parameters</span><br><span class="line">Optional</span><br><span class="line">Parameters can be suffixed with a question mark (?) to make the parameter optional. This will also make the prefix optional.</span><br></pre></td></tr></table></figure></p>
+<p>var re = pathToRegexp(‘/:foo/:bar?’, keys)<br>// keys = [{ name: ‘foo’, … }, { name: ‘bar’, delimiter: ‘/‘, optional: true, repeat: false }]</p>
+<p>re.exec(‘/test’)<br>//=&gt; [‘/test’, ‘test’, undefined]</p>
+<p>re.exec(‘/test/route’)<br>//=&gt; [‘/test’, ‘test’, ‘route’]</p>
+<p><code>`</code></p>
+<h4 id="keep-alive使用注意事项"><a href="#keep-alive使用注意事项" class="headerlink" title="keep-alive使用注意事项"></a>keep-alive使用注意事项</h4><p><code>&lt;keep-alive&gt;</code> 是用在其一个直属的子组件被开关的情形，即要求同时只有一个子元素被渲染</p>
 
       
 
@@ -431,22 +453,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CSS3</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jQuery键盘事件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CSS伪类和伪元素</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">页面中的层叠关系</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
               </li>
              
@@ -520,6 +526,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">心情</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CSS3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jQuery键盘事件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CSS伪类和伪元素</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">页面中的层叠关系</a>
               </li>
             
             <div class="clearfix"></div>

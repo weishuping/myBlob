@@ -156,6 +156,190 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-vue基础知识巩固" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/09/vue基础知识巩固/">vue基础知识巩固、CSRF漏洞</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/09/vue基础知识巩固/" class="archive-article-date">
+  	<time datetime="2019-07-09T06:16:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Vue-nextTick-的作用"><a href="#Vue-nextTick-的作用" class="headerlink" title="Vue.nextTick()的作用"></a>Vue.nextTick()的作用</h4><p>在下次DOM更新循环结束之后 执行 延迟回调。在修改完数据之后调用获取更新后的DOM。</p>
+<h4 id="使用Vue-nextTick-的情况："><a href="#使用Vue-nextTick-的情况：" class="headerlink" title="使用Vue.nextTick()的情况："></a>使用Vue.nextTick()的情况：</h4><p>1：在Vue生命周期的created钩子函数进行的DOM操作一定要放到Vue.nextTick()的回调中。相对应的在mounted中执行任何DOM操作都不会有问题。<br>2：在数据变化后等待Vue完成更新DOM，可以在数据变化之后立即调用。<br>3：mounted不会承诺所有的子组件也都一起被挂载。如果希望等到整个视图都渲染完毕，可以在mounted钩子里面调用nextTick()。</p>
+<h4 id="CSRF漏洞"><a href="#CSRF漏洞" class="headerlink" title="CSRF漏洞"></a>CSRF漏洞</h4><h4 id="Vue父组件通过props向子组件传递方法"><a href="#Vue父组件通过props向子组件传递方法" class="headerlink" title="Vue父组件通过props向子组件传递方法"></a>Vue父组件通过props向子组件传递方法</h4><h4 id="组件继承与扩展"><a href="#组件继承与扩展" class="headerlink" title="组件继承与扩展"></a>组件继承与扩展</h4><h5 id="slot"><a href="#slot" class="headerlink" title="slot"></a>slot</h5><h5 id="Mixins"><a href="#Mixins" class="headerlink" title="Mixins"></a>Mixins</h5><h5 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h5><p>接受的参数是简单的选项对象或构造函数，所以extends只能单次扩展一个组件。</p>
+<p>相对于Mixins，extends触发的优先级更高。</p>
+<h5 id="extend"><a href="#extend" class="headerlink" title="extend"></a>extend</h5><p>创建一个构造器，为了创建可复用的组件。主要是服务于Vue.component</p>
+<p>#### </p>
+<h4 id="vue组件间通信的六种方式"><a href="#vue组件间通信的六种方式" class="headerlink" title="vue组件间通信的六种方式"></a>vue组件间通信的六种方式</h4><h5 id="一：-props-emit"><a href="#一：-props-emit" class="headerlink" title="一： props/$emit"></a>一： props/$emit</h5><h5 id="二：-emit-on"><a href="#二：-emit-on" class="headerlink" title="二： $emit/$on"></a>二： $emit/$on</h5><p>通过空的vue实例作为事件中心，用它来触发事件和监听事件，巧妙而轻量的实现了任何组件之间的通信，包括父子、兄弟、跨级。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var Event=new Vue();</span><br><span class="line">Event.$emit(事件名,数据);</span><br><span class="line">Event.$on(事件名,data =&gt; &#123;&#125;);</span><br></pre></td></tr></table></figure></p>
+<h5 id="三：vuex"><a href="#三：vuex" class="headerlink" title="三：vuex"></a>三：vuex</h5><h5 id="四：-attrs-listeners"><a href="#四：-attrs-listeners" class="headerlink" title="四：$attrs/$listeners"></a>四：$attrs/$listeners</h5><p>多及组件嵌套需要传递数据的时候，而不做中间处理。Vue2.4提供了这个方法。</p>
+<p>$attrs包含了父级作用域中不被props所识别所获取的特性绑定；<br>$listeners包含了父作用域中不含.native修饰器的v-on事件监听器。</p>
+<h5 id="五：provide-inject"><a href="#五：provide-inject" class="headerlink" title="五：provide/inject"></a>五：provide/inject</h5><p>允许一个祖先组件向其所有子孙后代注入一个依赖：祖先通过provider提供变量，子孙组件通过inject注入变量。主要解决了跨级组件间的通信问题。<br>provide方法，返回一个对象。inject是一个对象，使用的时候injections.theme.color<br><em>需要注意的是：绑定并不是响应的。</em></p>
+<h6 id="实现数据响应"><a href="#实现数据响应" class="headerlink" title="实现数据响应"></a>实现数据响应</h6><p>（1）：祖先组件的实例在子孙组件中注入依赖。<br>（2）：2.6提供API：Vue.observable</p>
+<h5 id="六：-parent-children-访问父-子实例-ref指向DOM元素和组件实例。"><a href="#六：-parent-children-访问父-子实例-ref指向DOM元素和组件实例。" class="headerlink" title="六：$parent/$children 访问父/子实例. ref指向DOM元素和组件实例。"></a>六：$parent/$children 访问父/子实例. ref指向DOM元素和组件实例。</h5><h5 id="页面回流"><a href="#页面回流" class="headerlink" title="页面回流"></a>页面回流</h5><p>当页面尺寸、布局、隐藏等改变而需要重新构建。<br>当元素的外观，称为重绘</p>
+<h4 id="Vuex-的-dispath-和-commit"><a href="#Vuex-的-dispath-和-commit" class="headerlink" title="Vuex 的 dispath 和 commit"></a>Vuex 的 dispath 和 commit</h4><blockquote>
+<p>1：dispath对应action，处理异步请求<br>2：commit对应mutation，所有的修改都需要通过mutation<br>3:那什么时候知道action执行完毕呢？</p>
+</blockquote>
+<h4 id="JSON-parse-JSON-stringify-obj-的缺点"><a href="#JSON-parse-JSON-stringify-obj-的缺点" class="headerlink" title="JSON.parse(JSON.stringify(obj))的缺点"></a>JSON.parse(JSON.stringify(obj))的缺点</h4><ol>
+<li>如果是时间对象，拷贝完之后变为字符串形式</li>
+<li>如果有RegExp、Error对象，则序列化的结果是空对象 {}</li>
+<li>如果有函数、undefined，则序列化的结果会把它们丢失</li>
+<li>如果有NaN、Inifinity、-Inifinity，则序列化的结果会变成null</li>
+<li>只能序列化对象的可枚举的自有属性，拷贝之后会丢失对象的constructor，变为Object</li>
+<li>循环引用下也不能正常拷贝</li>
+</ol>
+<h4 id="Content-Type"><a href="#Content-Type" class="headerlink" title="Content-Type"></a>Content-Type</h4><p>表示请求和响应中的媒体类型信息。用来告诉服务器如果处理请求的数据，和搞死客户端如何解析响应的数据。<br>比如text/html、text/gif等等。以下几种比较特殊，需谨记在心</p>
+<ol>
+<li>application/x-www-form-urlencoded<br> http会将参数使用key1=val1&amp;key2=val2进行组装，特殊字符会转码。不支持文件。</li>
+<li>multipart/form-data<br> 多部分多媒体类型。多个参数就有多个boundary块。支持文件上传。</li>
+<li>apllication/json<br>轻量级数据格式，以”键值”对组装数据。</li>
+</ol>
+<h4 id="动态组件"><a href="#动态组件" class="headerlink" title="动态组件"></a>动态组件</h4><p><img src="/2019/07/09/vue基础知识巩固/dongtaizujian.png" alt="用法"><br>初始化只挂载了组件A，每次切换都会重新触发组件的生命周期，切换时并没有保留之前的状态（组件A的选中），但是在在某些情况下，我们更希望那些标签的组件实例能够被在它们第一次被创建的时候缓存下来。<br>所以可以使用<figure class="highlight plain"><figcaption><span>```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> ##### vue 动态组件传参</span><br><span class="line"> 可以通过prop做，动态判断</span><br><span class="line"></span><br><span class="line"> ##### 记一次vuex的mapGetters无效原因</span><br><span class="line"> mapstate  获取时，在浏览器中显示error during evaluation</span><br><span class="line"></span><br><span class="line">解决：因为在new Vue的时候，没有将store注入进来，导致vuex里的代码this.$store获取不到。</span><br><span class="line">结论：就是如果用到这些辅助函数，一定要保证new Vue的时候注入store。</span><br><span class="line"></span><br><span class="line">我的解决方式是加上模块名【大写】</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### vue-router 冒号 问号</span><br><span class="line">Modified Parameters</span><br><span class="line">Optional</span><br><span class="line">Parameters can be suffixed with a question mark (?) to make the parameter optional. This will also make the prefix optional.</span><br></pre></td></tr></table></figure></p>
+<p>var re = pathToRegexp(‘/:foo/:bar?’, keys)<br>// keys = [{ name: ‘foo’, … }, { name: ‘bar’, delimiter: ‘/‘, optional: true, repeat: false }]</p>
+<p>re.exec(‘/test’)<br>//=&gt; [‘/test’, ‘test’, undefined]</p>
+<p>re.exec(‘/test/route’)<br>//=&gt; [‘/test’, ‘test’, ‘route’]</p>
+<p><code>`</code></p>
+<h4 id="keep-alive使用注意事项"><a href="#keep-alive使用注意事项" class="headerlink" title="keep-alive使用注意事项"></a>keep-alive使用注意事项</h4><p><code>&lt;keep-alive&gt;</code> 是用在其一个直属的子组件被开关的情形，即要求同时只有一个子元素被渲染</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/09/vue基础知识巩固/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue单元测试" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/23/vue单元测试/">vue单元测试</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/23/vue单元测试/" class="archive-article-date">
+  	<time datetime="2019-06-23T07:23:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Vue-js-单元测试之旅"><a href="#Vue-js-单元测试之旅" class="headerlink" title="Vue.js 单元测试之旅"></a>Vue.js 单元测试之旅</h2>
+        
+          <a class="article-more-a" href="/2019/06/23/vue单元测试/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">jest</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/23/vue单元测试/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-TypeScript" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -623,6 +807,94 @@
 
 
   
+    <article id="post-2016-04-前端笔记小记" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/04/2016-04-前端笔记小记/">前端笔记小记</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/04/2016-04-前端笔记小记/" class="archive-article-date">
+  	<time datetime="2018-04-04T08:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-CSS3属性"><a href="#1-CSS3属性" class="headerlink" title="1 CSS3属性"></a>1 CSS3属性</h3><p>1.box-sizing<br> IE  Opera以及Chrome支持box-sizing属性。FF支持-moz-box-sizng属性。<br>该属性允许以特定的方式定义匹配某个区域的特定元素。<br>分为三个值：content-box 是默认值，由CSS2.1规定的宽度高度行为，宽和高应用到元素的内容框，在宽和高之外设置边距和边框； border-box为元素指定的任何内边距和边框都包含在已设定的宽度和高度，也就是说，内容的宽和高是从已设定的中减去内边距和边框得到；inherit 规定从父元素继承该属性。<br></p>
+        
+          <a class="article-more-a" href="/2018/04/04/2016-04-前端笔记小记/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CSS3</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">jQuery键盘事件</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CSS伪类和伪元素</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">页面中的层叠关系</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/04/2016-04-前端笔记小记/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-REACT初学" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -670,233 +942,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/04/REACT初学/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-首语" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/28/首语/">首语--</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/28/首语/" class="archive-article-date">
-  	<time datetime="2018-03-28T02:48:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="薛定谔的春"><a href="#薛定谔的春" class="headerlink" title="薛定谔的春"></a>薛定谔的春</h4><p>这个春天从一开始就充满了各种不确定性，包含期待美好的未来，亦或是平淡的未来。<br>本来熬过了难过的本命年，我对于新的一年给予了很大的希望。全新的生活、工作圈、交际圈和朋友。其实我早就发现自己常常会厌倦一些东西，却又谜一般的恋旧事物。好矛盾的我。<br><!-- 为了重新找工作，我也起早贪黑了一周。真的是身心交瘁，很多东西知道却又不能自圆其说，这在面试官面前是最为致命的。
-最终是我不够有信心，总觉得好厂子看不上我的水平，尤其是京东hr不明不白的拒绝了我。所以在老大提出加薪的诱惑下，我就只好留下来。
-由于工作刚稳定，房子又成了心头的一块石头。因为我感觉自己的入住很大的影响到了有着金子般心灵的室友，真的于心不忍。每次看她睡不好，总觉得是自己的问题。越是急于找个住的却越找不到。
-至于对象的事情，总觉得月老从来都没看见过我。我觉得自己还行啊，如果我是男生，我会喜欢自己的啊。可是现实往往是终究无果。
-心里很慌，也有点累。 --></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心情</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/28/首语/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-node-require-ko-规范-等等" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/21/node-require-ko-规范-等等/">node require ko 规范 等等</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/21/node-require-ko-规范-等等/" class="archive-article-date">
-  	<time datetime="2017-03-21T02:38:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="node-require-ko-规范-等等"><a href="#node-require-ko-规范-等等" class="headerlink" title="node require ko 规范 等等"></a>node require ko 规范 等等</h4>
-        
-          <a class="article-more-a" href="/2017/03/21/node-require-ko-规范-等等/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/21/node-require-ko-规范-等等/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-初见Node-js" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/07/初见Node-js/">初见Node.js</a>
-    </h1>
-  
-
-        
-        <a href="/2016/11/07/初见Node-js/" class="archive-article-date">
-  	<time datetime="2016-11-07T12:28:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="2016-11-07-node"><a href="#2016-11-07-node" class="headerlink" title="2016-11-07  node"></a>2016-11-07  node</h4><p>node是一个基于事件驱动I/O服务器端javaScript环境基于Googlede V8引擎。<br></p>
-        
-          <a class="article-more-a" href="/2016/11/07/初见Node-js/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Node</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NPm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/11/07/初见Node-js/">展开全文 >></a>
         </p>
       
 
@@ -1023,22 +1068,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CSS3</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jQuery键盘事件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CSS伪类和伪元素</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">页面中的层叠关系</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
               </li>
              
@@ -1112,6 +1141,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">心情</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CSS3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jQuery键盘事件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CSS伪类和伪元素</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">页面中的层叠关系</a>
               </li>
             
             <div class="clearfix"></div>
