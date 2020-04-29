@@ -21,7 +21,7 @@ tags: css
 <img src="vue中scoped的原理与慎用原因/code.png"/>
 <img src="vue中scoped的原理与慎用原因/code-show.png"/>
 解决方式：
-添加全局衡阳市。或者再写一个不带```scoped```的```style```标签。
+添加全局样式。或者再写一个不带```scoped```的```style```标签。
 <img src="vue中scoped的原理与慎用原因/quanzhong.png"/>
 
 但是这种情况下，如果在父组件中定义了子组件，子组件内部不会被添加父组件的标示，只添加子组件本身的标示。
