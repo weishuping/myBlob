@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>test</title>
+    <style>
+        div.show {
+        width: 250px;
+        background-color: yellowgreen;
+        text-align: center;
+    }
+    /* p {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    } */
+    table {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+    }
+    .pp {
+        text-align: center;
+    }
+    .pp div {
+        /* display: inline; */
+    }
+    #parent{
+    height: 200px;
+    width: 200px;  /*定宽*/
+    position: relative;  /*父相*/
+    background-color: #f00;
+}
+#son{
+    position: absolute;  /*子绝*/
+    left: 50%;  /*父元素宽度一半,这里等同于left:100px*/
+    transform: translateX(-50%);  /*自身宽度一半,等同于margin-left: -50px;*/
+    width: 100px;  /*定宽*/
+    height: 100px;
+    background-color: #00ff00;
+}
+    .www :nth-last-child(2) {
+background-color: red;
+    }
+    </style>
+  </head>
+  <body>
+    <div>
+        <span style="width: 300px; text-align: right;">
+            3333333333
+            <span>111</span>
+            <br>
+            <span>111</span>
+
+
+        </span>
+
+        <div class="show">
+            <span>233</span>
+
+            text-align遵循CSS2.1规范，具备继承性，可以应用于块级元素、表格单元格及行内块级元，仅仅对行内内容起作用
+            <div class="pp">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+            </div>
+            <div id="parent">
+                <div id="son">sun</div>
+            </div>
+            <table>
+                <tr>
+                    <td>table</td>
+                </tr>
+            </table>
+        </div>
+        <div class="www">
+            <p>1</p>
+            <p>2</p>
+            <p>3</p> 
+            <button>--</button>
+            </div>
+    </div>
+  </body>
+</html>
