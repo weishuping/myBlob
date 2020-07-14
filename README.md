@@ -2,11 +2,6 @@
 我的第一个博客，使用hexo主题搭建[官方文档](https://hexo.io/zh-cn/docs/configuration.html) 
 ### 安装hexo
 sudo npm install -g hexo
-### 在blog文件夹目录下执行生成静态页面命令
-$ hexo generate        或者：hexo g
-
-### 再执行配置命令
-$ hexo deploy            或者：hexo d
 
 ### 直接获取/更新Next主题
 git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia
@@ -26,7 +21,14 @@ deploy:
 ``` npm install hexo -deployer-git --save```
 注意：直接部署 会把之前的代码冲掉。而且直接上传到github了，没关系，本地还有，使用-f再把本地的push上去。
 #### 目前做法是：新建source分支，放开发源码。master放生成的博客。
-#### 日常修改
+
+### 在blog文件夹目录下执行生成静态页面命令
+$ hexo generate        或者：hexo g
+
+### 再执行配置命令
+$ hexo deploy            或者：hexo d
+
+### 日常修改
 在本地对博客进行修改（添加新博文、修改样式等等）后，通过下面的流程进行管理：
 1. 依次执行git add .、git commit -m “…”、git push origin source
 2. 然后才执行hexo generate -d发布网站到master分支上。
