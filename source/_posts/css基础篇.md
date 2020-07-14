@@ -51,5 +51,23 @@ div table form h1-h6 li ol p ul / nav aside header footer section
 与其他元素处于同一行，仅左右padding和左右margin生效，不可设置宽高，不能嵌套块级元素
 a b br input img label select textarea 
 
+#### css属性值unset
+是initial和inherit的组合。如果属性是默认继承属性，则等于inherit；如果不是继承属性，则等于initial
+
+#### BFC块格式化上下文 - block formatting context
+##### 特性：
+1. box内部块盒会从上到下排列
+2. 是一个独立的容器（一个元素不可能属于两个bfc）
+3. 内部浮动元素也参与高度计算
+4. 浮动元素不会叠加到bfc上(浮动产生的BFC不会与其他内容重叠)
+5. 内部元素相互影响，可能会出现margin会重叠
+##### 条件：
+1. 根元素
+2. overflow不为visible
+3. display很多，不为inline和block
+4. position为absolute和fixed
+5. float不为none
+##### 应用
+清除浮动、页面布局、解决margin合并问题、
 #### HTML5
 

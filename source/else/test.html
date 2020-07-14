@@ -28,33 +28,86 @@
         /* display: inline; */
     }
     #parent{
-    height: 200px;
-    width: 200px;  /*定宽*/
-    position: relative;  /*父相*/
-    background-color: #f00;
+        border: 1px solid red;
+    height: 150px;
+    line-height: 150px;  /*行高的值与height相等*/
+    text-align: center;
+    font-size: 0;   /*消除幽灵空白节点的bug*/
 }
 #son{
-    position: absolute;  /*子绝*/
-    left: 50%;  /*父元素宽度一半,这里等同于left:100px*/
-    transform: translateX(-50%);  /*自身宽度一半,等同于margin-left: -50px;*/
-    width: 100px;  /*定宽*/
-    height: 100px;
-    background-color: #00ff00;
+    /*display: inline-block;*/  /*如果是块级元素需改为行内或行内块级才生效*/
+    vertical-align: middle;
 }
     .www :nth-last-child(2) {
-background-color: red;
+        background-color: red;
+    }
+    .parent-1 {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        background-color: red;
+    }
+    .son-1 {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: antiquewhite;
+    }
+    .aaa {
+      
+    }
+    #height-p{
+        height: 500px;
+        position: relative;
+    }
+    #left-s {
+        height: 800px;
+        background-color: #f00;
+        width: 3px;
+    }
+    #right-s {
+        background-color: #0f0;
+        top: 0;
+    position: absolute;
+    bottom: 0;
+    left: 23px;
+    right: 0;
+    }
+
+    .container {width:960px; height:100%; overflow:hidden; margin:0 auto;}
+    .left {height:100%; width:200px; overflow:hidden; padding-bottom:9999px; margin-bottom:-9999px; float:left; display:inline; border: 1px solid black;}
+    .right {width:750px; float:right; height:auto; border: 1px solid red;}
+    .container2 {width:960px; height:100%; display: flex;}
+    .left2 {
+        flex: 1;
+        border: 1px solid black;
+    }
+    .right2 {
+        flex: 1;
+        border: 1px solid red;
     }
     </style>
   </head>
-  <body>
+  <body >    
     <div>
         <span style="width: 300px; text-align: right;">
             3333333333
+            <div style="color: gold;">
+                <a href="" class="aaa" >
+                    aa
+                    <div style="color: gold;">
+                        <!-- <a href="" class="aaa" >a</a> -->
+                    </div>
+                </a>
+            </div>
             <span>111</span>
             <br>
             <span>111</span>
-
-
         </span>
 
         <div class="show">
@@ -80,7 +133,39 @@ background-color: red;
             <p>2</p>
             <p>3</p> 
             <button>--</button>
-            </div>
+        </div>
+        绝对居中
+        <div class="parent-1">
+            parent
+            <div class="son-1">son</div>
+        </div>
+        <p>两列居中</p>
+        <!-- <div id="left">左列定宽</div>
+        <div id="right">右列自适应
+            <div style="height: 300px; background-color: gold;">1</div>
+        </div> -->
+            <!-- <div id="left">左列定宽</div>
+            <div id="right-fix">
+                <div id="right">右列自适应</div>
+            </div> -->
+        <div id="parent">
+            <div id="left">左列自适应</div>
+            <div id="right">右列定宽</div>
+        </div>
+        <div id="height-p">
+            <div id="left-s">左列</div>
+            <div id="right-s">右列</div>
+        </div>     
+        <div class="container" >
+            <div class="left">000000</div>
+            <div class="right">4444<br/><br/><br/><br/><br/><br/><br/>9999<br/>8889999</div>
+        </div>
+        next
+        <div class="container2" >
+            <div class="left2">000000</div>
+            <div class="right2">4444<br/><br/><br/><br/><br/><br/><br/>9999<br/>8889999</div>
+        </div>
+        next
     </div>
   </body>
 </html>
