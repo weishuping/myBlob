@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Jest | xiaowei</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装依赖i @vue/test-utils babel-jest jest jest-serializer-vue jest-transform-stub vue-jest -D```12345678910#### 遇到的问题，npm i @vue/test-utils babel-jest jest jest-serializer-vue jest-transform-stub vue-jest">
+  <meta name="description" content="安装依赖npm i @vue/test-utils babel-jest jest jest-serializer-vue jest-transform-stub vue-jest -D    遇到的问题 node8.x不支持jest26.x版本，所以降级到25.x babel报错ReferenceError: [BABEL] unknown: Unknown option: xx/node_mo">
 <meta name="keywords" content="前端,js,jquery,程序猿,css">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jest">
 <meta property="og:url" content="http://yoursite.com/2020/07/28/Jest/index.html">
 <meta property="og:site_name" content="xiaowei">
-<meta property="og:description" content="安装依赖i @vue/test-utils babel-jest jest jest-serializer-vue jest-transform-stub vue-jest -D```12345678910#### 遇到的问题，npm i @vue/test-utils babel-jest jest jest-serializer-vue jest-transform-stub vue-jest">
+<meta property="og:description" content="安装依赖npm i @vue/test-utils babel-jest jest jest-serializer-vue jest-transform-stub vue-jest -D    遇到的问题 node8.x不支持jest26.x版本，所以降级到25.x babel报错ReferenceError: [BABEL] unknown: Unknown option: xx/node_mo">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-07-30T08:15:03.946Z">
+<meta property="og:updated_time" content="2020-08-02T04:43:14.954Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jest">
-<meta name="twitter:description" content="安装依赖i @vue/test-utils babel-jest jest jest-serializer-vue jest-transform-stub vue-jest -D```12345678910#### 遇到的问题，npm i @vue/test-utils babel-jest jest jest-serializer-vue jest-transform-stub vue-jest">
+<meta name="twitter:description" content="安装依赖npm i @vue/test-utils babel-jest jest jest-serializer-vue jest-transform-stub vue-jest -D    遇到的问题 node8.x不支持jest26.x版本，所以降级到25.x babel报错ReferenceError: [BABEL] unknown: Unknown option: xx/node_mo">
   
     <link rel="alternative" href="/atom.xml" title="xiaowei" type="application/atom+xml">
   
@@ -175,14 +175,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight plain"><figcaption><span>i @vue/test-utils babel-jest jest jest-serializer-vue jest-transform-stub vue-jest -D```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">#### 遇到的问题，</span><br><span class="line"></span><br><span class="line">npm i @vue/test-utils babel-jest jest jest-serializer-vue jest-transform-stub vue-jest -D</span><br><span class="line">✗ npm install --save-dev jest jest-cli; npx jest --init</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1. node8.x不支持jest26.x版本，所以降级到25.x</span><br><span class="line">2. babel报错，</span><br></pre></td></tr></table></figure>
-<p> ReferenceError: [BABEL] unknown: Unknown option: xx/node_modules/@vue/cli-plugin-babel/preset.js.overrides<br> Invalid:<br>      <code>{ presets: [{option: value}] }</code><br>    Valid:<br>      `{ presets: [[‘presetName’, {option: value}]] }</p>
-<pre><code>https://www.cnblogs.com/xueyoucd/p/10495922.html
-</code></pre><p><code>`</code></p>
-<ol start="3">
-<li>问题<br>[vue-test-utils]: isVueInstance is deprecated and will be removed in the next major version</li>
+        <h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><p><code>npm i @vue/test-utils babel-jest jest jest-serializer-vue jest-transform-stub vue-jest -D</code>   </p>
+<h4 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h4><ol>
+<li>node8.x不支持jest26.x版本，所以降级到25.x</li>
+<li>babel报错<br><code>ReferenceError: [BABEL] unknown: Unknown option: xx/node_modules/@vue/cli-plugin-babel/preset.js.overrides
+Invalid:
+   { presets: [{option: value}] }
+ Valid:
+   { presets: [[&#39;presetName&#39;, {option: value}]] }</code></li>
+<li>问题<br> isVueInstance is deprecated and will be removed in the next major version</li>
+<li><a href="https://www.cnblogs.com/xueyoucd/p/10495922.html" target="_blank" rel="noopener">解决jest处理es模块</a></li>
 </ol>
-<p>#### </p>
 
       
 
@@ -277,8 +280,8 @@
 <nav id="article-nav">
   
   
-    <a href="/2020/07/01/css基础篇/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">css+html基础篇</div>
+    <a href="/2020/07/24/我们/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">我们</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -404,6 +407,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">心情</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">CSS3</a>
               </li>
              
@@ -420,15 +431,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">状态码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -440,14 +451,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">前端开发规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CSS继承 HTML元素</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
@@ -456,11 +459,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">vue-cli4.x</a>
+                <a href="javascript:void(0)" class="js-tag color2">前端开发规范</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">promise</a>
+                <a href="javascript:void(0)" class="js-tag color3">CSS继承 HTML元素</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">vue-cli4.x</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -468,11 +475,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">vue3.0</a>
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jest</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">vue3.0</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -489,14 +500,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">表格数据加载优化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">心情</a>
               </li>
             
             <div class="clearfix"></div>
