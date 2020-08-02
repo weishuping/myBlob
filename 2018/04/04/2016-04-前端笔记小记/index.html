@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/04/04/2016-04-前端笔记小记/1472693479747.png">
 <meta property="og:image" content="http://yoursite.com/2018/04/04/2016-04-前端笔记小记/1472693719096.png">
-<meta property="og:updated_time" content="2020-04-24T03:36:13.760Z">
+<meta property="og:updated_time" content="2020-05-07T03:31:10.086Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端笔记小记">
 <meta name="twitter:description" content="1 CSS3属性1.box-sizing IE  Opera以及Chrome支持box-sizing属性。FF支持-moz-box-sizng属性。该属性允许以特定的方式定义匹配某个区域的特定元素。分为三个值：content-box 是默认值，由CSS2.1规定的宽度高度行为，宽和高应用到元素的内容框，在宽和高之外设置边距和边框； border-box为元素指定的任何内边距和边框都包含在已设定的宽">
@@ -239,6 +239,7 @@ p:first {
 <p>var firstdate = new Date(new Date().getFullYear(), new Date().getMonth()-1, 1);</p>
 <p>获取上个月最后一天</p>
 <p>var date = new Date();<br>var day = new Date(date.getFullYear(), date.getMonth(), 0).getDate();<br>var enddate = new Date(new Date().getFullYear(), new Date().getMonth()-1, day);</p>
+<h3 id="async-await"><a href="#async-await" class="headerlink" title="async await"></a>async await</h3><p>async返回的是一个promise，执行完await之后，后面的函数执行会产生一个微任务。它的产生时机是，执行完await并跳出async，去执行其他代码。当其他代码执行完毕之后，回到async执行剩下代码，将await后面的代码<strong>注册</strong>到微任务队列中。</p>
 
       
 
@@ -492,7 +493,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
+                <a href="javascript:void(0)" class="js-tag color5">CSS3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jQuery键盘事件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CSS伪类和伪元素</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">页面中的层叠关系</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,7 +517,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">Gulp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,7 +525,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">前端开发规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CSS继承 HTML元素</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -524,11 +545,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">promise</a>
+                <a href="javascript:void(0)" class="js-tag color1">vue-cli4.x</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">vue-cli4.x</a>
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,22 +586,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">心情</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CSS3</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jQuery键盘事件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CSS伪类和伪元素</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">页面中的层叠关系</a>
               </li>
             
             <div class="clearfix"></div>
