@@ -500,7 +500,12 @@
 <h4 id="chunkFilename"><a href="#chunkFilename" class="headerlink" title="chunkFilename"></a>chunkFilename</h4><p>非入口文件的命名规则<br>未列在entry中，却又需要被打包出来的文件命名配置。</p>
 <h4 id="关于打包时资源路径的配置"><a href="#关于打包时资源路径的配置" class="headerlink" title="关于打包时资源路径的配置"></a>关于打包时资源路径的配置</h4><p>assetsSubDiretory：资源子目录，指的是js css img存放的目录，它的路径是相对于index.html。通常配置的是static，所以打包文件是 static index.html这种。</p>
 <p>assetsPublicPath：资源目录，默认’/‘。指的是js css img等资源相对于服务器host地址，也就是绝对地址。通常我们访问的地址是<a href="http://ip:prot/projectName/index.html，一般不会是http://ip:prot/index.html。所以我们需要改为&#39;/projectName&#39;" target="_blank" rel="noopener">http://ip:prot/projectName/index.html，一般不会是http://ip:prot/index.html。所以我们需要改为&#39;/projectName&#39;</a></p>
-<h4 id="hash和chunkhash区别"><a href="#hash和chunkhash区别" class="headerlink" title="hash和chunkhash区别"></a>hash和chunkhash区别</h4><p><strong>hash</strong>对js和css进行签名，每次hash值不一样，所以不能利用缓存。<br><strong>chunkhash</strong>是每一个js的模块对应的值是不同的，因为是根据js里的不同内容生成。<br>chunkhash重复的问题，因为webpack编译里面，将css作为js的一部分，所以会将所有的js和css混合在一起计算。<br>解决：css使用ExtractTextPlugin插件引入。这个插件会提供contenthash，使用后css就独立于js之外了。</p>
+<h4 id="hash和chunkhash区别"><a href="#hash和chunkhash区别" class="headerlink" title="hash和chunkhash区别"></a>hash和chunkhash区别</h4><p><strong>hash</strong>对js和css进行签名，每次hash值不一样，所以不能利用缓存。<br><strong>chunkhash</strong>是每一个js的模块对应的值是不同的，因为是根据js里的不同内容生成。<br>chunkhash重复的问题，因为webpack编译里面，将css作为js的一部分，所以会将所有的js和css混合在一起计算。<br>解决：css使用<code>ExtractTextPlugin</code>插件引入。这个插件会提供contenthash，使用后css就独立于js之外了。</p>
+<h4 id="webpack实现静态资源缓存"><a href="#webpack实现静态资源缓存" class="headerlink" title="webpack实现静态资源缓存"></a>webpack实现静态资源缓存</h4><ol>
+<li>hash<br>是工程级别的，所有打包后的文件携带的hash值相同。一个地方修改了，其他文件也会被重新加载，显然作为缓存是不合适的。</li>
+<li>chunkhash<br> 根据入口文件解析、构建对应的chunk、生成对应的hash值。说到了webpack入口配置<code>分离 app(应用程序) 和 vendor(第三方库) 入口</code>。用chunkhash生成hash值，只要依赖公共库不变，那么对应的chunkhash就不会改变，从而达到缓存的目的。</li>
+<li>contenthash<br> 这个是由文件内容生成的hash值。在项目中，通常是把项目中的css都抽离出来对应的css文件进行引用。通过<code>ExtractTextPlugin</code>实现。比如在appchunk中引入index.css，他俩的hash值原有的。app文件变更，那么index.css的hash也会变。导致缓存失效，这时候就可以使用<code>contenthash</code>值。只要css内容不变，则hash值不会变。</li>
+</ol>
 
       
 

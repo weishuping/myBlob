@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/05/08/工作灵感记录/cacheControHttp.png">
 <meta property="og:image" content="http://yoursite.com/2020/05/08/工作灵感记录/infoHttp.png">
 <meta property="og:image" content="http://yoursite.com/2020/05/08/工作灵感记录/etagHttp.png">
-<meta property="og:updated_time" content="2020-07-29T12:11:12.940Z">
+<meta property="og:updated_time" content="2020-08-03T11:44:12.447Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工作灵感记录">
 <meta name="twitter:description" content="前端错误监控指南推荐工具：前端日志上报与JS异常监控 - badjs-report；github WebSockect是一种标准协议。对比以往，客户端跟服务端双向数据通信时，客户端需轮询或者发出请求后一直等待服务端返回，这样很占用资源。如果你有这些需求可以考虑使用 WebSocket：1 、多个用户之间进行交互；2、需要频繁地向服务端请求更新数据。比如弹幕、消息订阅、多玩家游戏、协同编辑、股票基金">
@@ -183,11 +183,19 @@
 <p>WebSockect是一种标准协议。<br>对比以往，客户端跟服务端双向数据通信时，客户端需轮询或者发出请求后一直等待服务端返回，这样很占用资源。<br>如果你有这些需求可以考虑使用 WebSocket：<br>1 、多个用户之间进行交互；<br>2、需要频繁地向服务端请求更新数据。<br>比如弹幕、消息订阅、多玩家游戏、协同编辑、股票基金实时报价、视频会议、在线教育等需要高实时的场景。</p>
 <a id="more"></a>
 <h3 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h3><p>原型：对象有一个<strong>proto</strong>，是一个指向原型的指针。<br>构造函数声明的时候就创建了原型对象，然后挂载到构造函数的<code>prototype</code>属性上。<br>原型对象创建的时候，会生成constructor属性，指向它的构造函数。<br><a href="https://juejin.im/post/5eb52ad9e51d454de64e4306" target="_blank" rel="noopener">https://juejin.im/post/5eb52ad9e51d454de64e4306</a></p>
-<h3 id="HTTP-缓存"><a href="#HTTP-缓存" class="headerlink" title="HTTP 缓存"></a>HTTP 缓存</h3><p><strong>强缓存</strong><br>不与服务器进行通信，直接使用本地缓存。<br>相关头部字段控制：Expires / Cache-Control / Progma  no-cache<br><img src="/2020/05/08/工作灵感记录/cacheControHttp.png"><br>强缓存的优先级：Pragma  &gt; Cache-Control  &gt; Expires<br><strong>ETag 和 If-None-Match</strong><br>当第一次请求，服务器响应200，并返回<code>ETag</code>(该值存放服务器端生成的序列key)。<br>第二次请求时客户端发送<code>if-none-match</code>（即刚才的key），用来询问资源有没有修改。<br>浏览器第一次请求资源</p>
-<p><strong>Last Modified 和 If-Modified-Since</strong><br>当第一次请求，服务器响应200，并返回<code>Last Modified</code>(表示文件在服务器端最后被修改的时间)。<br>第二次请求时客户端会在请求头添加<code>If-Modified-Since</code>标记，询问服务器该时间之后文件是否改动。</p>
+<h3 id="HTTP-缓存"><a href="#HTTP-缓存" class="headerlink" title="HTTP 缓存"></a>HTTP 缓存</h3><p>缓存分为HTTP缓存和浏览器缓存（cookie localStorage sessionStorage）<br>HTTP缓存分为强缓存和协商缓存，只能缓存get请求响应的资源。<br><strong>强缓存</strong><br>强缓存就是给资源设置个过期时间。不与服务器进行通信，直接使用本地缓存。<br>相关头部字段控制：Expires / Cache-Control / Progma  no-cache<br><img src="/2020/05/08/工作灵感记录/cacheControHttp.png"><br>强缓存的优先级：Pragma  &gt; Cache-Control  &gt; Expires</p>
+<p><strong>协商缓存</strong><br>协商缓存就是需要客户端和服务器两端进行交互的<br>// response header<br>etag: ‘5c20abbd-e2e8’<br>last-modified: Mon, 24 Dec 2018 09:49:49 GMT</p>
+<p>// request header 变为<br>if-none-matched: ‘5c20abbd-e2e8’<br>if-modified-since: Mon, 24 Dec 2018 09:49:49 GMT</p>
+<p><strong>ETag 和 If-None-Match</strong><br>当第一次请求，服务器响应200，并返回<code>ETag</code>(该值存放服务器端生成的序列key)。<br>第二次请求时客户端发送<code>if-none-match</code>（即刚才的key），用来询问资源有没有修改。<br>浏览器第一次请求资源</p>
+<p><strong>Last Modified 和 If-Modified-Since</strong><br>当第一次请求，服务器响应200，并返回<code>Last Modified</code>(表示文件在服务器端最后被修改的时间，精确到秒)。<br>第二次请求时客户端会在请求头添加<code>If-Modified-Since</code>标记，询问服务器该时间之后文件是否改动。</p>
 <p>如果服务器端的资源没有变化，则自动返回304状态，使用浏览器缓存。<br><img src="/2020/05/08/工作灵感记录/infoHttp.png" width="120px"></p>
 <p>浏览器第二次请求资源<br><img src="/2020/05/08/工作灵感记录/etagHttp.png" width="450px"></p>
-<h4 id="手写一波-promise-防抖节流-发布-订阅-call-apply-bind-new-深拷贝"><a href="#手写一波-promise-防抖节流-发布-订阅-call-apply-bind-new-深拷贝" class="headerlink" title="手写一波 promise 防抖节流 发布-订阅 call apply bind new 深拷贝"></a>手写一波 promise 防抖节流 发布-订阅 call apply bind new 深拷贝</h4><p><a href="https://juejin.im/post/5eb8f5cdf265da7bd44254b4" target="_blank" rel="noopener">https://juejin.im/post/5eb8f5cdf265da7bd44254b4</a></p>
+<p>优点：</p>
+<ol>
+<li>减少不必要的数据传输，节省带宽</li>
+<li>减少服务器的负担，提升网站性能</li>
+<li>加快了加载网页的素服，用户体验度友好<br>缺点：<br>可能会由于更新不及时导致获取新资源失败。所以要保证不同资源的hash不同。<br>我的做法是：<br>index.html文件采用协商缓存；其他资源采用强缓存 + 协商缓存<br><a href="https://www.jianshu.com/p/9c95db596df5" target="_blank" rel="noopener">参考</a><h4 id="手写一波-promise-防抖节流-发布-订阅-call-apply-bind-new-深拷贝"><a href="#手写一波-promise-防抖节流-发布-订阅-call-apply-bind-new-深拷贝" class="headerlink" title="手写一波 promise 防抖节流 发布-订阅 call apply bind new 深拷贝"></a>手写一波 promise 防抖节流 发布-订阅 call apply bind new 深拷贝</h4><a href="https://juejin.im/post/5eb8f5cdf265da7bd44254b4" target="_blank" rel="noopener">https://juejin.im/post/5eb8f5cdf265da7bd44254b4</a></li>
+</ol>
 <h4 id="调研go在前端的应用"><a href="#调研go在前端的应用" class="headerlink" title="调研go在前端的应用"></a>调研go在前端的应用</h4><p>go 在 1.1版本加入了WebAssembly的体验支持。<br>需要编译go代码成wasm格式<br><a href="https://www.e-learn.cn/topic/3589606" target="_blank" rel="noopener">https://www.e-learn.cn/topic/3589606</a></p>
 <h4 id="npm中-–save-–save-dev-D-S的区别"><a href="#npm中-–save-–save-dev-D-S的区别" class="headerlink" title="npm中 –save –save-dev -D -S的区别"></a>npm中 –save –save-dev -D -S的区别</h4><p>–save == -S<br>–save-dev == -D<br>npm i –save-dev <packname> 工程开发、打包依赖。处于devDenpendencies<br>npm i –save <packname> 工程运行、发布到生成环境的依赖。处于dependencies<br>当设置NODE_DEV=production，仅仅会拉取dependencies中的依赖</packname></packname></p>
 <h4 id="Express"><a href="#Express" class="headerlink" title="Express"></a>Express</h4><p>基于node.js的web开发框架</p>
