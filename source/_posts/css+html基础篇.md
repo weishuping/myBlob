@@ -61,7 +61,9 @@ a b br input img label select textarea
 3. 内部浮动元素也参与高度计算
 4. 浮动元素不会叠加到bfc上(浮动产生的BFC不会与其他内容重叠)
 5. 内部元素相互影响，可能会出现margin会重叠
+
 ##### 条件：
+
 1. 根元素
 2. overflow不为visible
 3. display很多，不为inline和block
@@ -70,4 +72,10 @@ a b br input img label select textarea
 ##### 应用
 清除浮动、页面布局、解决margin合并问题、
 #### HTML5
+
+
+#### JS
+DOM事件流的三个阶段：捕获阶段->处于目标阶段->冒泡阶段；事件委托是对事件冒泡的应用；
+event.currentTarget指的是当前事件绑定的目标 event.target 当前点击对象。
+
 
