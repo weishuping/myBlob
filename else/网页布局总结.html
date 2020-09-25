@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>css+html基础篇 | xiaowei</title>
+  <title>网页布局总结 | xiaowei</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="可继承属性： 字体相关: font-size font-family等; 文本相关: line-height、text-indent：文本缩进、text-align：文本水平对齐、color; 元素可见性：visibility 列表布局属性：list-style-type等 光标属性 页面属性：page等 声音样式  无继承性的属性 display 文本属性：vertical-aligh、 tex">
-<meta name="keywords" content="CSS继承 HTML元素">
-<meta property="og:type" content="article">
-<meta property="og:title" content="css+html基础篇">
-<meta property="og:url" content="http://yoursite.com/2020/07/01/css+html基础篇/index.html">
+  <meta name="description" content="水平垂直居中 行内/行内块级/图片  父设置宽高、height=l-h、font-size(为了消除幽灵盒子的空白节点，但是如果里面子元素有文字，文字就不会被显示)子：vertical-align: middle; /如果是块级元素需改为行内或行内块级才生效/ / 幽灵盒子：当被包裹的元素设置为display:inline-block之后，父级会有高度。/  button作为父元素 - 子元素设置">
+<meta name="keywords" content="前端,js,jquery,程序猿,css">
+<meta property="og:type" content="website">
+<meta property="og:title" content="网页布局总结">
+<meta property="og:url" content="http://yoursite.com/else/网页布局总结.html">
 <meta property="og:site_name" content="xiaowei">
-<meta property="og:description" content="可继承属性： 字体相关: font-size font-family等; 文本相关: line-height、text-indent：文本缩进、text-align：文本水平对齐、color; 元素可见性：visibility 列表布局属性：list-style-type等 光标属性 页面属性：page等 声音样式  无继承性的属性 display 文本属性：vertical-aligh、 tex">
+<meta property="og:description" content="水平垂直居中 行内/行内块级/图片  父设置宽高、height=l-h、font-size(为了消除幽灵盒子的空白节点，但是如果里面子元素有文字，文字就不会被显示)子：vertical-align: middle; /如果是块级元素需改为行内或行内块级才生效/ / 幽灵盒子：当被包裹的元素设置为display:inline-block之后，父级会有高度。/  button作为父元素 - 子元素设置">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-08-05T07:21:39.936Z">
+<meta property="og:updated_time" content="2020-09-25T02:33:19.393Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="css+html基础篇">
-<meta name="twitter:description" content="可继承属性： 字体相关: font-size font-family等; 文本相关: line-height、text-indent：文本缩进、text-align：文本水平对齐、color; 元素可见性：visibility 列表布局属性：list-style-type等 光标属性 页面属性：page等 声音样式  无继承性的属性 display 文本属性：vertical-aligh、 tex">
+<meta name="twitter:title" content="网页布局总结">
+<meta name="twitter:description" content="水平垂直居中 行内/行内块级/图片  父设置宽高、height=l-h、font-size(为了消除幽灵盒子的空白节点，但是如果里面子元素有文字，文字就不会被显示)子：vertical-align: middle; /如果是块级元素需改为行内或行内块级才生效/ / 幽灵盒子：当被包裹的元素设置为display:inline-block之后，父级会有高度。/  button作为父元素 - 子元素设置">
   
     <link rel="alternative" href="/atom.xml" title="xiaowei" type="application/atom+xml">
   
@@ -155,77 +155,84 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-css+html基础篇" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="page-" class="article article-type-page " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      css+html基础篇
+      网页布局总结
     </h1>
   
 
         
-        <a href="/2020/07/01/css+html基础篇/" class="archive-article-date">
-  	<time datetime="2020-07-01T03:30:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
+        <a href="/else/网页布局总结.html" class="archive-article-date">
+  	<time datetime="2020-06-22T07:05:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="可继承属性："><a href="#可继承属性：" class="headerlink" title="可继承属性："></a>可继承属性：</h4><ol>
-<li>字体相关: font-size font-family等;</li>
-<li>文本相关: line-height、text-indent：文本缩进、text-align：文本水平对齐、color;</li>
-<li>元素可见性：visibility</li>
-<li>列表布局属性：list-style-type等</li>
-<li>光标属性</li>
-<li>页面属性：page等</li>
-<li>声音样式</li>
+        <h4 id="水平垂直居中"><a href="#水平垂直居中" class="headerlink" title="水平垂直居中"></a>水平垂直居中</h4><ol>
+<li>行内/行内块级/图片</li>
 </ol>
-<h4 id="无继承性的属性"><a href="#无继承性的属性" class="headerlink" title="无继承性的属性"></a>无继承性的属性</h4><ol>
-<li>display</li>
-<li>文本属性：vertical-aligh、 text-decoration、text-shadow</li>
-<li>盒模型属性：w h mar padding border …</li>
-<li>背景属性：background等</li>
-<li>定位属性：float、top、right、bottom、left、overflow等</li>
-<li>轮廓属性：outline</li>
-<li>页面样式：size、page-break-before</li>
-<li>声音样式：pause-before、pause-after、pause、cue-before、cue-after、cue、play-during</li>
+<p>父设置宽高、height=l-h、font-size(为了消除幽灵盒子的空白节点，但是如果里面子元素有文字，文字就不会被显示)<br>子：vertical-align: middle; /<em>如果是块级元素需改为行内或行内块级才生效</em>/</p>
+<p>/<strong> 幽灵盒子：当被包裹的元素设置为display:inline-block之后，父级会有高度。</strong>/</p>
+<ol start="2">
+<li>button作为父元素 - 子元素设置内联块</li>
+<li>绝对定位</li>
+<li>绝对居中 margin: auto。四个方向均为0</li>
+<li>flex; 子元素margin:auto 或者父元素设置j:center, align-items: center </li>
 </ol>
-<h4 id="所有元素可继承属性"><a href="#所有元素可继承属性" class="headerlink" title="所有元素可继承属性"></a>所有元素可继承属性</h4><p>visibility cursor</p>
-<h4 id="内联元素可继承属性"><a href="#内联元素可继承属性" class="headerlink" title="内联元素可继承属性"></a>内联元素可继承属性</h4><ol>
-<li>字体系列属性</li>
-<li>除text-indent text-align之外的文本系列属性</li>
+<p><em>原理：当top、bottom为0时,margin-top&amp;bottom设置auto的话会无限延伸占满空间并且平分；当left、right为0时,margin-left&amp;right设置auto的话会无限延伸占满空间并且平分</em></p>
+<h4 id="两列布局"><a href="#两列布局" class="headerlink" title="两列布局"></a>两列布局</h4><p>左列固定，右列不固定</p>
+<ol>
+<li>float(left) + margin-left</li>
+<li>float(left+right) + margin(fix) 右侧包裹盒子width:100%;margin-left: -100px;(让盒子上去);右侧被包裹元素和第一种方式一样。</li>
+<li>float + overflow（触发bfc）</li>
+<li>table</li>
+<li>绝对定位 父/left·son/right·son</li>
+<li>flex </li>
 </ol>
-<h4 id="块级元素可继承属性"><a href="#块级元素可继承属性" class="headerlink" title="块级元素可继承属性"></a>块级元素可继承属性</h4><p>text-indent、text-align</p>
-<h4 id="特殊"><a href="#特殊" class="headerlink" title="特殊"></a>特殊</h4><p>父元素下的设置了href的a标签不会继承父级color，因为a:-webkit-any-link: color: -webkit-link;</p>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>text-align在css2.1中，具有继承性。应用于块、表格单元格和行内块元素，仅对于行内元素生效。</p>
-<h4 id="属性值计算过程"><a href="#属性值计算过程" class="headerlink" title="属性值计算过程"></a>属性值计算过程</h4><ol>
-<li>确定声明值:  在开发者样式表里面和浏览器样式表里面,把没有冲突的属性值,作为该元素的属性值</li>
-<li>层叠冲突:    对样式表里面有冲突的声明,使用这个层叠规则,确定这个属性值</li>
-<li>使用继承:    对仍然没有属性值的属性,若可以继承的话,继承该父元素的值</li>
-<li>使用默认的值: 最后一步的话,对仍然没有熟悉值的属性,使用默认的属性值;</li>
+<p>右列固定，左列不固定</p>
+<ol>
+<li>父/left·son/right·son  父级设置padding-left:xx 来消除左侧div的margin-left</li>
+<li>float + overflow right·son/left·son（overflow）</li>
+<li>table</li>
+<li>绝对定位 父/left·son/right·son</li>
+<li>flex </li>
 </ol>
-<h4 id="块状元素"><a href="#块状元素" class="headerlink" title="块状元素"></a>块状元素</h4><p>前后均有换行符、可设置margin/padding/宽高独占一行<br>div table form h1-h6 li ol p ul / nav aside header footer section </p>
-<h4 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h4><p>与其他元素处于同一行，仅左右padding和左右margin生效，不可设置宽高，不能嵌套块级元素<br>a b br input img label select textarea </p>
-<h4 id="css属性值unset"><a href="#css属性值unset" class="headerlink" title="css属性值unset"></a>css属性值unset</h4><p>是initial和inherit的组合。如果属性是默认继承属性，则等于inherit；如果不是继承属性，则等于initial</p>
-<h4 id="BFC块格式化上下文-block-formatting-context"><a href="#BFC块格式化上下文-block-formatting-context" class="headerlink" title="BFC块格式化上下文 - block formatting context"></a>BFC块格式化上下文 - block formatting context</h4><h5 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h5><ol>
-<li>box内部块盒会从上到下排列</li>
-<li>是一个独立的容器（一个元素不可能属于两个bfc）</li>
-<li>内部浮动元素也参与高度计算</li>
-<li>浮动元素不会叠加到bfc上(浮动产生的BFC不会与其他内容重叠)</li>
-<li>内部元素相互影响，可能会出现margin会重叠</li>
+<p>一列不固定，另一列自适应</p>
+<ol>
+<li>float + overflow</li>
+<li>flex</li>
+<li>grid</li>
 </ol>
-<h5 id="条件："><a href="#条件：" class="headerlink" title="条件："></a>条件：</h5><ol>
-<li>根元素</li>
-<li>overflow不为visible</li>
-<li>display很多，不为inline和block</li>
-<li>position为absolute和fixed</li>
-<li>float不为none<h5 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h5>清除浮动、页面布局、解决margin合并问题、<h4 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h4></li>
+<h4 id="一列的高度随着另一列的高度自动变化"><a href="#一列的高度随着另一列的高度自动变化" class="headerlink" title="一列的高度随着另一列的高度自动变化"></a>一列的高度随着另一列的高度自动变化</h4><ol>
+<li>flex</li>
+<li>如果左侧内容根据右侧内容变化。<br>父级height:100%; overflow:hidden; left·son 设置float; right·son 设置padding-bottom: 9999px; margin-bottom: -9999px;<br>弊端：左侧下方border丢失<br>解决：给父级外层增加div 模拟丢失的border-bottom<h4 id="css-高度随着宽度变化"><a href="#css-高度随着宽度变化" class="headerlink" title="css 高度随着宽度变化"></a>css 高度随着宽度变化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">html代码如下，</span><br><span class="line">&lt;div class=&apos;container&apos;&gt;</span><br><span class="line">&lt;div class=&apos;dummy&apos;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&apos;content&apos;&gt;content&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">css代码如下,</span><br><span class="line">.container&#123;</span><br><span class="line">background-color: silver;</span><br><span class="line">width:100%;</span><br><span class="line">position:relative;</span><br><span class="line">display: inline-block;</span><br><span class="line">&#125;</span><br><span class="line">.dummy&#123;</span><br><span class="line">margin-top: 100%;</span><br><span class="line">&#125;</span><br><span class="line">.content&#123;</span><br><span class="line">position:absolute;</span><br><span class="line">left:0;</span><br><span class="line">right:0;</span><br><span class="line">top:0;</span><br><span class="line">bottom: 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<h4 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h4><p>DOM事件流的三个阶段：捕获阶段-&gt;处于目标阶段-&gt;冒泡阶段；事件委托是对事件冒泡的应用；<br>event.currentTarget指的是当前事件绑定的目标 event.target 当前点击对象。</p>
+<p>父元素 position: relative; width: 100%; display:inline-block或者overflow:hidden;<br><em>(因为当子元素脱离文档流时，父元素不知道子元素的存在，所以导致高度塌陷。当设置父元素为display:inline-block或者overflow:hidden时，迫使父元素去检查自己内部有哪些子元素，而这时候就发现了之前absolute定位的子元素，所以高度就撑开了。)</em><br>占位子元素：margin-top:100%；为了撑开父盒子。<br>真实子元素：绝对居中。占有父盒子。<br><a href="https://zhuanlan.zhihu.com/p/24674692" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24674692</a></p>
+<h4 id="三列布局"><a href="#三列布局" class="headerlink" title="三列布局"></a>三列布局</h4><ol>
+<li>float + margin</li>
+<li>float + overflow</li>
+<li>table</li>
+<li>flex</li>
+</ol>
+<h4 id="两侧定宽-中间自适应"><a href="#两侧定宽-中间自适应" class="headerlink" title="两侧定宽 中间自适应"></a>两侧定宽 中间自适应</h4><ol>
+<li>双飞翼 - center在前；float+margin； 元素全部浮动；中间两层div，内部中间div有左右margin；左侧div有margin-left:-100%；右侧div有margin-left:-xx 自身宽度； 注意清除浮动</li>
+<li>圣杯 -center在前； float+ 父级padding+子集相对定位（为了抵消padding）+margin</li>
+<li>flex</li>
+<li>position</li>
+</ol>
+<h4 id="多列布局"><a href="#多列布局" class="headerlink" title="多列布局"></a>多列布局</h4><ol>
+<li>float </li>
+<li>flex</li>
+</ol>
+<p><a href="https://juejin.im/post/5aa252ac518825558001d5de#heading-99" target="_blank" rel="noopener">参考内容：</a> </p>
 
       
 
@@ -255,17 +262,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CSS继承 HTML元素</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -316,7 +312,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/01/css+html基础篇/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/else/网页布局总结.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -328,25 +324,6 @@
 </article>
 
   
-<nav id="article-nav">
-  
-    <a href="/2020/07/06/别人的人生和自己的思考/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          别人的人生和自己的思考
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/06/22/网页布局总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">网页布局总结</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -397,7 +374,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

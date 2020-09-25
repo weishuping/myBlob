@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/05/08/工作灵感记录/cacheControHttp.png">
 <meta property="og:image" content="http://yoursite.com/2020/05/08/工作灵感记录/infoHttp.png">
 <meta property="og:image" content="http://yoursite.com/2020/05/08/工作灵感记录/etagHttp.png">
-<meta property="og:updated_time" content="2020-08-03T11:44:12.447Z">
+<meta property="og:updated_time" content="2020-09-23T11:41:22.824Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工作灵感记录">
 <meta name="twitter:description" content="前端错误监控指南推荐工具：前端日志上报与JS异常监控 - badjs-report；github WebSockect是一种标准协议。对比以往，客户端跟服务端双向数据通信时，客户端需轮询或者发出请求后一直等待服务端返回，这样很占用资源。如果你有这些需求可以考虑使用 WebSocket：1 、多个用户之间进行交互；2、需要频繁地向服务端请求更新数据。比如弹幕、消息订阅、多玩家游戏、协同编辑、股票基金">
@@ -206,8 +206,8 @@
 <h4 id="ES新特性"><a href="#ES新特性" class="headerlink" title="ES新特性"></a>ES新特性</h4><h4 id="BFF"><a href="#BFF" class="headerlink" title="BFF"></a>BFF</h4><h4 id="Webpack5"><a href="#Webpack5" class="headerlink" title="Webpack5"></a>Webpack5</h4><h4 id="复制粘贴功能"><a href="#复制粘贴功能" class="headerlink" title="复制粘贴功能"></a>复制粘贴功能</h4><p><a href="https://www.csdn.net/gather_26/OtDaYg1sNTAyLWJsb2cO0O0O.html" target="_blank" rel="noopener">https://www.csdn.net/gather_26/OtDaYg1sNTAyLWJsb2cO0O0O.html</a></p>
 <h5 id="从excel复制一行数据到页面实现粘贴-小技巧实现"><a href="#从excel复制一行数据到页面实现粘贴-小技巧实现" class="headerlink" title="从excel复制一行数据到页面实现粘贴-小技巧实现"></a>从excel复制一行数据到页面实现粘贴-小技巧实现</h5><p>需要准备一个全局隐藏input（z-index:-100）。<br>按下ctrl+v之后 =》父级元素捕获keydown事件 =》1：本身input失焦(不要将复制的内容粘贴到里面) 2：让隐藏域得到焦点，在setTimeout中失焦。 =》再去处理input触发blur事件(最好放到settimeout)，从隐藏input中获得数据，并做split处理。</p>
 <h4 id="origin和upstream的区别"><a href="#origin和upstream的区别" class="headerlink" title="origin和upstream的区别"></a>origin和upstream的区别</h4><p>开源库fork到自己的github / 自己的github上clone到本地<br>upstream和origin是并列关系。origin指的是所克隆的原始仓库的默认名字，upstream是fork的原项目的远程仓库的默认名字。</p>
-<h4 id="浏览器的First-Paint"><a href="#浏览器的First-Paint" class="headerlink" title="浏览器的First Paint"></a>浏览器的First Paint</h4><p>先了解下浏览器加载页面的过程：</p>
-<ol>
+<h4 id="火狐浏览器的onload"><a href="#火狐浏览器的onload" class="headerlink" title="火狐浏览器的onload"></a>火狐浏览器的onload</h4><ol>
+<li>Firefix下iframe的onload事件无法触发<br>问题： 已经load的document,重新open再write一个iframe，则整个iframe的onload不会执行。<br>解决：<h4 id="浏览器的First-Paint"><a href="#浏览器的First-Paint" class="headerlink" title="浏览器的First Paint"></a>浏览器的First Paint</h4>先了解下浏览器加载页面的过程：</li>
 <li>在浏览器输入url，发送请求到服务器，服务器返回请求的HTML。</li>
 <li>浏览器下载完成HTML(Finish Loading HTML)之后，开始从上至下解析。</li>
 <li>解析过程中遇到css和js外链会执行以下过程<ol>
@@ -248,7 +248,9 @@
 <h3 id="babel"><a href="#babel" class="headerlink" title="babel"></a>babel</h3><p>是一个转换器，将ES6转成ES5，将JSX转成js等。借助babel，开发者可以提前用上新的js特性。<br>实现转换的核心就是babel-plugin<br>preset可以看做是plugin的集合，</p>
 <p>可以同时使用多个Plugin和Preset，此时，它们的执行顺序非常重要。</p>
 <p>先执行完所有Plugin，再执行Preset。<br>多个Plugin，按照声明次序顺序执行。<br>多个Preset，按照声明次序逆序执行。</p>
-<h4 id="复习准备"><a href="#复习准备" class="headerlink" title="复习准备"></a>复习准备</h4><p> html + css + 布局<br> BFC<br> HTTP缓存<br> JS： 基础 数组 对象 原型 ES6<br> yayu博客<br> Vue Vuex Vue-router</p>
+<h3 id="RobotJS"><a href="#RobotJS" class="headerlink" title="RobotJS"></a>RobotJS</h3><p>Robotjs是nodejs的第一个用于桌面自动化的库，可以自动化鼠标、键盘和读取屏幕，并且有Mac, Windows, and Linux的跨平台支持。</p>
+<h4 id="复习准备"><a href="#复习准备" class="headerlink" title="复习准备"></a>复习准备</h4><p> html + css + 布局 见-css+html基础篇和网页布局总结<br> BFC<br> HTTP缓存<br> JS： 基础 数组 对象 原型 ES6<br> yayu博客<br> Vue Vuex Vue-router</p>
+<h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><h4 id="Reflect"><a href="#Reflect" class="headerlink" title="Reflect"></a>Reflect</h4><p> 从Reflect对象可以拿到语言内部的方法，观察了它的属性和方法，很大一部分和Object.prototype一样。</p>
 
       
 
