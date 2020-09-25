@@ -10,7 +10,7 @@ tags:
 ### 配置vue test utils
 [配置](https://vue-test-utils.vuejs.org/zh/installation/)
 [教程](https://vue-test-utils.vuejs.org/zh/guides/)
-### 文件配置
+### 文件配置jest.config.js
 ```
 const path = require('path');
 module.exports = {
@@ -69,6 +69,13 @@ scripts: {
     "test": "jest --config jest.config.js --coverage"
 }
 ```
+#### 文件目录
+- test
+  - unit
+    - _mocks_
+    - specs
+    - setup.js
+
 #### 遇到的问题
 1. 启动服务报错
    _gracefulFs(...).realpathSync.native is not a function
