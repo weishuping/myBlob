@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+    <head>
+    <title>grid</title>
+    <style>
+        .container {
+            display: grid;
+        }
+        .container div {
+            border: 1px solid red;
+        }
+        .left-cont {
+        
+        }
+        .container2 {
+            display: grid;
+            grid-template-columns: repeat(2, 10px 20px 30px 40px);
+        }
+    </style>
+    </head>
+    <body>
+        header
+        <div class='container'>
+            <div class='left-cont'>left</div>
+            <div class='content'>content</div>
+            <div class='right-cont'>content</div>
+
+        </div>
+        1 -2 -3 -4
+        <div class="container2">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+        </div>
+        auto-fill 会以固定单元格大小去填充容器，直到放不下，会换行。比如 grid-template-columns: repeat(auto-fill, 300px);
+        <br/>
+        fr 关键字
+        footer
+    </body>
+</html>
