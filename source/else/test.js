@@ -449,3 +449,22 @@ function unique(arr) {
         !map.has(item) && map.set(item, 1)
     )
 }
+
+//
+Function.prototype.myApply = function(context) {
+    context.fn = this;
+    context.fn();
+    delete context.fn;
+}
+
+let obj = {
+    name: 'obj',
+    getName: function() {
+        console.log(this)
+        return this.name
+    }
+}
+
+let me = {name: 'me', age: 26}
+
+obj.getName.myApply(me)
