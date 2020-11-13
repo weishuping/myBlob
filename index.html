@@ -156,6 +156,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-vue3-0-异步组件" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/13/vue3-0-异步组件/">vue3.0 异步组件、自定义指令</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/13/vue3-0-异步组件/" class="archive-article-date">
+  	<time datetime="2020-10-13T11:55:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="异步组件"><a href="#异步组件" class="headerlink" title="异步组件"></a>异步组件</h3><h4 id="Vue2-x中"><a href="#Vue2-x中" class="headerlink" title="Vue2.x中"></a>Vue2.x中</h4><p>将组件定义为返回Promise的函数来创建的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const asyncPage = () =&gt; import(&apos;./xx.vue&apos;);</span><br><span class="line">// 或者</span><br><span class="line">const asyncPage = &#123;</span><br><span class="line">    component: () =&gt; import(&apos;./xx.vue),</span><br><span class="line">    delay: 200,</span><br><span class="line">    timeout: 3000</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Vue3-x中"><a href="#Vue3-x中" class="headerlink" title="Vue3.x中"></a>Vue3.x中</h4><p>因为函数式组件被定义为纯函数，因此异步组件的定义需要通过包裹在新的<code>defineAsyncComponent</code>助手方法中显示的定义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import &#123;defineAsyncComponent&#125; from &apos;vue&apos;;</span><br><span class="line">const asyncPage = defineAsyncComponent() =&gt; import(&apos;./xx.vue&apos;);</span><br><span class="line">// 或者</span><br><span class="line">const asyncPage = &#123;</span><br><span class="line">    loader: () =&gt; import(&apos;./xx.vue), // 注意这里重命名了</span><br><span class="line">    delay: 200,</span><br><span class="line">    timeout: 3000</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>且loader函数不接受resolve和reject参数，必须返回Promise<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const asyncComponent = defineAsyncComponent(() =&gt;</span><br><span class="line">new Promise(res, rej) =&gt; &#123;</span><br><span class="line">    /*...*/</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h3><p>首先调整了生命周期函数与vue组件生命周期函数一致。<br>可以用来设置某段文本变色啊</p>
+<h3 id="深入响应式原理"><a href="#深入响应式原理" class="headerlink" title="深入响应式原理"></a>深入响应式原理</h3><p>跟踪修改值，用触发函数更新值。</p>
+<p>声明响应式状态，使用<code>reactive</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">vue3.0</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/13/vue3-0-异步组件/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Jest" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -406,6 +487,250 @@
 
 
   
+    <article id="post-css+html基础篇" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/01/css+html基础篇/">css+html基础篇</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/01/css+html基础篇/" class="archive-article-date">
+  	<time datetime="2020-07-01T03:30:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="可继承属性："><a href="#可继承属性：" class="headerlink" title="可继承属性："></a>可继承属性：</h4><ol>
+<li>字体相关: font-size font-family等;</li>
+<li>文本相关: line-height、text-indent：文本缩进、text-align：文本水平对齐、color;</li>
+<li>元素可见性：visibility</li>
+<li>列表布局属性：list-style-type等</li>
+<li>光标属性</li>
+<li>页面属性：page等</li>
+<li>声音样式</li>
+</ol>
+<h4 id="无继承性的属性"><a href="#无继承性的属性" class="headerlink" title="无继承性的属性"></a>无继承性的属性</h4><ol>
+<li>display</li>
+<li>文本属性：vertical-aligh、 text-decoration、text-shadow</li>
+<li>盒模型属性：w h mar padding border …</li>
+<li>背景属性：background等</li>
+<li>定位属性：float、top、right、bottom、left、overflow等</li>
+<li>轮廓属性：outline</li>
+<li>页面样式：size、page-break-before</li>
+<li>声音样式：pause-before、pause-after、pause、cue-before、cue-after、cue、play-during</li>
+</ol>
+<h4 id="所有元素可继承属性"><a href="#所有元素可继承属性" class="headerlink" title="所有元素可继承属性"></a>所有元素可继承属性</h4><p>visibility cursor</p>
+<h4 id="内联元素可继承属性"><a href="#内联元素可继承属性" class="headerlink" title="内联元素可继承属性"></a>内联元素可继承属性</h4><ol>
+<li>字体系列属性</li>
+<li>除text-indent text-align之外的文本系列属性</li>
+</ol>
+<h4 id="块级元素可继承属性"><a href="#块级元素可继承属性" class="headerlink" title="块级元素可继承属性"></a>块级元素可继承属性</h4><p>text-indent、text-align</p>
+<h4 id="特殊"><a href="#特殊" class="headerlink" title="特殊"></a>特殊</h4><p>父元素下的设置了href的a标签不会继承父级color，因为a:-webkit-any-link: color: -webkit-link;</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>text-align在css2.1中，具有继承性。应用于块、表格单元格和行内块元素，仅对于行内元素生效。</p>
+<h4 id="属性值计算过程"><a href="#属性值计算过程" class="headerlink" title="属性值计算过程"></a>属性值计算过程</h4><ol>
+<li>确定声明值:  在开发者样式表里面和浏览器样式表里面,把没有冲突的属性值,作为该元素的属性值</li>
+<li>层叠冲突:    对样式表里面有冲突的声明,使用这个层叠规则,确定这个属性值</li>
+<li>使用继承:    对仍然没有属性值的属性,若可以继承的话,继承该父元素的值</li>
+<li>使用默认的值: 最后一步的话,对仍然没有熟悉值的属性,使用默认的属性值;</li>
+</ol>
+<h4 id="块状元素"><a href="#块状元素" class="headerlink" title="块状元素"></a>块状元素</h4><p>前后均有换行符、可设置margin/padding/宽高独占一行<br>div table form h1-h6 li ol p ul / nav aside header footer section </p>
+<h4 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h4><p>与其他元素处于同一行，仅左右padding和左右margin生效，不可设置宽高，不能嵌套块级元素<br>a b br input img label select textarea </p>
+<h4 id="css属性值unset"><a href="#css属性值unset" class="headerlink" title="css属性值unset"></a>css属性值unset</h4><p>是initial和inherit的组合。如果属性是默认继承属性，则等于inherit；如果不是继承属性，则等于initial</p>
+<h4 id="BFC块格式化上下文-block-formatting-context"><a href="#BFC块格式化上下文-block-formatting-context" class="headerlink" title="BFC块格式化上下文 - block formatting context"></a>BFC块格式化上下文 - block formatting context</h4><h5 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h5><ol>
+<li>box内部块盒会从上到下排列</li>
+<li>是一个独立的容器（一个元素不可能属于两个bfc）</li>
+<li>内部浮动元素也参与高度计算</li>
+<li>浮动元素不会叠加到bfc上(浮动产生的BFC不会与其他内容重叠)</li>
+<li>内部元素相互影响，可能会出现margin会重叠</li>
+</ol>
+<h5 id="条件："><a href="#条件：" class="headerlink" title="条件："></a>条件：</h5><ol>
+<li>根元素</li>
+<li>overflow不为visible</li>
+<li>display很多，不为inline和block</li>
+<li>position为absolute和fixed</li>
+<li>float不为none<h5 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h5>清除浮动、页面布局、解决margin合并问题、<h4 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h4></li>
+</ol>
+<h4 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h4><p>DOM事件流的三个阶段：捕获阶段-&gt;处于目标阶段-&gt;冒泡阶段；事件委托是对事件冒泡的应用；<br>event.currentTarget指的是当前事件绑定的目标 event.target 当前点击对象。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CSS继承 HTML元素</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/01/css+html基础篇/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-网页布局总结" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/22/网页布局总结/">网页布局总结</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/22/网页布局总结/" class="archive-article-date">
+  	<time datetime="2020-06-22T07:05:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="水平垂直居中"><a href="#水平垂直居中" class="headerlink" title="水平垂直居中"></a>水平垂直居中</h4><ol>
+<li>行内/行内块级/图片</li>
+</ol>
+<p>父设置宽高、height=l-h、font-size(为了消除幽灵盒子的空白节点，但是如果里面子元素有文字，文字就不会被显示)<br>子：vertical-align: middle; /<em>如果是块级元素需改为行内或行内块级才生效</em>/</p>
+<p>/<strong> 幽灵盒子：当被包裹的元素设置为display:inline-block之后，父级会有高度。</strong>/</p>
+<ol start="2">
+<li>button作为父元素 - 子元素设置内联块</li>
+<li>绝对定位 1: top+margin-top 2: top+transform(0, -50%)</li>
+<li>绝对居中 margin: auto。四个方向均为0</li>
+<li>flex; 子元素margin:auto 或者父元素设置j:center, align-items: center </li>
+</ol>
+<p><em>原理：当top、bottom为0时,margin-top&amp;bottom设置auto的话会无限延伸占满空间并且平分；当left、right为0时,margin-left&amp;right设置auto的话会无限延伸占满空间并且平分</em></p>
+<h4 id="两列布局"><a href="#两列布局" class="headerlink" title="两列布局"></a>两列布局</h4><p>左列固定，右列不固定</p>
+<ol>
+<li>float(left) + margin-left</li>
+<li>float(left+right) + margin(fix) 右侧包裹盒子width:100%;margin-left: -100px;(让盒子上去);右侧被包裹元素和第一种方式一样。</li>
+<li>float + overflow（触发bfc）</li>
+<li>table</li>
+<li>绝对定位 父/left·son/right·son</li>
+<li>flex </li>
+</ol>
+<p>右列固定，左列不固定</p>
+<ol>
+<li>父/left·son/right·son  父级设置padding-left:xx 来消除左侧div的margin-left</li>
+<li>float + overflow right·son/left·son（overflow）</li>
+<li>table</li>
+<li>绝对定位 父/left·son/right·son</li>
+<li>flex </li>
+</ol>
+<p>一列不固定，另一列自适应</p>
+<ol>
+<li>float + overflow</li>
+<li>flex</li>
+<li>grid</li>
+</ol>
+<h4 id="一列的高度随着另一列的高度自动变化"><a href="#一列的高度随着另一列的高度自动变化" class="headerlink" title="一列的高度随着另一列的高度自动变化"></a>一列的高度随着另一列的高度自动变化</h4><ol>
+<li>flex</li>
+<li>如果左侧内容根据右侧内容变化。<br>父级height:100%; overflow:hidden; left·son 设置float; right·son 设置padding-bottom: 9999px; margin-bottom: -9999px;<br>弊端：左侧下方border丢失<br>解决：给父级外层增加div 模拟丢失的border-bottom<h4 id="css-高度随着宽度变化"><a href="#css-高度随着宽度变化" class="headerlink" title="css 高度随着宽度变化"></a>css 高度随着宽度变化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&apos;container&apos;&gt;</span><br><span class="line">&lt;div class=&apos;dummy&apos;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&apos;content&apos;&gt;content&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">css代码如下,</span><br><span class="line">.container&#123;</span><br><span class="line">background-color: silver;</span><br><span class="line">width:100%;</span><br><span class="line">position:relative;</span><br><span class="line">display: inline-block;</span><br><span class="line">&#125;</span><br><span class="line">.dummy&#123;</span><br><span class="line">margin-top: 100%;</span><br><span class="line">&#125;</span><br><span class="line">.content&#123;</span><br><span class="line">position:absolute;</span><br><span class="line">left:0;</span><br><span class="line">right:0;</span><br><span class="line">top:0;</span><br><span class="line">bottom: 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>父元素 position: relative; width: 100%; display:inline-block或者overflow:hidden;<br><em>(因为当子元素脱离文档流时，父元素不知道子元素的存在，所以导致高度塌陷。当设置父元素为display:inline-block或者overflow:hidden时，迫使父元素去检查自己内部有哪些子元素，而这时候就发现了之前absolute定位的子元素，所以高度就撑开了。)</em><br>占位子元素：margin-top:100%；为了撑开父盒子。<br>真实子元素：绝对居中。占有父盒子。<br><a href="https://zhuanlan.zhihu.com/p/24674692" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24674692</a></p>
+<h4 id="三列布局"><a href="#三列布局" class="headerlink" title="三列布局"></a>三列布局</h4><ol>
+<li>float + margin</li>
+<li>float + overflow</li>
+<li>table</li>
+<li>flex</li>
+</ol>
+<h4 id="两侧定宽-中间自适应"><a href="#两侧定宽-中间自适应" class="headerlink" title="两侧定宽 中间自适应"></a>两侧定宽 中间自适应</h4><ol>
+<li>双飞翼 - center在前；float+margin； 元素全部浮动；中间两层div，内部中间div有左右margin；左侧div有margin-left:-100%；右侧div有margin-left:-xx 自身宽度； 注意清除浮动</li>
+<li>圣杯 -center在前； float+ 父级padding+子集相对定位（为了抵消padding）+margin</li>
+<li>flex</li>
+<li>position</li>
+</ol>
+<h4 id="多列布局"><a href="#多列布局" class="headerlink" title="多列布局"></a>多列布局</h4><ol>
+<li>float </li>
+<li>flex</li>
+</ol>
+<p><a href="https://juejin.im/post/5aa252ac518825558001d5de#heading-99" target="_blank" rel="noopener">参考内容：</a> </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/22/网页布局总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-前端导出excel两种方式" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -492,8 +817,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://juejin.im/post/5e94001bf265da47f07939b1" target="_blank" rel="noopener">前端错误监控指南</a><br>推荐工具：前端日志上报与JS异常监控 - badjs-report；<a href="https://github.com/BetterJS/badjs-report" target="_blank" rel="noopener">github</a></p>
-<p>WebSockect是一种标准协议。<br>对比以往，客户端跟服务端双向数据通信时，客户端需轮询或者发出请求后一直等待服务端返回，这样很占用资源。<br>如果你有这些需求可以考虑使用 WebSocket：<br>1 、多个用户之间进行交互；<br>2、需要频繁地向服务端请求更新数据。<br>比如弹幕、消息订阅、多玩家游戏、协同编辑、股票基金实时报价、视频会议、在线教育等需要高实时的场景。</p>
+        <p><a href="https://juejin.im/post/5e94001bf265da47f07939b1" target="_blank" rel="noopener">前端错误监控指南</a><br>推荐工具：</p>
+<ol>
+<li>前端日志上报与JS异常监控 - badjs-report；<a href="https://github.com/BetterJS/badjs-report" target="_blank" rel="noopener">github</a></li>
+<li>后端接口问题用kibana查询，前端报错使用<a href="http://sinhub.cn/2019/07/getting-started-guide-of-sentry/" target="_blank" rel="noopener">sentry</a>。</li>
+</ol>
+<p>WebSockect是一种标准协议。<br>对比以往，客户端跟服务端双向数据通信时，客户端需轮询或者发出请求后一直等待服务端返回，这样很占用资源。<br>如果你有这些需求可以考虑使用 WebSocket：<br>1、多个用户之间进行交互；<br>2、需要频繁地向服务端请求更新数据。<br>比如弹幕、消息订阅、多玩家游戏、协同编辑、股票基金实时报价、视频会议、在线教育等需要高实时的场景。</p>
         
           <a class="article-more-a" href="/2020/05/08/工作灵感记录/#more">more >></a>
         
@@ -698,247 +1027,6 @@
 
 
   
-    <article id="post-业务中金额处理" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/14/业务中金额处理/">业务中金额处理</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/14/业务中金额处理/" class="archive-article-date">
-  	<time datetime="2020-03-14T07:11:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>常常在业务中会出现，输入金额的处理。<br>函数处理：<br>一般情况为后端返回空，前端默认展示为0.00。<br>当focus的时候，如果Number(value) === 0，则变为空；<br>当有值的时候，可以直接输入。</p>
-<p>过滤器处理，接受两个参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 金额过滤器type为false的时候进行千分位处理并且保留两位小数</span><br><span class="line">// type为true的时候，直接返回</span><br><span class="line">Vue.filter(&apos;commafy&apos;, (val, type) =&gt; &#123;</span><br><span class="line">    if (type) &#123;</span><br><span class="line">        return val;</span><br><span class="line">    &#125; else if (Number(val) === 0 || isNaN(Number(val))) &#123;</span><br><span class="line">        val = &apos;0.00&apos;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // 保留两位并且加上千分符</span><br><span class="line">        val = format.commafy(utils.numToFixed(val));</span><br><span class="line">    &#125;</span><br><span class="line">    return val;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>后端返回数值，需要做千分位处理。传入false。值为空focus的时候，传入true</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/14/业务中金额处理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-前端性能测试" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/15/前端性能测试/">前端性能测试</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/15/前端性能测试/" class="archive-article-date">
-  	<time datetime="2020-02-15T08:56:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>对于web应用来说，除了考虑服务端在一定时间内返回页面数据之外，还可以从页面前端的角度来考虑性能测试和调优。</p>
-<h4 id="前端性能测试目的"><a href="#前端性能测试目的" class="headerlink" title="前端性能测试目的"></a>前端性能测试目的</h4><p>计算出包含页面渲染、网络传输以及服务器解析等元素在内的加载时间指标，对该页面性能进行评估分析。做出一定优化和解决方案，从而提升用户体验。</p>
-<h4 id="前端性能测试对象"><a href="#前端性能测试对象" class="headerlink" title="前端性能测试对象"></a>前端性能测试对象</h4><p>HTML、CSS、JS、AJAX等Web页面，服务器数据返回、网络传输、页面渲染。</p>
-<h4 id="前端性能检测指标"><a href="#前端性能检测指标" class="headerlink" title="前端性能检测指标"></a>前端性能检测指标</h4><p>白屏时间、首屏时间、用户可交互时间、总下载时间、DNS解析时间、TCP连接时间、HTTP请求时间、HTTP响应时间</p>
-<h4 id="性能检测工具"><a href="#性能检测工具" class="headerlink" title="性能检测工具"></a>性能检测工具</h4>
-        
-          <a class="article-more-a" href="/2020/02/15/前端性能测试/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">前端性能</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/15/前端性能测试/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue3.0尝鲜" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/26/vue3.0尝鲜/">vue3.0尝鲜</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/26/vue3.0尝鲜/" class="archive-article-date">
-  	<time datetime="2019-12-26T06:08:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="源码熟悉"><a href="#源码熟悉" class="headerlink" title="源码熟悉"></a>源码熟悉</h4><p>下载<a href="https://github.com/vuejs/vue-next/" target="_blank" rel="noopener">vue-next</a>仓库地址<br><img src="/2019/12/26/vue3.0尝鲜/dir.png" alt="gulp"></p>
-<blockquote>
-<p>vue Vue项目的主入口模块<br>reactivity 实现vue3.0的数据响应式功能的核心，发现是computed相关的数据处理很多<br>compiler-core 模板核心语法编译器，对标签、属性、指令（如v-if、v-for、v-bind、v-model、v-on、v-once等）的语法编译<br>compiler-dom vue模板编译器，编译模板中其他功能性指令（如v-html、v-text等），依赖于compiler-core<br>runtime-core 实现虚拟dom、组件定义、生命周日、指令定义、依赖注入、渲染等功能的核心模块<br>runtime-dom vue在浏览器dom环境运行时，负责实现与浏览器环境运行所需的相关特性</p>
-</blockquote>
-<h4 id="编译-得到vue3-0的运行环境"><a href="#编译-得到vue3-0的运行环境" class="headerlink" title="编译-得到vue3.0的运行环境"></a>编译-得到vue3.0的运行环境</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
-<p>在vue目录下会生成一个dist文件夹<br><img src="/2019/12/26/vue3.0尝鲜/dir2.png" alt="gulp"><br>我们会用到的是dist目录下的vue.global.prod.js这个文件，这个是打包后得到的最完整的框架代码，可以使用script标签直接饮用。</p>
-<h4 id="上手写demo"><a href="#上手写demo" class="headerlink" title="上手写demo"></a>上手写demo</h4><p>建一个文件夹，下面的文件结构如下图所示，有css和js目录，分别存放示例代码要用到的样式、vue的js库文件、以及我们编写的示例js代码文件；而 index.html 则就是这个程序的主入口了。<br><img src="/2019/12/26/vue3.0尝鲜/dir4.png" alt="gulp"></p>
-<h4 id="使用COmposition-API"><a href="#使用COmposition-API" class="headerlink" title="使用COmposition API"></a>使用COmposition API</h4><p>为了向下兼容，对vue2.x的写法几乎都支持，这种写法被称为Options API(可选项式Api),就是说在创建组件的时候，其实都是在拼装一个可选项集合，比如我们传入data\computed\methods等。<br>这种方式虽然清晰，但是这个写法在逻辑复用上并不友好，在js里，最简洁最清晰的写法是封装为一个个单纯的函数，然后函数与函数之间的调用。所以之前的写法在复用性和优雅度上不大好，对比函数组成的模块，使用时通过具名方式导入，则在使用tree-shaking的是时候支持的更好，有更好的效果。以下是一个具名方式导入的例子，要养成好习惯<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123;myFUn1&#125; from &apos;my-module;&apos;</span><br></pre></td></tr></table></figure></p>
-<p>vue3.0支持TS,TS一个很重要的特性就是类型推导，而函数对类型推导也不友好。</p>
-<p>因此，像Composition这种函数的编程风格，成为了新框架的亮点。<br><code>setup</code>方法，它是Vue3.0中新增的组件入口，专为使用Composition API而设计，调用时机是在组件生命周期的 beforeCreate 和 created 之间（所以在 setup 里面是访问不了你所期望的 this 对象的，即它里面的this并不是指向当前组件，这点需要注意也尽量避免使用）</p>
-<p>data里面的响应式对象属性是使用<code>ref</code>函数创建的响应式常量。</p>
-<p>将一个x值操作的逻辑部分抽离到函数，然后进一步把这些独立逻辑函数移入到模块文件中。</p>
-<h5 id="ref-reactive-render-props-生命周期-加油"><a href="#ref-reactive-render-props-生命周期-加油" class="headerlink" title="ref reactive render props 生命周期 加油"></a>ref reactive render props 生命周期 加油</h5>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">vue3.0</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/26/vue3.0尝鲜/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1076,7 +1164,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">前端开发规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CSS继承 HTML元素</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1088,19 +1184,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">前端开发规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CSS继承 HTML元素</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">vue-cli4.x</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color2">vue3.0</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1108,11 +1196,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jest</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">vue3.0</a>
+                <a href="javascript:void(0)" class="js-tag color5">jest</a>
               </li>
              
               <li class="article-tag-list-item">

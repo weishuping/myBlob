@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="xiaowei">
 <meta property="og:description" content="[TOC] 面试知识点总结HTML+CSS相关1. 三列布局/两列布局 http://www.ryanshang.com/2018/01/20/%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80/  2. ul中插入上万个li如何操作？如何给所有li绑定事件获取当前li索引？ 文档碎片 二分查找  3. 水平垂直居中，不定宽高。 http://www.ryanshang.co">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-09-25T02:31:45.754Z">
+<meta property="og:updated_time" content="2020-10-09T11:44:31.445Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="xiaowei">
 <meta name="twitter:description" content="[TOC] 面试知识点总结HTML+CSS相关1. 三列布局/两列布局 http://www.ryanshang.com/2018/01/20/%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80/  2. ul中插入上万个li如何操作？如何给所有li绑定事件获取当前li索引？ 文档碎片 二分查找  3. 水平垂直居中，不定宽高。 http://www.ryanshang.co">
@@ -272,7 +272,8 @@
 <li>this绑定到这个实例</li>
 <li>如果对象没有返回其他对象，那么new表达式的函数调用会自动返回这个新对象</li>
 </ul>
-<h4 id="7-Object-create返回的对象和字面量赋值获取的对象的区别？"><a href="#7-Object-create返回的对象和字面量赋值获取的对象的区别？" class="headerlink" title="7. Object.create返回的对象和字面量赋值获取的对象的区别？"></a>7. Object.create返回的对象和字面量赋值获取的对象的区别？</h4><ul>
+<h4 id="7-Object-create返回的对象和字面量赋值获取的对象的区别？"><a href="#7-Object-create返回的对象和字面量赋值获取的对象的区别？" class="headerlink" title="7. Object.create返回的对象和字面量赋值获取的对象的区别？"></a>7. Object.create返回的对象和字面量赋值获取的对象的区别？</h4><p>5中方式。<br>Object.create的属性是原型链的属性。字面量赋值的属性是对象的私有属性；<br>还有new Object({name:1})这种。构造函数是Object,是私有属性。<br>还有 new XX()。构造函数是自己的类。<br>还有class 创建对象。</p>
+<ul>
 <li><a href="http://www.ryanshang.com/2019/04/18/你不知道的JavaScript/#5-定义Object的不同方式和区别" target="_blank" rel="noopener">http://www.ryanshang.com/2019/04/18/你不知道的JavaScript/#5-定义Object的不同方式和区别</a></li>
 </ul>
 <h4 id="8-bind封装，pollyfill"><a href="#8-bind封装，pollyfill" class="headerlink" title="8. bind封装，pollyfill"></a>8. bind封装，pollyfill</h4><ul>
@@ -281,23 +282,26 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.bind) &#123;</span><br><span class="line">  <span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span>(<span class="params">oThis</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">'function'</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Function.prototype.bind - what is trying to be bound is not callable'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> aArgs   = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>),</span><br><span class="line">        fToBind = <span class="keyword">this</span>,</span><br><span class="line">        fNOP    = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">        fBound  = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> fToBind.apply(<span class="keyword">this</span> <span class="keyword">instanceof</span> fNOP <span class="comment">// 这段代码会判断硬绑定函数是否是被new调用，如果是的话就会使用新创建的this替换硬绑定的this</span></span><br><span class="line">                 ? <span class="keyword">this</span></span><br><span class="line">                 : oThis,</span><br><span class="line">                 aArgs.concat(<span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)))</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="comment">// 维护原型关系</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.prototype) &#123;</span><br><span class="line">        <span class="comment">// Function.prototype doesn't have a prototype property</span></span><br><span class="line">        fNOP.prototype = <span class="keyword">this</span>.prototype; </span><br><span class="line">    &#125;</span><br><span class="line">    fBound.prototype = <span class="keyword">new</span> fNOP()</span><br><span class="line">    <span class="keyword">return</span> fBound</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="9-async-await原理"><a href="#9-async-await原理" class="headerlink" title="9. async/await原理"></a>9. async/await原理</h4><p><a href="https://juejin.im/post/5dc28ea66fb9a04a881d1ac0" target="_blank" rel="noopener">https://juejin.im/post/5dc28ea66fb9a04a881d1ac0</a></p>
-<p><a href="https://github.com/frontend9/fe9-interview/issues/6" target="_blank" rel="noopener">https://github.com/frontend9/fe9-interview/issues/6</a></p>
+<p><a href="https://github.com/frontend9/fe9-interview/issues/6" target="_blank" rel="noopener">https://github.com/frontend9/fe9-interview/issues/6</a><br>是generator的语法糖，少了手动调用next()。<br>async异步函数，不阻塞后面代码的运行。返回Promise类型。<br>await写法更像同步写法。多级联调用。让出线程。<br>执行顺序：<a href="https://blog.csdn.net/baidu_33295233/article/details/79335127" target="_blank" rel="noopener">https://blog.csdn.net/baidu_33295233/article/details/79335127</a></p>
 <h4 id="10-promise原理，是否一定返回一个promise对象"><a href="#10-promise原理，是否一定返回一个promise对象" class="headerlink" title="10. promise原理，是否一定返回一个promise对象"></a>10. promise原理，是否一定返回一个promise对象</h4><p><a href="https://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="noopener">https://es6.ruanyifeng.com/#docs/promise</a></p>
 <p><a href="https://juejin.im/post/5d6f7c83e51d4561c541a712" target="_blank" rel="noopener">https://juejin.im/post/5d6f7c83e51d4561c541a712</a></p>
 <ul>
-<li>promise三种状态</li>
+<li>promise三种状态 pending 已完成 已拒绝。必须是三种的一种。一旦Promise被resolve或者reject，状态不会发生改变。</li>
 </ul>
-<h4 id="11-strict-mode"><a href="#11-strict-mode" class="headerlink" title="11. strict mode"></a>11. strict mode</h4><h4 id="12-fetch兼容性"><a href="#12-fetch兼容性" class="headerlink" title="12. fetch兼容性"></a>12. fetch兼容性</h4><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API</a></p>
-<h4 id="13-代码实现发布订阅模式"><a href="#13-代码实现发布订阅模式" class="headerlink" title="13. 代码实现发布订阅模式"></a>13. 代码实现发布订阅模式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> observer = &#123;</span><br><span class="line">    <span class="comment">//订阅</span></span><br><span class="line">    addSubscriber: <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.subscribers[<span class="keyword">this</span>.subscribers.length] = callback;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//退订</span></span><br><span class="line">    removeSubscriber: <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.subscribers.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.subscribers[i] === callback) &#123;</span><br><span class="line">                <span class="keyword">delete</span> (<span class="keyword">this</span>.subscribers[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//发布</span></span><br><span class="line">    publish: <span class="function"><span class="keyword">function</span> (<span class="params">what</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.subscribers.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.subscribers[i] === <span class="string">'function'</span>) &#123;</span><br><span class="line">                <span class="keyword">this</span>.subscribers[i](what);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 将对象o具有观察者功能</span></span><br><span class="line">    make: <span class="function"><span class="keyword">function</span> (<span class="params">o</span>) </span>&#123; </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> <span class="keyword">this</span>) &#123;</span><br><span class="line">            o[i] = <span class="keyword">this</span>[i];</span><br><span class="line">            o.subscribers = [];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>实现：</p>
+<h4 id="11-strict-mode"><a href="#11-strict-mode" class="headerlink" title="11. strict mode"></a>11. strict mode</h4><p>‘use strict’</p>
+<h4 id="12-fetch兼容性"><a href="#12-fetch兼容性" class="headerlink" title="12. fetch兼容性"></a>12. fetch兼容性</h4><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API</a></p>
+<h4 id="13-代码实现发布订阅模式"><a href="#13-代码实现发布订阅模式" class="headerlink" title="13. 代码实现发布订阅模式"></a>13. 代码实现发布订阅模式</h4><p><a href="https://www.cnblogs.com/itgezhu/p/10947405.html" target="_blank" rel="noopener">https://www.cnblogs.com/itgezhu/p/10947405.html</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> observer = &#123;</span><br><span class="line">    <span class="comment">//订阅</span></span><br><span class="line">    addSubscriber: <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.subscribers[<span class="keyword">this</span>.subscribers.length] = callback;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//退订</span></span><br><span class="line">    removeSubscriber: <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.subscribers.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.subscribers[i] === callback) &#123;</span><br><span class="line">                <span class="keyword">delete</span> (<span class="keyword">this</span>.subscribers[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//发布</span></span><br><span class="line">    publish: <span class="function"><span class="keyword">function</span> (<span class="params">what</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.subscribers.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.subscribers[i] === <span class="string">'function'</span>) &#123;</span><br><span class="line">                <span class="keyword">this</span>.subscribers[i](what);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 将对象o具有观察者功能</span></span><br><span class="line">    make: <span class="function"><span class="keyword">function</span> (<span class="params">o</span>) </span>&#123; </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> <span class="keyword">this</span>) &#123;</span><br><span class="line">            o[i] = <span class="keyword">this</span>[i];</span><br><span class="line">            o.subscribers = [];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <h4 id="14-实现O-add-1-mins-3-，实现Number-O-add-1-mins-3"><a href="#14-实现O-add-1-mins-3-，实现Number-O-add-1-mins-3" class="headerlink" title="14. 实现O.add(1).mins(3)，实现Number(O.add(1).mins(3))"></a>14. 实现<code>O.add(1).mins(3)</code>，实现<code>Number(O.add(1).mins(3))</code></h4><p><a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/88" target="_blank" rel="noopener">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/88</a></p>
 <ul>
 <li>每个方法返回实例</li>
-<li>valueof</li>
+<li>valueOf 可以获取到数字，然后重写add min方法，Number.prototype.add = (n) =&gt; { this.valueOf + n;}</li>
 </ul>
 <h4 id="15-实现a-b-x-1不报错"><a href="#15-实现a-b-x-1不报错" class="headerlink" title="15. 实现a.b.x = 1不报错"></a>15. 实现<code>a.b.x = 1</code>不报错</h4><ul>
 <li>object.defineProperty</li>
 <li>reduce处理a[b.x] 不是 a.b.x的问题</li>
 </ul>
+<p>let a ={};<br>Object.defineProperty(a, ‘b’, {<br>    value: {c:1},<br>    writable: false<br>})</p>
 <h4 id="16-节流和防抖的原理和区别"><a href="#16-节流和防抖的原理和区别" class="headerlink" title="16. 节流和防抖的原理和区别"></a>16. 节流和防抖的原理和区别</h4><ul>
 <li>节流</li>
 </ul>
@@ -307,9 +311,9 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param fn &#123;Function&#125;   实际要执行的函数</span></span><br><span class="line"><span class="comment"> * @param delay &#123;Number&#125;  延迟时间，单位是毫秒（ms）</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @return &#123;Function&#125;     返回一个“防反跳”了的函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 定时器，用来 setTimeout</span></span><br><span class="line">  <span class="keyword">var</span> timer</span><br><span class="line">  <span class="comment">// 返回一个函数，这个函数会在一个时间区间结束后的 delay 毫秒时执行 fn 函数</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 保存函数调用时的上下文和参数，传递给 fn</span></span><br><span class="line">    <span class="keyword">var</span> context = <span class="keyword">this</span></span><br><span class="line">    <span class="keyword">var</span> args = <span class="built_in">arguments</span></span><br><span class="line">    <span class="comment">// 每次这个返回的函数被调用，就清除定时器，以保证不执行 fn</span></span><br><span class="line">    clearTimeout(timer)</span><br><span class="line">    <span class="comment">// 当返回的函数被最后一次调用后（也就是用户停止了某个连续的操作），</span></span><br><span class="line">    <span class="comment">// 再过 delay 毫秒就执行 fn</span></span><br><span class="line">    timer = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      fn.apply(context, args)</span><br><span class="line">    &#125;, delay)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="17-对象深克隆和浅克隆，Object-assign-是哪种拷贝"><a href="#17-对象深克隆和浅克隆，Object-assign-是哪种拷贝" class="headerlink" title="17. 对象深克隆和浅克隆，Object.assign()是哪种拷贝"></a>17. 对象深克隆和浅克隆，Object.assign()是哪种拷贝</h4><ul>
-<li>Object.assign()浅拷贝</li>
+<li>Object.assign()浅拷贝<br>// todo<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 对一个object进行深度拷贝</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param &#123;Object&#125; source 需要进行拷贝的对象</span></span><br><span class="line"><span class="comment"> * @remark</span></span><br><span class="line"><span class="comment"> * 对于Object来说，只拷贝自身成员，不拷贝prototype成员</span></span><br><span class="line"><span class="comment"> * @meta standard</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @returns &#123;Object&#125; 拷贝后的新对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clone</span> (<span class="params">source</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = source</span><br><span class="line">  <span class="keyword">let</span> i</span><br><span class="line">  <span class="keyword">let</span> len</span><br><span class="line">  <span class="keyword">if</span> (!source || source <span class="keyword">instanceof</span> <span class="built_in">Number</span> || source <span class="keyword">instanceof</span> <span class="built_in">String</span> || source <span class="keyword">instanceof</span> <span class="built_in">Boolean</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(source)) &#123;</span><br><span class="line">    result = []</span><br><span class="line">    <span class="keyword">var</span> resultLen = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>, len = source.length; i &lt; len; i++) &#123;</span><br><span class="line">      result[resultLen++] = clone(source[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(source) !== <span class="string">'[object Object]'</span>) &#123;</span><br><span class="line">    result = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> source) &#123;</span><br><span class="line">      <span class="keyword">if</span> (source.hasOwnProperty(i)) &#123;</span><br><span class="line">        result[i] = clone(source[i])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 对一个object进行深度拷贝</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param &#123;Object&#125; source 需要进行拷贝的对象</span></span><br><span class="line"><span class="comment"> * @remark</span></span><br><span class="line"><span class="comment"> * 对于Object来说，只拷贝自身成员，不拷贝prototype成员</span></span><br><span class="line"><span class="comment"> * @meta standard</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @returns &#123;Object&#125; 拷贝后的新对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clone</span> (<span class="params">source</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = source</span><br><span class="line">  <span class="keyword">let</span> i</span><br><span class="line">  <span class="keyword">let</span> len</span><br><span class="line">  <span class="keyword">if</span> (!source || source <span class="keyword">instanceof</span> <span class="built_in">Number</span> || source <span class="keyword">instanceof</span> <span class="built_in">String</span> || source <span class="keyword">instanceof</span> <span class="built_in">Boolean</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(source)) &#123;</span><br><span class="line">    result = []</span><br><span class="line">    <span class="keyword">var</span> resultLen = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>, len = source.length; i &lt; len; i++) &#123;</span><br><span class="line">      result[resultLen++] = clone(source[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(source) !== <span class="string">'[object Object]'</span>) &#123;</span><br><span class="line">    result = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> source) &#123;</span><br><span class="line">      <span class="keyword">if</span> (source.hasOwnProperty(i)) &#123;</span><br><span class="line">        result[i] = clone(source[i])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="18-比较，隐式转换"><a href="#18-比较，隐式转换" class="headerlink" title="18. ==比较，隐式转换"></a>18. ==比较，隐式转换</h4><ol>
 <li>对象和对象间比较引用地址</li>
 <li>对象和三种基本数据类型转换，先转换成字符串，如果需要则继续转换则数字</li>
@@ -322,15 +326,15 @@
 </li>
 <li><p>阮一峰</p>
 </li>
-<li>Object.defineProperty的不足</li>
-<li>Reflect.defineProperty的返回值</li>
+<li>Object.defineProperty的不足。Reflect让一些属性行变成了函数行为。</li>
+<li>Reflect.defineProperty的返回值  -false</li>
 </ul>
 <h4 id="20-正则相关用法，replace、match、test"><a href="#20-正则相关用法，replace、match、test" class="headerlink" title="20. 正则相关用法，replace、match、test"></a>20. 正则相关用法，replace、match、test</h4><ul>
 <li>正则分组</li>
 </ul>
-<h4 id="21-闭包"><a href="#21-闭包" class="headerlink" title="21. 闭包"></a>21. 闭包</h4><p><a href="https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html</a></p>
+<h4 id="21-闭包"><a href="#21-闭包" class="headerlink" title="21. 闭包"></a>21. 闭包</h4><p>可以访问函数外部变量的函数。防止内存泄露，是因为这些变量存在于内存当中。<br><a href="https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/29157822" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/29157822</a></p>
-<h4 id="22-Eventlop"><a href="#22-Eventlop" class="headerlink" title="22. Eventlop"></a>22. Eventlop</h4><p><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2014/10/event-loop.html</a></p>
+<h4 id="22-Eventlop"><a href="#22-Eventlop" class="headerlink" title="22. Eventlop"></a>22. Eventlop</h4><p>js是单线程。<br>js的运行机制：主线程运行完毕，开始运行任务队列（存放的是异步事件）。然后继续循环，这就是事件循环。<br><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2014/10/event-loop.html</a></p>
 <p><a href="https://juejin.im/post/5b73d7a6518825610072b42b" target="_blank" rel="noopener">https://juejin.im/post/5b73d7a6518825610072b42b</a></p>
 <ul>
 <li>宏任务和微任务</li>
@@ -338,11 +342,12 @@
 </ul>
 <h4 id="23-call-call和bind-bind"><a href="#23-call-call和bind-bind" class="headerlink" title="23. call.call和bind.bind"></a>23. call.call和bind.bind</h4><ul>
 <li><a href="http://www.ryanshang.com/2019/04/30/call和bind/" target="_blank" rel="noopener">http://www.ryanshang.com/2019/04/30/call和bind/</a></li>
+<li>题外话： bind的参数可以分为多次传入。三个都是为了改变this指向。</li>
 </ul>
 <h4 id="24-设计模式"><a href="#24-设计模式" class="headerlink" title="24. 设计模式"></a>24. 设计模式</h4><p><a href="https://juejin.im/post/5c984610e51d45656702a785" target="_blank" rel="noopener">https://juejin.im/post/5c984610e51d45656702a785</a></p>
 <ul>
 <li>单例</li>
-<li>工厂</li>
+<li>工厂<br>单例模式保证一个类仅有一个实例。</li>
 </ul>
 <h4 id="25-模块化规范"><a href="#25-模块化规范" class="headerlink" title="25. 模块化规范"></a>25. 模块化规范</h4><p><a href="https://juejin.im/post/5aaa37c8f265da23945f365c" target="_blank" rel="noopener">https://juejin.im/post/5aaa37c8f265da23945f365c</a></p>
 <ul>
@@ -363,13 +368,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;comp :foo.sync=&quot;bar&quot;&gt;&lt;/comp&gt;</span><br></pre></td></tr></table></figure>
 <p>会被扩展为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;comp :foo=&quot;bar&quot; @update:foo=&quot;val =&gt; bar = val&quot;&gt;&lt;/comp&gt;</span><br></pre></td></tr></table></figure></p>
 <p>然后你需要在子组件中改变父组件数据的时候， 需要触发以下的自定义事件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.$emit(&quot;update:foo&quot;, newValue)</span><br></pre></td></tr></table></figure></p>
-<h4 id="3-虚拟DOM"><a href="#3-虚拟DOM" class="headerlink" title="3. 虚拟DOM"></a>3. 虚拟DOM</h4><p><a href="https://juejin.im/post/5affd01551882542c83301da" target="_blank" rel="noopener">https://juejin.im/post/5affd01551882542c83301da</a></p>
+<h4 id="3-虚拟DOM"><a href="#3-虚拟DOM" class="headerlink" title="3. 虚拟DOM"></a>3. 虚拟DOM</h4><p>使用javascript模拟了DOM结构的树形结构.<br><a href="https://juejin.im/post/5affd01551882542c83301da" target="_blank" rel="noopener">https://juejin.im/post/5affd01551882542c83301da</a></p>
 <p><a href="https://juejin.im/post/5ad6182df265da23906c8627" target="_blank" rel="noopener">https://juejin.im/post/5ad6182df265da23906c8627</a></p>
 <ul>
 <li>DOMdiff</li>
 </ul>
 <h4 id="4-nextTick原理"><a href="#4-nextTick原理" class="headerlink" title="4. $nextTick原理"></a>4. $nextTick原理</h4><ul>
-<li>Eventlop</li>
+<li>Eventloop</li>
 </ul>
 <h4 id="5-vue-computed原理，和watch区别"><a href="#5-vue-computed原理，和watch区别" class="headerlink" title="5. vue computed原理，和watch区别"></a>5. vue computed原理，和watch区别</h4><p><a href="https://zheyaoa.github.io/2019/09/07/computed/" target="_blank" rel="noopener">https://zheyaoa.github.io/2019/09/07/computed/</a></p>
 <p><a href="https://segmentfault.com/a/1190000010408657" target="_blank" rel="noopener">https://segmentfault.com/a/1190000010408657</a></p>
@@ -378,7 +383,8 @@
 <li>computed多对一，watch一对多</li>
 <li>computed惰性</li>
 </ul>
-<h4 id="6-vue的Observer、Watcher、Dep对应vue实例的哪一部分"><a href="#6-vue的Observer、Watcher、Dep对应vue实例的哪一部分" class="headerlink" title="6. vue的Observer、Watcher、Dep对应vue实例的哪一部分"></a>6. vue的Observer、Watcher、Dep对应vue实例的哪一部分</h4><h4 id="7-mvvm原理"><a href="#7-mvvm原理" class="headerlink" title="7. mvvm原理"></a>7. mvvm原理</h4><p><a href="https://juejin.im/post/5abdd6f6f265da23793c4458" target="_blank" rel="noopener">https://juejin.im/post/5abdd6f6f265da23793c4458</a></p>
+<h4 id="6-vue的Observer、Watcher、Dep对应vue实例的哪一部分"><a href="#6-vue的Observer、Watcher、Dep对应vue实例的哪一部分" class="headerlink" title="6. vue的Observer、Watcher、Dep对应vue实例的哪一部分"></a>6. vue的Observer、Watcher、Dep对应vue实例的哪一部分</h4><p>Observer给数据添加Dep依赖。Watcher会绑定update方法。Dep：当数据发生变化，Dep会通知Watcher。</p>
+<h4 id="7-mvvm原理"><a href="#7-mvvm原理" class="headerlink" title="7. mvvm原理"></a>7. mvvm原理</h4><p>数据双向绑定。数据劫持+发布订阅者模式<br><a href="https://juejin.im/post/5abdd6f6f265da23793c4458" target="_blank" rel="noopener">https://juejin.im/post/5abdd6f6f265da23793c4458</a></p>
 <h4 id="8-双向绑定原理，vue中有哪些双向绑定的例子"><a href="#8-双向绑定原理，vue中有哪些双向绑定的例子" class="headerlink" title="8. 双向绑定原理，vue中有哪些双向绑定的例子"></a>8. 双向绑定原理，vue中有哪些双向绑定的例子</h4><p><a href="https://juejin.im/entry/5923973da22b9d005893805a" target="_blank" rel="noopener">https://juejin.im/entry/5923973da22b9d005893805a</a></p>
 <ul>
 <li>v-model</li>
@@ -395,8 +401,10 @@
 <h4 id="12-组件间通讯方式"><a href="#12-组件间通讯方式" class="headerlink" title="12. 组件间通讯方式"></a>12. 组件间通讯方式</h4><p><a href="https://juejin.im/post/5cde0b43f265da03867e78d3" target="_blank" rel="noopener">https://juejin.im/post/5cde0b43f265da03867e78d3</a></p>
 <ul>
 <li>EventBus</li>
+<li>props/emit; vuex; $attrs/$listners; provide/inject(主动提供和依赖注入); $parent/$children</li>
 </ul>
 <h4 id="13-this-set"><a href="#13-this-set" class="headerlink" title="13. this.$set"></a>13. this.$set</h4><p><a href="https://juejin.im/post/5d3c7dcfe51d45572c060131" target="_blank" rel="noopener">https://juejin.im/post/5d3c7dcfe51d45572c060131</a></p>
+<p>在实例创建之后添加新的属性不会被更新到视图中。</p>
 <h3 id="脚手架相关"><a href="#脚手架相关" class="headerlink" title="脚手架相关"></a>脚手架相关</h3><h4 id="1-常用打包工具了解"><a href="#1-常用打包工具了解" class="headerlink" title="1. 常用打包工具了解"></a>1. 常用打包工具了解</h4><ul>
 <li>webpack：<a href="https://juejin.im/entry/5b0e3eba5188251534379615" target="_blank" rel="noopener">https://juejin.im/entry/5b0e3eba5188251534379615</a></li>
 <li>webpack loader顺序原因style|css|less</li>
@@ -439,7 +447,12 @@
 <li><a href="https://zhuanlan.zhihu.com/p/27289600" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/27289600</a></li>
 <li><a href="https://www.cnblogs.com/lsgxeva/p/7758184.html" target="_blank" rel="noopener">https://www.cnblogs.com/lsgxeva/p/7758184.html</a></li>
 </ul>
-<h4 id="5-babel-core、babel-runtime、babel-polyfill"><a href="#5-babel-core、babel-runtime、babel-polyfill" class="headerlink" title="5. babel-core、babel-runtime、babel-polyfill"></a>5. babel-core、babel-runtime、babel-polyfill</h4><h3 id="浏览器相关"><a href="#浏览器相关" class="headerlink" title="浏览器相关"></a>浏览器相关</h3><h4 id="1-浏览器存储"><a href="#1-浏览器存储" class="headerlink" title="1. 浏览器存储"></a>1. 浏览器存储</h4><p><a href="https://www.ruanyifeng.com/blog/2018/07/indexeddb.html" target="_blank" rel="noopener">https://www.ruanyifeng.com/blog/2018/07/indexeddb.html</a></p>
+<h4 id="5-babel-core、babel-runtime、babel-polyfill"><a href="#5-babel-core、babel-runtime、babel-polyfill" class="headerlink" title="5. babel-core、babel-runtime、babel-polyfill"></a>5. babel-core、babel-runtime、babel-polyfill</h4><h4 id="6-webapck常用的插件"><a href="#6-webapck常用的插件" class="headerlink" title="6. webapck常用的插件"></a>6. webapck常用的插件</h4><ol>
+<li>热替换</li>
+<li>htmlWebpackPlugin 生成html模板， 参数有压缩模板minify属性，清除注释，清除空格换行等</li>
+<li></li>
+</ol>
+<h3 id="浏览器相关"><a href="#浏览器相关" class="headerlink" title="浏览器相关"></a>浏览器相关</h3><h4 id="1-浏览器存储"><a href="#1-浏览器存储" class="headerlink" title="1. 浏览器存储"></a>1. 浏览器存储</h4><p><a href="https://www.ruanyifeng.com/blog/2018/07/indexeddb.html" target="_blank" rel="noopener">https://www.ruanyifeng.com/blog/2018/07/indexeddb.html</a></p>
 <ul>
 <li>需要了解IndexedDB</li>
 </ul>
@@ -482,10 +495,12 @@
 <li>hash</li>
 <li>postMessage</li>
 </ul>
-<h4 id="3-Promise版ajax"><a href="#3-Promise版ajax" class="headerlink" title="3. Promise版ajax"></a>3. Promise版ajax</h4><h4 id="4-jsonp手写"><a href="#4-jsonp手写" class="headerlink" title="4. jsonp手写"></a>4. jsonp手写</h4><p><a href="https://juejin.im/post/5be4f163f265da61483b1b08" target="_blank" rel="noopener">https://juejin.im/post/5be4f163f265da61483b1b08</a></p>
+<h4 id="3-Promise版ajax"><a href="#3-Promise版ajax" class="headerlink" title="3. Promise版ajax"></a>3. Promise版ajax</h4><h4 id="4-jsonp手写"><a href="#4-jsonp手写" class="headerlink" title="4. jsonp手写"></a>4. jsonp手写</h4><p>jsonp的核心原理就是目标页面回调本地页面的方法,并带入参数<br><a href="https://juejin.im/post/5be4f163f265da61483b1b08" target="_blank" rel="noopener">https://juejin.im/post/5be4f163f265da61483b1b08</a></p>
 <h4 id="5-CORS"><a href="#5-CORS" class="headerlink" title="5. CORS"></a>5. CORS</h4><p><a href="https://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">https://www.ruanyifeng.com/blog/2016/04/cors.html</a></p>
+<p>origin 指定源，<br>withCredentials 打开之后可以发送cookie</p>
 <h4 id="6-Get和Post的区别"><a href="#6-Get和Post的区别" class="headerlink" title="6. Get和Post的区别"></a>6. Get和Post的区别</h4><p><a href="https://www.zhihu.com/question/28586791" target="_blank" rel="noopener">https://www.zhihu.com/question/28586791</a></p>
-<h3 id="安全相关"><a href="#安全相关" class="headerlink" title="安全相关"></a>安全相关</h3><h4 id="1-XSS"><a href="#1-XSS" class="headerlink" title="1. XSS"></a>1. XSS</h4><h4 id="2-CSRF"><a href="#2-CSRF" class="headerlink" title="2. CSRF"></a>2. CSRF</h4><h3 id="开发相关"><a href="#开发相关" class="headerlink" title="开发相关"></a>开发相关</h3><h4 id="1-git-rebase"><a href="#1-git-rebase" class="headerlink" title="1. git rebase"></a>1. git rebase</h4><ul>
+<p>get发送一个tcp包，post发送两个tcp包。先发送header 然后发送数据。</p>
+<h3 id="安全相关"><a href="#安全相关" class="headerlink" title="安全相关"></a>安全相关</h3><h4 id="1-XSS-跨站脚本攻击"><a href="#1-XSS-跨站脚本攻击" class="headerlink" title="1. XSS 跨站脚本攻击"></a>1. XSS 跨站脚本攻击</h4><h4 id="2-CSRF-跨站请求伪造"><a href="#2-CSRF-跨站请求伪造" class="headerlink" title="2. CSRF 跨站请求伪造"></a>2. CSRF 跨站请求伪造</h4><h3 id="开发相关"><a href="#开发相关" class="headerlink" title="开发相关"></a>开发相关</h3><h4 id="1-git-rebase"><a href="#1-git-rebase" class="headerlink" title="1. git rebase"></a>1. git rebase</h4><ul>
 <li>rebase操作可以把本地未push的分叉提交历史整理成直线</li>
 <li>rebase的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比</li>
 <li>rebase一定要在未发布或未共享的分支上操作</li>
@@ -508,6 +523,12 @@
 <h4 id="2-base64原理"><a href="#2-base64原理" class="headerlink" title="2. base64原理"></a>2. base64原理</h4><ul>
 <li><a href="https://www.colabug.com/4106075.html" target="_blank" rel="noopener">https://www.colabug.com/4106075.html</a></li>
 </ul>
+<h4 id="cookie和session区别"><a href="#cookie和session区别" class="headerlink" title="cookie和session区别"></a>cookie和session区别</h4><h4 id="http状态码，301与302的区别，401与403的区别"><a href="#http状态码，301与302的区别，401与403的区别" class="headerlink" title="http状态码，301与302的区别，401与403的区别"></a>http状态码，301与302的区别，401与403的区别</h4><p>3-资源永久、临时重定向。 401 缺乏一些验证信息。403 服务器可以处理，但是访问无权限。</p>
+<h4 id="http2-0"><a href="#http2-0" class="headerlink" title="http2.0"></a>http2.0</h4><ol>
+<li>多路复用-就是可以同时发多个请求，还可以设置优先级。比如css和js可以优先下载</li>
+<li>头部压缩-借助静态字典表维护一些key-value，传输的时候传输字典值，比如method:GET映射成2，这样就能达到压缩头部的作用</li>
+<li></li>
+</ol>
 
       
 
@@ -759,7 +780,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">前端开发规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CSS继承 HTML元素</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -771,19 +800,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">前端开发规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CSS继承 HTML元素</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">vue-cli4.x</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color2">vue3.0</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -791,11 +812,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jest</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">vue3.0</a>
+                <a href="javascript:void(0)" class="js-tag color5">jest</a>
               </li>
              
               <li class="article-tag-list-item">
